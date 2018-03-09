@@ -5,4 +5,6 @@ module soupply.protocol.bedrock141.packet;
 
 import packetmaker;
 
-alias Bedrock141Packet = PacketImpl!(Endian.littleEndian, varuint, varuint);
+import soupply.util : Pad;
+
+alias Bedrock141Packet = Pad!(2, PacketImpl!(Endian.littleEndian, varuint, varuint));
