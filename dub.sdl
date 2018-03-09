@@ -1,4 +1,0 @@
-name "soupply"
-description "Automatically generated libraries for encoding and decoding Minecraft protocols"
-license "MIT"
-dependency "packet-maker" path="../../../packet-maker"
