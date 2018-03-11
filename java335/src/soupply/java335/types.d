@@ -6,8 +6,9 @@ module soupply.java335.types;
 
 static import std.conv;
 import packetmaker;
+import packetmaker.maker : EndianType, writeLength, readLength;
 
-import soupply.util : Tuple, UUID;
+import soupply.util : Vector, UUID;
 import soupply.java335.metadata;
 
 struct Statistic
@@ -79,7 +80,7 @@ struct Icon
     enum string[] __fields = ["directionAndType", "position"];
 
     ubyte directionAndType;
-    Tuple!(ubyte, "xz") position;
+    Vector!(ubyte, "xz") position;
 
     mixin Make!(Endian.bigEndian, varuint);
     string toString()

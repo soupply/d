@@ -6,24 +6,43 @@ module soupply.pocket113.types;
 
 static import std.conv;
 import packetmaker;
+import packetmaker.maker : EndianType, writeLength, readLength;
 
-import soupply.util : Tuple, UUID;
+import soupply.util : Vector, UUID;
 import soupply.pocket113.metadata;
 
 struct LoginBody
 {
 
-    enum string[] __fields = ["chain", "clientData"];
+    private struct Container
+    {
 
-    @EndianLength!uint(Endian.littleEndian) ubyte[] chain;
-    @EndianLength!uint(Endian.littleEndian) ubyte[] clientData;
+        enum string[] __fields = ["chain", "clientData"];
+
+        @EndianLength!uint(Endian.littleEndian) ubyte[] chain;
+        @EndianLength!uint(Endian.littleEndian) ubyte[] clientData;
+
+        mixin Make!(Endian.bigEndian, ubyte);
+
+    }
+
+    enum string[] __fields = Container.__fields;
+
+    Container _container;
+
+    alias _container this;
 
     void encodeBody(InputBuffer buffer)
     {
+        InputBuffer _buffer = new InputBuffer();
+        _container.encodeBody(_buffer);
+        writeLength!(EndianType.var, uint)(buffer, _buffer.data.length);
+        buffer.writeBytes(_buffer.data);
     }
 
     void decodeBody(OutputBuffer buffer)
     {
+        _container.decodeBody(new OutputBuffer(buffer.readBytes(readLength!(EndianType.var, uint)(buffer))));
     }
 
     string toString()
@@ -219,21 +238,39 @@ struct Recipe
 struct ChunkData
 {
 
-    enum string[] __fields = ["sections", "heights", "biomes", "borders", "extraData", "blockEntities"];
+    private struct Container
+    {
 
-    soupply.pocket113.types.Section[] sections;
-    ushort[256] heights;
-    ubyte[256] biomes;
-    ubyte[] borders;
-    soupply.pocket113.types.ExtraData[] extraData;
-    @Bytes ubyte[] blockEntities;
+        enum string[] __fields = ["sections", "heights", "biomes", "borders", "extraData", "blockEntities"];
+
+        soupply.pocket113.types.Section[] sections;
+        ushort[256] heights;
+        ubyte[256] biomes;
+        ubyte[] borders;
+        soupply.pocket113.types.ExtraData[] extraData;
+        @Bytes ubyte[] blockEntities;
+
+        mixin Make!(Endian.bigEndian, ubyte);
+
+    }
+
+    enum string[] __fields = Container.__fields;
+
+    Container _container;
+
+    alias _container this;
 
     void encodeBody(InputBuffer buffer)
     {
+        InputBuffer _buffer = new InputBuffer();
+        _container.encodeBody(_buffer);
+        writeLength!(EndianType.var, uint)(buffer, _buffer.data.length);
+        buffer.writeBytes(_buffer.data);
     }
 
     void decodeBody(OutputBuffer buffer)
     {
+        _container.decodeBody(new OutputBuffer(buffer.readBytes(readLength!(EndianType.var, uint)(buffer))));
     }
 
     string toString()
@@ -284,7 +321,7 @@ struct Decoration
     enum string[] __fields = ["rotationAndIcon", "position", "label", "color"];
 
     @Var int rotationAndIcon;
-    Tuple!(ubyte, "xz") position;
+    Vector!(ubyte, "xz") position;
     string label;
     @LittleEndian uint color;
 

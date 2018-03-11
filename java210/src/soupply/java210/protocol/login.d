@@ -8,7 +8,7 @@ static import std.conv;
 import std.typetuple : TypeTuple;
 import packetmaker;
 
-import soupply.util : Tuple, UUID;
+import soupply.util : Vector, UUID;
 import soupply.java210.metadata : Metadata;
 import soupply.java210.packet : Java210Packet;
 

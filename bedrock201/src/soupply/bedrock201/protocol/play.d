@@ -8,7 +8,7 @@ static import std.conv;
 import std.typetuple : TypeTuple;
 import packetmaker;
 
-import soupply.util : Tuple, UUID;
+import soupply.util : Vector, UUID;
 import soupply.bedrock201.metadata : Metadata;
 import soupply.bedrock201.packet : Bedrock201Packet;
 
@@ -673,7 +673,7 @@ class StartGame : Bedrock201Packet
     @Var long entityId;
     @Var ulong runtimeId;
     @Var int gamemode;
-    Tuple!(float, "xyz") position;
+    Vector!(float, "xyz") position;
     float yaw;
     float pitch;
     @Var int seed;
@@ -681,7 +681,7 @@ class StartGame : Bedrock201Packet
     @Var int generator = 1;
     @Var int worldGamemode;
     @Var int difficulty;
-    @Var Tuple!(int, "xyz") spawnPosition;
+    @Var Vector!(int, "xyz") spawnPosition;
     bool loadedInCreative;
     @Var int time;
     ubyte version_;
@@ -708,7 +708,7 @@ class StartGame : Bedrock201Packet
 
     this() pure nothrow @safe @nogc {}
 
-    this(long entityId, ulong runtimeId=ulong.init, int gamemode=int.init, Tuple!(float, "xyz") position=Tuple!(float, "xyz").init, float yaw=float.init, float pitch=float.init, int seed=int.init, int dimension=0, int generator=1, int worldGamemode=int.init, int difficulty=int.init, Tuple!(int, "xyz") spawnPosition=Tuple!(int, "xyz").init, bool loadedInCreative=bool.init, int time=int.init, ubyte version_=ubyte.init, float rainLevel=float.init, float lightningLevel=float.init, bool multiplayerGame=true, bool broadcastToLan=bool.init, bool broadcastToXbl=bool.init, bool commandsEnabled=bool.init, bool textureRequired=bool.init, soupply.bedrock201.types.Rule[] gameRules=(soupply.bedrock201.types.Rule[]).init, bool bonusChestEnabled=bool.init, bool startWithMapEnabled=bool.init, bool trustPlayersEnabled=bool.init, int defaultPermissionLevel=int.init, int xboxLiveBroadcastMode=int.init, uint serverChunkTickRadius=uint.init, string levelId=string.init, string worldName=string.init, string premiumWorldTemplate=string.init, bool unknown32=bool.init, ulong worldTicks=ulong.init, int enchantmentSeed=int.init) pure nothrow @safe @nogc
+    this(long entityId, ulong runtimeId=ulong.init, int gamemode=int.init, Vector!(float, "xyz") position=Vector!(float, "xyz").init, float yaw=float.init, float pitch=float.init, int seed=int.init, int dimension=0, int generator=1, int worldGamemode=int.init, int difficulty=int.init, Vector!(int, "xyz") spawnPosition=Vector!(int, "xyz").init, bool loadedInCreative=bool.init, int time=int.init, ubyte version_=ubyte.init, float rainLevel=float.init, float lightningLevel=float.init, bool multiplayerGame=true, bool broadcastToLan=bool.init, bool broadcastToXbl=bool.init, bool commandsEnabled=bool.init, bool textureRequired=bool.init, soupply.bedrock201.types.Rule[] gameRules=(soupply.bedrock201.types.Rule[]).init, bool bonusChestEnabled=bool.init, bool startWithMapEnabled=bool.init, bool trustPlayersEnabled=bool.init, int defaultPermissionLevel=int.init, int xboxLiveBroadcastMode=int.init, uint serverChunkTickRadius=uint.init, string levelId=string.init, string worldName=string.init, string premiumWorldTemplate=string.init, bool unknown32=bool.init, ulong worldTicks=ulong.init, int enchantmentSeed=int.init) pure nothrow @safe @nogc
     {
         this.entityId = entityId;
         this.runtimeId = runtimeId;
@@ -777,8 +777,8 @@ class AddPlayer : Bedrock201Packet
     string username;
     @Var long entityId;
     @Var ulong runtimeId;
-    Tuple!(float, "xyz") position;
-    Tuple!(float, "xyz") motion;
+    Vector!(float, "xyz") position;
+    Vector!(float, "xyz") motion;
     float pitch;
     float headYaw;
     float yaw;
@@ -794,7 +794,7 @@ class AddPlayer : Bedrock201Packet
 
     this() pure nothrow @safe @nogc {}
 
-    this(soupply.bedrock201.types.McpeUuid uuid, string username=string.init, long entityId=long.init, ulong runtimeId=ulong.init, Tuple!(float, "xyz") position=Tuple!(float, "xyz").init, Tuple!(float, "xyz") motion=Tuple!(float, "xyz").init, float pitch=float.init, float headYaw=float.init, float yaw=float.init, soupply.bedrock201.types.Slot heldItem=soupply.bedrock201.types.Slot.init, Metadata metadata=Metadata.init, uint unknown11=uint.init, uint unknown12=uint.init, uint unknown13=uint.init, uint unknown14=uint.init, uint unknown15=uint.init, long unknown16=long.init, soupply.bedrock201.types.Link[] links=(soupply.bedrock201.types.Link[]).init) pure nothrow @safe @nogc
+    this(soupply.bedrock201.types.McpeUuid uuid, string username=string.init, long entityId=long.init, ulong runtimeId=ulong.init, Vector!(float, "xyz") position=Vector!(float, "xyz").init, Vector!(float, "xyz") motion=Vector!(float, "xyz").init, float pitch=float.init, float headYaw=float.init, float yaw=float.init, soupply.bedrock201.types.Slot heldItem=soupply.bedrock201.types.Slot.init, Metadata metadata=Metadata.init, uint unknown11=uint.init, uint unknown12=uint.init, uint unknown13=uint.init, uint unknown14=uint.init, uint unknown15=uint.init, long unknown16=long.init, soupply.bedrock201.types.Link[] links=(soupply.bedrock201.types.Link[]).init) pure nothrow @safe @nogc
     {
         this.uuid = uuid;
         this.username = username;
@@ -845,8 +845,8 @@ class AddEntity : Bedrock201Packet
     @Var long entityId;
     @Var ulong runtimeId;
     @Var uint type;
-    Tuple!(float, "xyz") position;
-    Tuple!(float, "xyz") motion;
+    Vector!(float, "xyz") position;
+    Vector!(float, "xyz") motion;
     float pitch;
     float yaw;
     soupply.bedrock201.types.Attribute[] attributes;
@@ -855,7 +855,7 @@ class AddEntity : Bedrock201Packet
 
     this() pure nothrow @safe @nogc {}
 
-    this(long entityId, ulong runtimeId=ulong.init, uint type=uint.init, Tuple!(float, "xyz") position=Tuple!(float, "xyz").init, Tuple!(float, "xyz") motion=Tuple!(float, "xyz").init, float pitch=float.init, float yaw=float.init, soupply.bedrock201.types.Attribute[] attributes=(soupply.bedrock201.types.Attribute[]).init, Metadata metadata=Metadata.init, soupply.bedrock201.types.Link[] links=(soupply.bedrock201.types.Link[]).init) pure nothrow @safe @nogc
+    this(long entityId, ulong runtimeId=ulong.init, uint type=uint.init, Vector!(float, "xyz") position=Vector!(float, "xyz").init, Vector!(float, "xyz") motion=Vector!(float, "xyz").init, float pitch=float.init, float yaw=float.init, soupply.bedrock201.types.Attribute[] attributes=(soupply.bedrock201.types.Attribute[]).init, Metadata metadata=Metadata.init, soupply.bedrock201.types.Link[] links=(soupply.bedrock201.types.Link[]).init) pure nothrow @safe @nogc
     {
         this.entityId = entityId;
         this.runtimeId = runtimeId;
@@ -933,13 +933,13 @@ class AddItemEntity : Bedrock201Packet
     @Var long entityId;
     @Var ulong runtimeId;
     soupply.bedrock201.types.Slot item;
-    Tuple!(float, "xyz") position;
-    Tuple!(float, "xyz") motion;
+    Vector!(float, "xyz") position;
+    Vector!(float, "xyz") motion;
     Metadata metadata;
 
     this() pure nothrow @safe @nogc {}
 
-    this(long entityId, ulong runtimeId=ulong.init, soupply.bedrock201.types.Slot item=soupply.bedrock201.types.Slot.init, Tuple!(float, "xyz") position=Tuple!(float, "xyz").init, Tuple!(float, "xyz") motion=Tuple!(float, "xyz").init, Metadata metadata=Metadata.init) pure nothrow @safe @nogc
+    this(long entityId, ulong runtimeId=ulong.init, soupply.bedrock201.types.Slot item=soupply.bedrock201.types.Slot.init, Vector!(float, "xyz") position=Vector!(float, "xyz").init, Vector!(float, "xyz") motion=Vector!(float, "xyz").init, Metadata metadata=Metadata.init) pure nothrow @safe @nogc
     {
         this.entityId = entityId;
         this.runtimeId = runtimeId;
@@ -1054,7 +1054,7 @@ class MoveEntity : Bedrock201Packet
     enum string[] __fields = ["entityId", "position", "pitch", "headYaw", "yaw", "onGround", "teleported"];
 
     @Var long entityId;
-    Tuple!(float, "xyz") position;
+    Vector!(float, "xyz") position;
     ubyte pitch;
     ubyte headYaw;
     ubyte yaw;
@@ -1063,7 +1063,7 @@ class MoveEntity : Bedrock201Packet
 
     this() pure nothrow @safe @nogc {}
 
-    this(long entityId, Tuple!(float, "xyz") position=Tuple!(float, "xyz").init, ubyte pitch=ubyte.init, ubyte headYaw=ubyte.init, ubyte yaw=ubyte.init, bool onGround=bool.init, bool teleported=bool.init) pure nothrow @safe @nogc
+    this(long entityId, Vector!(float, "xyz") position=Vector!(float, "xyz").init, ubyte pitch=ubyte.init, ubyte headYaw=ubyte.init, ubyte yaw=ubyte.init, bool onGround=bool.init, bool teleported=bool.init) pure nothrow @safe @nogc
     {
         this.entityId = entityId;
         this.position = position;
@@ -1107,7 +1107,7 @@ class MovePlayer : Bedrock201Packet
     enum string[] __fields = ["entityId", "position", "pitch", "headYaw", "yaw", "animation", "onGround", "unknown7", "unknown8", "unknown9"];
 
     @Var long entityId;
-    Tuple!(float, "xyz") position;
+    Vector!(float, "xyz") position;
     float pitch;
     float headYaw;
     float yaw;
@@ -1119,7 +1119,7 @@ class MovePlayer : Bedrock201Packet
 
     this() pure nothrow @safe @nogc {}
 
-    this(long entityId, Tuple!(float, "xyz") position=Tuple!(float, "xyz").init, float pitch=float.init, float headYaw=float.init, float yaw=float.init, ubyte animation=ubyte.init, bool onGround=bool.init, long unknown7=long.init, int unknown8=int.init, int unknown9=int.init) pure nothrow @safe @nogc
+    this(long entityId, Vector!(float, "xyz") position=Vector!(float, "xyz").init, float pitch=float.init, float headYaw=float.init, float yaw=float.init, ubyte animation=ubyte.init, bool onGround=bool.init, long unknown7=long.init, int unknown8=int.init, int unknown9=int.init) pure nothrow @safe @nogc
     {
         this.entityId = entityId;
         this.position = position;
@@ -1282,13 +1282,13 @@ class Explode : Bedrock201Packet
 
     enum string[] __fields = ["position", "radius", "destroyedBlocks"];
 
-    Tuple!(float, "xyz") position;
+    Vector!(float, "xyz") position;
     float radius;
     soupply.bedrock201.types.BlockPosition[] destroyedBlocks;
 
     this() pure nothrow @safe @nogc {}
 
-    this(Tuple!(float, "xyz") position, float radius=float.init, soupply.bedrock201.types.BlockPosition[] destroyedBlocks=(soupply.bedrock201.types.BlockPosition[]).init) pure nothrow @safe @nogc
+    this(Vector!(float, "xyz") position, float radius=float.init, soupply.bedrock201.types.BlockPosition[] destroyedBlocks=(soupply.bedrock201.types.BlockPosition[]).init) pure nothrow @safe @nogc
     {
         this.position = position;
         this.radius = radius;
@@ -1490,7 +1490,7 @@ class LevelSoundEvent : Bedrock201Packet
     enum string[] __fields = ["sound", "position", "volume", "pitch", "unknown4", "disableRelativeVolume"];
 
     ubyte sound;
-    Tuple!(float, "xyz") position;
+    Vector!(float, "xyz") position;
     @Var uint volume;
     @Var int pitch;
     bool unknown4;
@@ -1498,7 +1498,7 @@ class LevelSoundEvent : Bedrock201Packet
 
     this() pure nothrow @safe @nogc {}
 
-    this(ubyte sound, Tuple!(float, "xyz") position=Tuple!(float, "xyz").init, uint volume=uint.init, int pitch=int.init, bool unknown4=bool.init, bool disableRelativeVolume=bool.init) pure nothrow @safe @nogc
+    this(ubyte sound, Vector!(float, "xyz") position=Vector!(float, "xyz").init, uint volume=uint.init, int pitch=int.init, bool unknown4=bool.init, bool disableRelativeVolume=bool.init) pure nothrow @safe @nogc
     {
         this.sound = sound;
         this.position = position;
@@ -1590,12 +1590,12 @@ class LevelEvent : Bedrock201Packet
     enum string[] __fields = ["eventId", "position", "data"];
 
     @Var int eventId;
-    Tuple!(float, "xyz") position;
+    Vector!(float, "xyz") position;
     @Var int data;
 
     this() pure nothrow @safe @nogc {}
 
-    this(int eventId, Tuple!(float, "xyz") position=Tuple!(float, "xyz").init, int data=int.init) pure nothrow @safe @nogc
+    this(int eventId, Vector!(float, "xyz") position=Vector!(float, "xyz").init, int data=int.init) pure nothrow @safe @nogc
     {
         this.eventId = eventId;
         this.position = position;
@@ -1909,12 +1909,12 @@ class InventoryTransaction : Bedrock201Packet
         @Var int face;
         @Var int hotbarSlot;
         soupply.bedrock201.types.Slot item;
-        Tuple!(float, "xyz") playerPosition;
-        Tuple!(float, "xyz") clickPosition;
+        Vector!(float, "xyz") playerPosition;
+        Vector!(float, "xyz") clickPosition;
 
         this() pure nothrow @safe @nogc {}
 
-        this(uint actionType, soupply.bedrock201.types.BlockPosition blockPosition=soupply.bedrock201.types.BlockPosition.init, int face=int.init, int hotbarSlot=int.init, soupply.bedrock201.types.Slot item=soupply.bedrock201.types.Slot.init, Tuple!(float, "xyz") playerPosition=Tuple!(float, "xyz").init, Tuple!(float, "xyz") clickPosition=Tuple!(float, "xyz").init) pure nothrow @safe @nogc
+        this(uint actionType, soupply.bedrock201.types.BlockPosition blockPosition=soupply.bedrock201.types.BlockPosition.init, int face=int.init, int hotbarSlot=int.init, soupply.bedrock201.types.Slot item=soupply.bedrock201.types.Slot.init, Vector!(float, "xyz") playerPosition=Vector!(float, "xyz").init, Vector!(float, "xyz") clickPosition=Vector!(float, "xyz").init) pure nothrow @safe @nogc
         {
             this.actionType = actionType;
             this.blockPosition = blockPosition;
@@ -1949,12 +1949,12 @@ class InventoryTransaction : Bedrock201Packet
         @Var uint actionType;
         @Var int hotbarSlot;
         soupply.bedrock201.types.Slot item;
-        Tuple!(float, "xyz") unknown4;
-        Tuple!(float, "xyz") unknown5;
+        Vector!(float, "xyz") unknown4;
+        Vector!(float, "xyz") unknown5;
 
         this() pure nothrow @safe @nogc {}
 
-        this(long entityId, uint actionType=uint.init, int hotbarSlot=int.init, soupply.bedrock201.types.Slot item=soupply.bedrock201.types.Slot.init, Tuple!(float, "xyz") unknown4=Tuple!(float, "xyz").init, Tuple!(float, "xyz") unknown5=Tuple!(float, "xyz").init) pure nothrow @safe @nogc
+        this(long entityId, uint actionType=uint.init, int hotbarSlot=int.init, soupply.bedrock201.types.Slot item=soupply.bedrock201.types.Slot.init, Vector!(float, "xyz") unknown4=Vector!(float, "xyz").init, Vector!(float, "xyz") unknown5=Vector!(float, "xyz").init) pure nothrow @safe @nogc
         {
             this.entityId = entityId;
             this.actionType = actionType;
@@ -1987,11 +1987,11 @@ class InventoryTransaction : Bedrock201Packet
         @Var uint actionType;
         @Var int hotbarSlot;
         soupply.bedrock201.types.Slot item;
-        Tuple!(float, "xyz") headPosition;
+        Vector!(float, "xyz") headPosition;
 
         this() pure nothrow @safe @nogc {}
 
-        this(uint actionType, int hotbarSlot=int.init, soupply.bedrock201.types.Slot item=soupply.bedrock201.types.Slot.init, Tuple!(float, "xyz") headPosition=Tuple!(float, "xyz").init) pure nothrow @safe @nogc
+        this(uint actionType, int hotbarSlot=int.init, soupply.bedrock201.types.Slot item=soupply.bedrock201.types.Slot.init, Vector!(float, "xyz") headPosition=Vector!(float, "xyz").init) pure nothrow @safe @nogc
         {
             this.actionType = actionType;
             this.hotbarSlot = hotbarSlot;
@@ -2107,11 +2107,11 @@ class Interact : Bedrock201Packet
 
     ubyte action;
     @Var long target;
-    @Condition("action==4") Tuple!(float, "xyz") targetPosition;
+    @Condition("action==4") Vector!(float, "xyz") targetPosition;
 
     this() pure nothrow @safe @nogc {}
 
-    this(ubyte action, long target=long.init, Tuple!(float, "xyz") targetPosition=Tuple!(float, "xyz").init) pure nothrow @safe @nogc
+    this(ubyte action, long target=long.init, Vector!(float, "xyz") targetPosition=Vector!(float, "xyz").init) pure nothrow @safe @nogc
     {
         this.action = action;
         this.target = target;
@@ -2144,13 +2144,13 @@ class BlockPickRequest : Bedrock201Packet
 
     enum string[] __fields = ["position", "unknown1", "slot"];
 
-    @Var Tuple!(int, "xyz") position;
+    @Var Vector!(int, "xyz") position;
     bool unknown1;
     ubyte slot;
 
     this() pure nothrow @safe @nogc {}
 
-    this(Tuple!(int, "xyz") position, bool unknown1=bool.init, ubyte slot=ubyte.init) pure nothrow @safe @nogc
+    this(Vector!(int, "xyz") position, bool unknown1=bool.init, ubyte slot=ubyte.init) pure nothrow @safe @nogc
     {
         this.position = position;
         this.unknown1 = unknown1;
@@ -2393,11 +2393,11 @@ class SetEntityMotion : Bedrock201Packet
     enum string[] __fields = ["entityId", "motion"];
 
     @Var long entityId;
-    Tuple!(float, "xyz") motion;
+    Vector!(float, "xyz") motion;
 
     this() pure nothrow @safe @nogc {}
 
-    this(long entityId, Tuple!(float, "xyz") motion=Tuple!(float, "xyz").init) pure nothrow @safe @nogc
+    this(long entityId, Vector!(float, "xyz") motion=Vector!(float, "xyz").init) pure nothrow @safe @nogc
     {
         this.entityId = entityId;
         this.motion = motion;
@@ -2593,11 +2593,11 @@ class Respawn : Bedrock201Packet
 
     enum string[] __fields = ["position"];
 
-    Tuple!(float, "xyz") position;
+    Vector!(float, "xyz") position;
 
     this() pure nothrow @safe @nogc {}
 
-    this(Tuple!(float, "xyz") position) pure nothrow @safe @nogc
+    this(Vector!(float, "xyz") position) pure nothrow @safe @nogc
     {
         this.position = position;
     }
@@ -3102,12 +3102,12 @@ class FullChunkData : Bedrock201Packet
 
     enum string[] __fields = ["position", "data"];
 
-    @Var Tuple!(int, "xz") position;
+    @Var Vector!(int, "xz") position;
     soupply.bedrock201.types.ChunkData data;
 
     this() pure nothrow @safe @nogc {}
 
-    this(Tuple!(int, "xz") position, soupply.bedrock201.types.ChunkData data=soupply.bedrock201.types.ChunkData.init) pure nothrow @safe @nogc
+    this(Vector!(int, "xz") position, soupply.bedrock201.types.ChunkData data=soupply.bedrock201.types.ChunkData.init) pure nothrow @safe @nogc
     {
         this.position = position;
         this.data = data;
@@ -3221,12 +3221,12 @@ class ChangeDimension : Bedrock201Packet
     enum string[] __fields = ["dimension", "position", "unknown2"];
 
     @Var int dimension;
-    Tuple!(float, "xyz") position;
+    Vector!(float, "xyz") position;
     bool unknown2;
 
     this() pure nothrow @safe @nogc {}
 
-    this(int dimension, Tuple!(float, "xyz") position=Tuple!(float, "xyz").init, bool unknown2=bool.init) pure nothrow @safe @nogc
+    this(int dimension, Vector!(float, "xyz") position=Vector!(float, "xyz").init, bool unknown2=bool.init) pure nothrow @safe @nogc
     {
         this.dimension = dimension;
         this.position = position;
@@ -3451,12 +3451,12 @@ class SpawnExperienceOrb : Bedrock201Packet
 
     enum string[] __fields = ["position", "count"];
 
-    Tuple!(float, "xyz") position;
+    Vector!(float, "xyz") position;
     @Var int count;
 
     this() pure nothrow @safe @nogc {}
 
-    this(Tuple!(float, "xyz") position, int count=int.init) pure nothrow @safe @nogc
+    this(Vector!(float, "xyz") position, int count=int.init) pure nothrow @safe @nogc
     {
         this.position = position;
         this.count = count;
@@ -3496,14 +3496,14 @@ class ClientboundMapItemData : Bedrock201Packet
     @Var long mapId;
     @Var uint update;
     @Condition("update==2||update==4") ubyte scale;
-    @Condition("update==2") @Var Tuple!(int, "xz") size;
-    @Condition("update==2") @Var Tuple!(int, "xz") offset;
+    @Condition("update==2") @Var Vector!(int, "xz") size;
+    @Condition("update==2") @Var Vector!(int, "xz") offset;
     @Condition("update==2") @Bytes ubyte[] data;
     @Condition("update==4") soupply.bedrock201.types.Decoration[] decorations;
 
     this() pure nothrow @safe @nogc {}
 
-    this(long mapId, uint update=uint.init, ubyte scale=ubyte.init, Tuple!(int, "xz") size=Tuple!(int, "xz").init, Tuple!(int, "xz") offset=Tuple!(int, "xz").init, ubyte[] data=(ubyte[]).init, soupply.bedrock201.types.Decoration[] decorations=(soupply.bedrock201.types.Decoration[]).init) pure nothrow @safe @nogc
+    this(long mapId, uint update=uint.init, ubyte scale=ubyte.init, Vector!(int, "xz") size=Vector!(int, "xz").init, Vector!(int, "xz") offset=Vector!(int, "xz").init, ubyte[] data=(ubyte[]).init, soupply.bedrock201.types.Decoration[] decorations=(soupply.bedrock201.types.Decoration[]).init) pure nothrow @safe @nogc
     {
         this.mapId = mapId;
         this.update = update;

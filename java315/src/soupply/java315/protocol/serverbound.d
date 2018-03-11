@@ -8,7 +8,7 @@ static import std.conv;
 import std.typetuple : TypeTuple;
 import packetmaker;
 
-import soupply.util : Tuple, UUID;
+import soupply.util : Vector, UUID;
 import soupply.java315.metadata : Metadata;
 import soupply.java315.packet : Java315Packet;
 
@@ -444,12 +444,12 @@ class UseEntity : Java315Packet
 
     @Var uint target;
     @Var uint type;
-    @Condition("type==2") Tuple!(float, "xyz") targetPosition;
+    @Condition("type==2") Vector!(float, "xyz") targetPosition;
     @Condition("type==0||type==2") @Var uint hand;
 
     this() pure nothrow @safe @nogc {}
 
-    this(uint target, uint type=uint.init, Tuple!(float, "xyz") targetPosition=Tuple!(float, "xyz").init, uint hand=uint.init) pure nothrow @safe @nogc
+    this(uint target, uint type=uint.init, Vector!(float, "xyz") targetPosition=Vector!(float, "xyz").init, uint hand=uint.init) pure nothrow @safe @nogc
     {
         this.target = target;
         this.type = type;
@@ -518,12 +518,12 @@ class PlayerPosition : Java315Packet
 
     enum string[] __fields = ["position", "onGround"];
 
-    Tuple!(double, "xyz") position;
+    Vector!(double, "xyz") position;
     bool onGround;
 
     this() pure nothrow @safe @nogc {}
 
-    this(Tuple!(double, "xyz") position, bool onGround=bool.init) pure nothrow @safe @nogc
+    this(Vector!(double, "xyz") position, bool onGround=bool.init) pure nothrow @safe @nogc
     {
         this.position = position;
         this.onGround = onGround;
@@ -555,14 +555,14 @@ class PlayerPositionAndLook : Java315Packet
 
     enum string[] __fields = ["position", "yaw", "pitch", "onGround"];
 
-    Tuple!(double, "xyz") position;
+    Vector!(double, "xyz") position;
     float yaw;
     float pitch;
     bool onGround;
 
     this() pure nothrow @safe @nogc {}
 
-    this(Tuple!(double, "xyz") position, float yaw=float.init, float pitch=float.init, bool onGround=bool.init) pure nothrow @safe @nogc
+    this(Vector!(double, "xyz") position, float yaw=float.init, float pitch=float.init, bool onGround=bool.init) pure nothrow @safe @nogc
     {
         this.position = position;
         this.yaw = yaw;
@@ -670,13 +670,13 @@ class VehicleMove : Java315Packet
 
     enum string[] __fields = ["position", "yaw", "pitch"];
 
-    Tuple!(double, "xyz") position;
+    Vector!(double, "xyz") position;
     float yaw;
     float pitch;
 
     this() pure nothrow @safe @nogc {}
 
-    this(Tuple!(double, "xyz") position, float yaw=float.init, float pitch=float.init) pure nothrow @safe @nogc
+    this(Vector!(double, "xyz") position, float yaw=float.init, float pitch=float.init) pure nothrow @safe @nogc
     {
         this.position = position;
         this.yaw = yaw;
@@ -1164,11 +1164,11 @@ class PlayerBlockPlacement : Java315Packet
     ulong position;
     @Var uint face;
     @Var uint hand;
-    Tuple!(float, "xyz") cursorPosition;
+    Vector!(float, "xyz") cursorPosition;
 
     this() pure nothrow @safe @nogc {}
 
-    this(ulong position, uint face=uint.init, uint hand=uint.init, Tuple!(float, "xyz") cursorPosition=Tuple!(float, "xyz").init) pure nothrow @safe @nogc
+    this(ulong position, uint face=uint.init, uint hand=uint.init, Vector!(float, "xyz") cursorPosition=Vector!(float, "xyz").init) pure nothrow @safe @nogc
     {
         this.position = position;
         this.face = face;

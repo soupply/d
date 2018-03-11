@@ -8,7 +8,7 @@ static import std.conv;
 import std.typetuple : TypeTuple;
 import packetmaker;
 
-import soupply.util : Tuple, UUID;
+import soupply.util : Vector, UUID;
 import soupply.pocket113.metadata : Metadata;
 import soupply.pocket113.packet : Pocket113Packet;
 
@@ -646,7 +646,7 @@ class StartGame : Pocket113Packet
     @Var long entityId;
     @Var long runtimeId;
     @Var int gamemode;
-    Tuple!(float, "xyz") position;
+    Vector!(float, "xyz") position;
     float yaw;
     float pitch;
     @Var int seed;
@@ -654,7 +654,7 @@ class StartGame : Pocket113Packet
     @Var int generator = 1;
     @Var int worldGamemode;
     @Var int difficulty;
-    @Var Tuple!(int, "xyz") spawnPosition;
+    @Var Vector!(int, "xyz") spawnPosition;
     bool loadedInCreative;
     @Var int time;
     ubyte version_;
@@ -671,7 +671,7 @@ class StartGame : Pocket113Packet
 
     this() pure nothrow @safe @nogc {}
 
-    this(long entityId, long runtimeId=long.init, int gamemode=int.init, Tuple!(float, "xyz") position=Tuple!(float, "xyz").init, float yaw=float.init, float pitch=float.init, int seed=int.init, int dimension=0, int generator=1, int worldGamemode=int.init, int difficulty=int.init, Tuple!(int, "xyz") spawnPosition=Tuple!(int, "xyz").init, bool loadedInCreative=bool.init, int time=int.init, ubyte version_=ubyte.init, float rainLevel=float.init, float lightningLevel=float.init, bool commandsEnabled=bool.init, bool textureRequired=bool.init, soupply.pocket113.types.Rule[] gameRules=(soupply.pocket113.types.Rule[]).init, string levelId=string.init, string worldName=string.init, string premiumWorldTemplate=string.init, bool unknown23=bool.init, ulong worldTicks=ulong.init) pure nothrow @safe @nogc
+    this(long entityId, long runtimeId=long.init, int gamemode=int.init, Vector!(float, "xyz") position=Vector!(float, "xyz").init, float yaw=float.init, float pitch=float.init, int seed=int.init, int dimension=0, int generator=1, int worldGamemode=int.init, int difficulty=int.init, Vector!(int, "xyz") spawnPosition=Vector!(int, "xyz").init, bool loadedInCreative=bool.init, int time=int.init, ubyte version_=ubyte.init, float rainLevel=float.init, float lightningLevel=float.init, bool commandsEnabled=bool.init, bool textureRequired=bool.init, soupply.pocket113.types.Rule[] gameRules=(soupply.pocket113.types.Rule[]).init, string levelId=string.init, string worldName=string.init, string premiumWorldTemplate=string.init, bool unknown23=bool.init, ulong worldTicks=ulong.init) pure nothrow @safe @nogc
     {
         this.entityId = entityId;
         this.runtimeId = runtimeId;
@@ -730,8 +730,8 @@ class AddPlayer : Pocket113Packet
     string username;
     @Var long entityId;
     @Var long runtimeId;
-    Tuple!(float, "xyz") position;
-    Tuple!(float, "xyz") motion;
+    Vector!(float, "xyz") position;
+    Vector!(float, "xyz") motion;
     float pitch;
     float headYaw;
     float yaw;
@@ -740,7 +740,7 @@ class AddPlayer : Pocket113Packet
 
     this() pure nothrow @safe @nogc {}
 
-    this(soupply.pocket113.types.McpeUuid uuid, string username=string.init, long entityId=long.init, long runtimeId=long.init, Tuple!(float, "xyz") position=Tuple!(float, "xyz").init, Tuple!(float, "xyz") motion=Tuple!(float, "xyz").init, float pitch=float.init, float headYaw=float.init, float yaw=float.init, soupply.pocket113.types.Slot heldItem=soupply.pocket113.types.Slot.init, Metadata metadata=Metadata.init) pure nothrow @safe @nogc
+    this(soupply.pocket113.types.McpeUuid uuid, string username=string.init, long entityId=long.init, long runtimeId=long.init, Vector!(float, "xyz") position=Vector!(float, "xyz").init, Vector!(float, "xyz") motion=Vector!(float, "xyz").init, float pitch=float.init, float headYaw=float.init, float yaw=float.init, soupply.pocket113.types.Slot heldItem=soupply.pocket113.types.Slot.init, Metadata metadata=Metadata.init) pure nothrow @safe @nogc
     {
         this.uuid = uuid;
         this.username = username;
@@ -784,8 +784,8 @@ class AddEntity : Pocket113Packet
     @Var long entityId;
     @Var long runtimeId;
     @Var uint type;
-    Tuple!(float, "xyz") position;
-    Tuple!(float, "xyz") motion;
+    Vector!(float, "xyz") position;
+    Vector!(float, "xyz") motion;
     float pitch;
     float yaw;
     soupply.pocket113.types.Attribute[] attributes;
@@ -794,7 +794,7 @@ class AddEntity : Pocket113Packet
 
     this() pure nothrow @safe @nogc {}
 
-    this(long entityId, long runtimeId=long.init, uint type=uint.init, Tuple!(float, "xyz") position=Tuple!(float, "xyz").init, Tuple!(float, "xyz") motion=Tuple!(float, "xyz").init, float pitch=float.init, float yaw=float.init, soupply.pocket113.types.Attribute[] attributes=(soupply.pocket113.types.Attribute[]).init, Metadata metadata=Metadata.init, soupply.pocket113.types.Link[] links=(soupply.pocket113.types.Link[]).init) pure nothrow @safe @nogc
+    this(long entityId, long runtimeId=long.init, uint type=uint.init, Vector!(float, "xyz") position=Vector!(float, "xyz").init, Vector!(float, "xyz") motion=Vector!(float, "xyz").init, float pitch=float.init, float yaw=float.init, soupply.pocket113.types.Attribute[] attributes=(soupply.pocket113.types.Attribute[]).init, Metadata metadata=Metadata.init, soupply.pocket113.types.Link[] links=(soupply.pocket113.types.Link[]).init) pure nothrow @safe @nogc
     {
         this.entityId = entityId;
         this.runtimeId = runtimeId;
@@ -872,13 +872,13 @@ class AddItemEntity : Pocket113Packet
     @Var long entityId;
     @Var long runtimeId;
     soupply.pocket113.types.Slot item;
-    Tuple!(float, "xyz") position;
-    Tuple!(float, "xyz") motion;
+    Vector!(float, "xyz") position;
+    Vector!(float, "xyz") motion;
     Metadata metadata;
 
     this() pure nothrow @safe @nogc {}
 
-    this(long entityId, long runtimeId=long.init, soupply.pocket113.types.Slot item=soupply.pocket113.types.Slot.init, Tuple!(float, "xyz") position=Tuple!(float, "xyz").init, Tuple!(float, "xyz") motion=Tuple!(float, "xyz").init, Metadata metadata=Metadata.init) pure nothrow @safe @nogc
+    this(long entityId, long runtimeId=long.init, soupply.pocket113.types.Slot item=soupply.pocket113.types.Slot.init, Vector!(float, "xyz") position=Vector!(float, "xyz").init, Vector!(float, "xyz") motion=Vector!(float, "xyz").init, Metadata metadata=Metadata.init) pure nothrow @safe @nogc
     {
         this.entityId = entityId;
         this.runtimeId = runtimeId;
@@ -993,7 +993,7 @@ class MoveEntity : Pocket113Packet
     enum string[] __fields = ["entityId", "position", "pitch", "headYaw", "yaw", "onGround", "teleported"];
 
     @Var long entityId;
-    Tuple!(float, "xyz") position;
+    Vector!(float, "xyz") position;
     ubyte pitch;
     ubyte headYaw;
     ubyte yaw;
@@ -1002,7 +1002,7 @@ class MoveEntity : Pocket113Packet
 
     this() pure nothrow @safe @nogc {}
 
-    this(long entityId, Tuple!(float, "xyz") position=Tuple!(float, "xyz").init, ubyte pitch=ubyte.init, ubyte headYaw=ubyte.init, ubyte yaw=ubyte.init, bool onGround=bool.init, bool teleported=bool.init) pure nothrow @safe @nogc
+    this(long entityId, Vector!(float, "xyz") position=Vector!(float, "xyz").init, ubyte pitch=ubyte.init, ubyte headYaw=ubyte.init, ubyte yaw=ubyte.init, bool onGround=bool.init, bool teleported=bool.init) pure nothrow @safe @nogc
     {
         this.entityId = entityId;
         this.position = position;
@@ -1046,7 +1046,7 @@ class MovePlayer : Pocket113Packet
     enum string[] __fields = ["entityId", "position", "pitch", "headYaw", "yaw", "animation", "onGround", "unknown7", "unknown8", "unknown9"];
 
     @Var long entityId;
-    Tuple!(float, "xyz") position;
+    Vector!(float, "xyz") position;
     float pitch;
     float headYaw;
     float yaw;
@@ -1058,7 +1058,7 @@ class MovePlayer : Pocket113Packet
 
     this() pure nothrow @safe @nogc {}
 
-    this(long entityId, Tuple!(float, "xyz") position=Tuple!(float, "xyz").init, float pitch=float.init, float headYaw=float.init, float yaw=float.init, ubyte animation=ubyte.init, bool onGround=bool.init, long unknown7=long.init, int unknown8=int.init, int unknown9=int.init) pure nothrow @safe @nogc
+    this(long entityId, Vector!(float, "xyz") position=Vector!(float, "xyz").init, float pitch=float.init, float headYaw=float.init, float yaw=float.init, ubyte animation=ubyte.init, bool onGround=bool.init, long unknown7=long.init, int unknown8=int.init, int unknown9=int.init) pure nothrow @safe @nogc
     {
         this.entityId = entityId;
         this.position = position;
@@ -1256,13 +1256,13 @@ class Explode : Pocket113Packet
 
     enum string[] __fields = ["position", "radius", "destroyedBlocks"];
 
-    Tuple!(float, "xyz") position;
+    Vector!(float, "xyz") position;
     float radius;
     soupply.pocket113.types.BlockPosition[] destroyedBlocks;
 
     this() pure nothrow @safe @nogc {}
 
-    this(Tuple!(float, "xyz") position, float radius=float.init, soupply.pocket113.types.BlockPosition[] destroyedBlocks=(soupply.pocket113.types.BlockPosition[]).init) pure nothrow @safe @nogc
+    this(Vector!(float, "xyz") position, float radius=float.init, soupply.pocket113.types.BlockPosition[] destroyedBlocks=(soupply.pocket113.types.BlockPosition[]).init) pure nothrow @safe @nogc
     {
         this.position = position;
         this.radius = radius;
@@ -1406,14 +1406,14 @@ class LevelSoundEvent : Pocket113Packet
     enum string[] __fields = ["sound", "position", "volume", "pitch", "unknown4"];
 
     ubyte sound;
-    Tuple!(float, "xyz") position;
+    Vector!(float, "xyz") position;
     @Var uint volume;
     @Var int pitch;
     bool unknown4;
 
     this() pure nothrow @safe @nogc {}
 
-    this(ubyte sound, Tuple!(float, "xyz") position=Tuple!(float, "xyz").init, uint volume=uint.init, int pitch=int.init, bool unknown4=bool.init) pure nothrow @safe @nogc
+    this(ubyte sound, Vector!(float, "xyz") position=Vector!(float, "xyz").init, uint volume=uint.init, int pitch=int.init, bool unknown4=bool.init) pure nothrow @safe @nogc
     {
         this.sound = sound;
         this.position = position;
@@ -1504,12 +1504,12 @@ class LevelEvent : Pocket113Packet
     enum string[] __fields = ["eventId", "position", "data"];
 
     @Var int eventId;
-    Tuple!(float, "xyz") position;
+    Vector!(float, "xyz") position;
     @Var int data;
 
     this() pure nothrow @safe @nogc {}
 
-    this(int eventId, Tuple!(float, "xyz") position=Tuple!(float, "xyz").init, int data=int.init) pure nothrow @safe @nogc
+    this(int eventId, Vector!(float, "xyz") position=Vector!(float, "xyz").init, int data=int.init) pure nothrow @safe @nogc
     {
         this.eventId = eventId;
         this.position = position;
@@ -1845,12 +1845,12 @@ class BlockPickRequest : Pocket113Packet
 
     enum string[] __fields = ["position", "slot"];
 
-    @Var Tuple!(int, "xyz") position;
+    @Var Vector!(int, "xyz") position;
     ubyte slot;
 
     this() pure nothrow @safe @nogc {}
 
-    this(Tuple!(int, "xyz") position, ubyte slot=ubyte.init) pure nothrow @safe @nogc
+    this(Vector!(int, "xyz") position, ubyte slot=ubyte.init) pure nothrow @safe @nogc
     {
         this.position = position;
         this.slot = slot;
@@ -1885,14 +1885,14 @@ class UseItem : Pocket113Packet
     soupply.pocket113.types.BlockPosition blockPosition;
     @Var uint hotbarSlot;
     @Var int face;
-    Tuple!(float, "xyz") facePosition;
-    Tuple!(float, "xyz") position;
+    Vector!(float, "xyz") facePosition;
+    Vector!(float, "xyz") position;
     @Var int slot;
     soupply.pocket113.types.Slot item;
 
     this() pure nothrow @safe @nogc {}
 
-    this(soupply.pocket113.types.BlockPosition blockPosition, uint hotbarSlot=uint.init, int face=int.init, Tuple!(float, "xyz") facePosition=Tuple!(float, "xyz").init, Tuple!(float, "xyz") position=Tuple!(float, "xyz").init, int slot=int.init, soupply.pocket113.types.Slot item=soupply.pocket113.types.Slot.init) pure nothrow @safe @nogc
+    this(soupply.pocket113.types.BlockPosition blockPosition, uint hotbarSlot=uint.init, int face=int.init, Vector!(float, "xyz") facePosition=Vector!(float, "xyz").init, Vector!(float, "xyz") position=Vector!(float, "xyz").init, int slot=int.init, soupply.pocket113.types.Slot item=soupply.pocket113.types.Slot.init) pure nothrow @safe @nogc
     {
         this.blockPosition = blockPosition;
         this.hotbarSlot = hotbarSlot;
@@ -2098,11 +2098,11 @@ class SetEntityMotion : Pocket113Packet
     enum string[] __fields = ["entityId", "motion"];
 
     @Var long entityId;
-    Tuple!(float, "xyz") motion;
+    Vector!(float, "xyz") motion;
 
     this() pure nothrow @safe @nogc {}
 
-    this(long entityId, Tuple!(float, "xyz") motion=Tuple!(float, "xyz").init) pure nothrow @safe @nogc
+    this(long entityId, Vector!(float, "xyz") motion=Vector!(float, "xyz").init) pure nothrow @safe @nogc
     {
         this.entityId = entityId;
         this.motion = motion;
@@ -2298,11 +2298,11 @@ class Respawn : Pocket113Packet
 
     enum string[] __fields = ["position"];
 
-    Tuple!(float, "xyz") position;
+    Vector!(float, "xyz") position;
 
     this() pure nothrow @safe @nogc {}
 
-    this(Tuple!(float, "xyz") position) pure nothrow @safe @nogc
+    this(Vector!(float, "xyz") position) pure nothrow @safe @nogc
     {
         this.position = position;
     }
@@ -2825,12 +2825,12 @@ class FullChunkData : Pocket113Packet
 
     enum string[] __fields = ["position", "data"];
 
-    @Var Tuple!(int, "xz") position;
+    @Var Vector!(int, "xz") position;
     soupply.pocket113.types.ChunkData data;
 
     this() pure nothrow @safe @nogc {}
 
-    this(Tuple!(int, "xz") position, soupply.pocket113.types.ChunkData data=soupply.pocket113.types.ChunkData.init) pure nothrow @safe @nogc
+    this(Vector!(int, "xz") position, soupply.pocket113.types.ChunkData data=soupply.pocket113.types.ChunkData.init) pure nothrow @safe @nogc
     {
         this.position = position;
         this.data = data;
@@ -2944,12 +2944,12 @@ class ChangeDimension : Pocket113Packet
     enum string[] __fields = ["dimension", "position", "unknown2"];
 
     @Var int dimension;
-    Tuple!(float, "xyz") position;
+    Vector!(float, "xyz") position;
     bool unknown2;
 
     this() pure nothrow @safe @nogc {}
 
-    this(int dimension, Tuple!(float, "xyz") position=Tuple!(float, "xyz").init, bool unknown2=bool.init) pure nothrow @safe @nogc
+    this(int dimension, Vector!(float, "xyz") position=Vector!(float, "xyz").init, bool unknown2=bool.init) pure nothrow @safe @nogc
     {
         this.dimension = dimension;
         this.position = position;
@@ -3174,12 +3174,12 @@ class SpawnExperienceOrb : Pocket113Packet
 
     enum string[] __fields = ["position", "count"];
 
-    Tuple!(float, "xyz") position;
+    Vector!(float, "xyz") position;
     @Var int count;
 
     this() pure nothrow @safe @nogc {}
 
-    this(Tuple!(float, "xyz") position, int count=int.init) pure nothrow @safe @nogc
+    this(Vector!(float, "xyz") position, int count=int.init) pure nothrow @safe @nogc
     {
         this.position = position;
         this.count = count;
@@ -3219,14 +3219,14 @@ class ClientboundMapItemData : Pocket113Packet
     @Var long mapId;
     @Var uint update;
     @Condition("update==2||update==4") ubyte scale;
-    @Condition("update==2") @Var Tuple!(int, "xz") size;
-    @Condition("update==2") @Var Tuple!(int, "xz") offset;
+    @Condition("update==2") @Var Vector!(int, "xz") size;
+    @Condition("update==2") @Var Vector!(int, "xz") offset;
     @Condition("update==2") @Bytes ubyte[] data;
     @Condition("update==4") soupply.pocket113.types.Decoration[] decorations;
 
     this() pure nothrow @safe @nogc {}
 
-    this(long mapId, uint update=uint.init, ubyte scale=ubyte.init, Tuple!(int, "xz") size=Tuple!(int, "xz").init, Tuple!(int, "xz") offset=Tuple!(int, "xz").init, ubyte[] data=(ubyte[]).init, soupply.pocket113.types.Decoration[] decorations=(soupply.pocket113.types.Decoration[]).init) pure nothrow @safe @nogc
+    this(long mapId, uint update=uint.init, ubyte scale=ubyte.init, Vector!(int, "xz") size=Vector!(int, "xz").init, Vector!(int, "xz") offset=Vector!(int, "xz").init, ubyte[] data=(ubyte[]).init, soupply.pocket113.types.Decoration[] decorations=(soupply.pocket113.types.Decoration[]).init) pure nothrow @safe @nogc
     {
         this.mapId = mapId;
         this.update = update;

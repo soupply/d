@@ -8,7 +8,7 @@ static import std.conv;
 import std.typetuple : TypeTuple;
 import packetmaker;
 
-import soupply.util : Tuple, UUID;
+import soupply.util : Vector, UUID;
 import soupply.java210.metadata : Metadata;
 import soupply.java210.packet : Java210Packet;
 
@@ -29,15 +29,15 @@ class SpawnObject : Java210Packet
     @Var uint entityId;
     UUID uuid;
     ubyte type;
-    Tuple!(double, "xyz") position;
+    Vector!(double, "xyz") position;
     ubyte pitch;
     ubyte yaw;
     int data;
-    Tuple!(short, "xyz") velocity;
+    Vector!(short, "xyz") velocity;
 
     this() pure nothrow @safe @nogc {}
 
-    this(uint entityId, UUID uuid=UUID.init, ubyte type=ubyte.init, Tuple!(double, "xyz") position=Tuple!(double, "xyz").init, ubyte pitch=ubyte.init, ubyte yaw=ubyte.init, int data=int.init, Tuple!(short, "xyz") velocity=Tuple!(short, "xyz").init) pure nothrow @safe @nogc
+    this(uint entityId, UUID uuid=UUID.init, ubyte type=ubyte.init, Vector!(double, "xyz") position=Vector!(double, "xyz").init, ubyte pitch=ubyte.init, ubyte yaw=ubyte.init, int data=int.init, Vector!(short, "xyz") velocity=Vector!(short, "xyz").init) pure nothrow @safe @nogc
     {
         this.entityId = entityId;
         this.uuid = uuid;
@@ -76,12 +76,12 @@ class SpawnExperienceOrb : Java210Packet
     enum string[] __fields = ["entityId", "position", "count"];
 
     @Var uint entityId;
-    Tuple!(double, "xyz") position;
+    Vector!(double, "xyz") position;
     ushort count;
 
     this() pure nothrow @safe @nogc {}
 
-    this(uint entityId, Tuple!(double, "xyz") position=Tuple!(double, "xyz").init, ushort count=ushort.init) pure nothrow @safe @nogc
+    this(uint entityId, Vector!(double, "xyz") position=Vector!(double, "xyz").init, ushort count=ushort.init) pure nothrow @safe @nogc
     {
         this.entityId = entityId;
         this.position = position;
@@ -119,11 +119,11 @@ class SpawnGlobalEntity : Java210Packet
 
     @Var uint entityId;
     ubyte type;
-    Tuple!(double, "xyz") position;
+    Vector!(double, "xyz") position;
 
     this() pure nothrow @safe @nogc {}
 
-    this(uint entityId, ubyte type=ubyte.init, Tuple!(double, "xyz") position=Tuple!(double, "xyz").init) pure nothrow @safe @nogc
+    this(uint entityId, ubyte type=ubyte.init, Vector!(double, "xyz") position=Vector!(double, "xyz").init) pure nothrow @safe @nogc
     {
         this.entityId = entityId;
         this.type = type;
@@ -159,16 +159,16 @@ class SpawnMob : Java210Packet
     @Var uint entityId;
     UUID uuid;
     ubyte type;
-    Tuple!(double, "xyz") position;
+    Vector!(double, "xyz") position;
     ubyte yaw;
     ubyte pitch;
     ubyte headPitch;
-    Tuple!(short, "xyz") velocity;
+    Vector!(short, "xyz") velocity;
     Metadata metadata;
 
     this() pure nothrow @safe @nogc {}
 
-    this(uint entityId, UUID uuid=UUID.init, ubyte type=ubyte.init, Tuple!(double, "xyz") position=Tuple!(double, "xyz").init, ubyte yaw=ubyte.init, ubyte pitch=ubyte.init, ubyte headPitch=ubyte.init, Tuple!(short, "xyz") velocity=Tuple!(short, "xyz").init, Metadata metadata=Metadata.init) pure nothrow @safe @nogc
+    this(uint entityId, UUID uuid=UUID.init, ubyte type=ubyte.init, Vector!(double, "xyz") position=Vector!(double, "xyz").init, ubyte yaw=ubyte.init, ubyte pitch=ubyte.init, ubyte headPitch=ubyte.init, Vector!(short, "xyz") velocity=Vector!(short, "xyz").init, Metadata metadata=Metadata.init) pure nothrow @safe @nogc
     {
         this.entityId = entityId;
         this.uuid = uuid;
@@ -258,14 +258,14 @@ class SpawnPlayer : Java210Packet
 
     @Var uint entityId;
     UUID uuid;
-    Tuple!(double, "xyz") position;
+    Vector!(double, "xyz") position;
     ubyte yaw;
     ubyte pitch;
     Metadata metadata;
 
     this() pure nothrow @safe @nogc {}
 
-    this(uint entityId, UUID uuid=UUID.init, Tuple!(double, "xyz") position=Tuple!(double, "xyz").init, ubyte yaw=ubyte.init, ubyte pitch=ubyte.init, Metadata metadata=Metadata.init) pure nothrow @safe @nogc
+    this(uint entityId, UUID uuid=UUID.init, Vector!(double, "xyz") position=Vector!(double, "xyz").init, ubyte yaw=ubyte.init, ubyte pitch=ubyte.init, Metadata metadata=Metadata.init) pure nothrow @safe @nogc
     {
         this.entityId = entityId;
         this.uuid = uuid;
@@ -920,12 +920,12 @@ class MultiBlockChange : Java210Packet
 
     enum string[] __fields = ["chunk", "changes"];
 
-    Tuple!(int, "xz") chunk;
+    Vector!(int, "xz") chunk;
     soupply.java210.types.BlockChange[] changes;
 
     this() pure nothrow @safe @nogc {}
 
-    this(Tuple!(int, "xz") chunk, soupply.java210.types.BlockChange[] changes=(soupply.java210.types.BlockChange[]).init) pure nothrow @safe @nogc
+    this(Vector!(int, "xz") chunk, soupply.java210.types.BlockChange[] changes=(soupply.java210.types.BlockChange[]).init) pure nothrow @safe @nogc
     {
         this.chunk = chunk;
         this.changes = changes;
@@ -1284,13 +1284,13 @@ class NamedSoundEffect : Java210Packet
 
     string name;
     @Var uint category;
-    Tuple!(int, "xyz") position;
+    Vector!(int, "xyz") position;
     float volume;
     float pitch;
 
     this() pure nothrow @safe @nogc {}
 
-    this(string name, uint category=uint.init, Tuple!(int, "xyz") position=Tuple!(int, "xyz").init, float volume=float.init, float pitch=float.init) pure nothrow @safe @nogc
+    this(string name, uint category=uint.init, Vector!(int, "xyz") position=Vector!(int, "xyz").init, float volume=float.init, float pitch=float.init) pure nothrow @safe @nogc
     {
         this.name = name;
         this.category = category;
@@ -1436,14 +1436,14 @@ class Explosion : Java210Packet
 
     enum string[] __fields = ["position", "radius", "records", "motion"];
 
-    Tuple!(float, "xyz") position;
+    Vector!(float, "xyz") position;
     float radius;
-    @Length!uint Tuple!(byte, "xyz")[] records;
-    Tuple!(float, "xyz") motion;
+    @Length!uint Vector!(byte, "xyz")[] records;
+    Vector!(float, "xyz") motion;
 
     this() pure nothrow @safe @nogc {}
 
-    this(Tuple!(float, "xyz") position, float radius=float.init, Tuple!(byte, "xyz")[] records=(Tuple!(byte, "xyz")[]).init, Tuple!(float, "xyz") motion=Tuple!(float, "xyz").init) pure nothrow @safe @nogc
+    this(Vector!(float, "xyz") position, float radius=float.init, Vector!(byte, "xyz")[] records=(Vector!(byte, "xyz")[]).init, Vector!(float, "xyz") motion=Vector!(float, "xyz").init) pure nothrow @safe @nogc
     {
         this.position = position;
         this.radius = radius;
@@ -1477,11 +1477,11 @@ class UnloadChunk : Java210Packet
 
     enum string[] __fields = ["position"];
 
-    Tuple!(int, "xz") position;
+    Vector!(int, "xz") position;
 
     this() pure nothrow @safe @nogc {}
 
-    this(Tuple!(int, "xz") position) pure nothrow @safe @nogc
+    this(Vector!(int, "xz") position) pure nothrow @safe @nogc
     {
         this.position = position;
     }
@@ -1610,7 +1610,7 @@ class ChunkData : Java210Packet
 
     enum string[] __fields = ["position", "full", "sections", "data", "tilesCount", "tiles"];
 
-    Tuple!(int, "xz") position;
+    Vector!(int, "xz") position;
     bool full;
     @Var uint sections;
     ubyte[] data;
@@ -1619,7 +1619,7 @@ class ChunkData : Java210Packet
 
     this() pure nothrow @safe @nogc {}
 
-    this(Tuple!(int, "xz") position, bool full=bool.init, uint sections=uint.init, ubyte[] data=(ubyte[]).init, uint tilesCount=uint.init, ubyte[] tiles=(ubyte[]).init) pure nothrow @safe @nogc
+    this(Vector!(int, "xz") position, bool full=bool.init, uint sections=uint.init, ubyte[] data=(ubyte[]).init, uint tilesCount=uint.init, ubyte[] tiles=(ubyte[]).init) pure nothrow @safe @nogc
     {
         this.position = position;
         this.full = full;
@@ -1796,15 +1796,15 @@ class Particle : Java210Packet
 
     uint particleId;
     bool longDistance;
-    Tuple!(float, "xyz") position;
-    Tuple!(float, "xyz") offset;
+    Vector!(float, "xyz") position;
+    Vector!(float, "xyz") offset;
     float data;
     uint count;
     @Var uint[2] additionalData;
 
     this() pure nothrow @safe @nogc {}
 
-    this(uint particleId, bool longDistance=bool.init, Tuple!(float, "xyz") position=Tuple!(float, "xyz").init, Tuple!(float, "xyz") offset=Tuple!(float, "xyz").init, float data=float.init, uint count=uint.init, uint[2] additionalData=(uint[2]).init) pure nothrow @safe @nogc
+    this(uint particleId, bool longDistance=bool.init, Vector!(float, "xyz") position=Vector!(float, "xyz").init, Vector!(float, "xyz") offset=Vector!(float, "xyz").init, float data=float.init, uint count=uint.init, uint[2] additionalData=(uint[2]).init) pure nothrow @safe @nogc
     {
         this.particleId = particleId;
         this.longDistance = longDistance;
@@ -1917,12 +1917,12 @@ class Map : Java210Packet
     soupply.java210.types.Icon[] icons;
     ubyte colums;
     ubyte rows;
-    Tuple!(ubyte, "xz") offset;
+    Vector!(ubyte, "xz") offset;
     ubyte[] data;
 
     this() pure nothrow @safe @nogc {}
 
-    this(uint mapId, ubyte scale=ubyte.init, bool showIcons=bool.init, soupply.java210.types.Icon[] icons=(soupply.java210.types.Icon[]).init, ubyte colums=ubyte.init, ubyte rows=ubyte.init, Tuple!(ubyte, "xz") offset=Tuple!(ubyte, "xz").init, ubyte[] data=(ubyte[]).init) pure nothrow @safe @nogc
+    this(uint mapId, ubyte scale=ubyte.init, bool showIcons=bool.init, soupply.java210.types.Icon[] icons=(soupply.java210.types.Icon[]).init, ubyte colums=ubyte.init, ubyte rows=ubyte.init, Vector!(ubyte, "xz") offset=Vector!(ubyte, "xz").init, ubyte[] data=(ubyte[]).init) pure nothrow @safe @nogc
     {
         this.mapId = mapId;
         this.scale = scale;
@@ -1961,12 +1961,12 @@ class EntityRelativeMove : Java210Packet
     enum string[] __fields = ["entityId", "delta", "onGround"];
 
     @Var uint entityId;
-    Tuple!(short, "xyz") delta;
+    Vector!(short, "xyz") delta;
     bool onGround;
 
     this() pure nothrow @safe @nogc {}
 
-    this(uint entityId, Tuple!(short, "xyz") delta=Tuple!(short, "xyz").init, bool onGround=bool.init) pure nothrow @safe @nogc
+    this(uint entityId, Vector!(short, "xyz") delta=Vector!(short, "xyz").init, bool onGround=bool.init) pure nothrow @safe @nogc
     {
         this.entityId = entityId;
         this.delta = delta;
@@ -2000,14 +2000,14 @@ class EntityLookAndRelativeMove : Java210Packet
     enum string[] __fields = ["entityId", "delta", "yaw", "pitch", "onGround"];
 
     @Var uint entityId;
-    Tuple!(short, "xyz") delta;
+    Vector!(short, "xyz") delta;
     ubyte yaw;
     ubyte pitch;
     bool onGround;
 
     this() pure nothrow @safe @nogc {}
 
-    this(uint entityId, Tuple!(short, "xyz") delta=Tuple!(short, "xyz").init, ubyte yaw=ubyte.init, ubyte pitch=ubyte.init, bool onGround=bool.init) pure nothrow @safe @nogc
+    this(uint entityId, Vector!(short, "xyz") delta=Vector!(short, "xyz").init, ubyte yaw=ubyte.init, ubyte pitch=ubyte.init, bool onGround=bool.init) pure nothrow @safe @nogc
     {
         this.entityId = entityId;
         this.delta = delta;
@@ -2118,13 +2118,13 @@ class VehicleMove : Java210Packet
 
     enum string[] __fields = ["position", "yaw", "pitch"];
 
-    Tuple!(double, "xyz") position;
+    Vector!(double, "xyz") position;
     float yaw;
     float pitch;
 
     this() pure nothrow @safe @nogc {}
 
-    this(Tuple!(double, "xyz") position, float yaw=float.init, float pitch=float.init) pure nothrow @safe @nogc
+    this(Vector!(double, "xyz") position, float yaw=float.init, float pitch=float.init) pure nothrow @safe @nogc
     {
         this.position = position;
         this.yaw = yaw;
@@ -2519,7 +2519,7 @@ class PlayerPositionAndLook : Java210Packet
 
     enum string[] __fields = ["position", "yaw", "pitch", "flags", "teleportId"];
 
-    Tuple!(double, "xyz") position;
+    Vector!(double, "xyz") position;
     float yaw;
     float pitch;
     ubyte flags;
@@ -2527,7 +2527,7 @@ class PlayerPositionAndLook : Java210Packet
 
     this() pure nothrow @safe @nogc {}
 
-    this(Tuple!(double, "xyz") position, float yaw=float.init, float pitch=float.init, ubyte flags=ubyte.init, uint teleportId=uint.init) pure nothrow @safe @nogc
+    this(Vector!(double, "xyz") position, float yaw=float.init, float pitch=float.init, ubyte flags=ubyte.init, uint teleportId=uint.init) pure nothrow @safe @nogc
     {
         this.position = position;
         this.yaw = yaw;
@@ -2897,11 +2897,11 @@ class WorldBorder : Java210Packet
 
         enum string[] __fields = ["center"];
 
-        Tuple!(double, "xyz") center;
+        Vector!(double, "xyz") center;
 
         this() pure nothrow @safe @nogc {}
 
-        this(Tuple!(double, "xyz") center) pure nothrow @safe @nogc
+        this(Vector!(double, "xyz") center) pure nothrow @safe @nogc
         {
             this.center = center;
         }
@@ -2922,7 +2922,7 @@ class WorldBorder : Java210Packet
 
         enum string[] __fields = ["center", "oldDiameter", "newDiameter", "speed", "portalTeleportBoundary", "warningTime", "warningBlocks"];
 
-        Tuple!(double, "xyz") center;
+        Vector!(double, "xyz") center;
         double oldDiameter;
         double newDiameter;
         @Var ulong speed;
@@ -2932,7 +2932,7 @@ class WorldBorder : Java210Packet
 
         this() pure nothrow @safe @nogc {}
 
-        this(Tuple!(double, "xyz") center, double oldDiameter=double.init, double newDiameter=double.init, ulong speed=ulong.init, uint portalTeleportBoundary=uint.init, uint warningTime=uint.init, uint warningBlocks=uint.init) pure nothrow @safe @nogc
+        this(Vector!(double, "xyz") center, double oldDiameter=double.init, double newDiameter=double.init, ulong speed=ulong.init, uint portalTeleportBoundary=uint.init, uint warningTime=uint.init, uint warningBlocks=uint.init) pure nothrow @safe @nogc
         {
             this.center = center;
             this.oldDiameter = oldDiameter;
@@ -3201,11 +3201,11 @@ class EntityVelocity : Java210Packet
     enum string[] __fields = ["entityId", "velocity"];
 
     @Var uint entityId;
-    Tuple!(short, "xyz") velocity;
+    Vector!(short, "xyz") velocity;
 
     this() pure nothrow @safe @nogc {}
 
-    this(uint entityId, Tuple!(short, "xyz") velocity=Tuple!(short, "xyz").init) pure nothrow @safe @nogc
+    this(uint entityId, Vector!(short, "xyz") velocity=Vector!(short, "xyz").init) pure nothrow @safe @nogc
     {
         this.entityId = entityId;
         this.velocity = velocity;
@@ -3925,13 +3925,13 @@ class SoundEffect : Java210Packet
 
     @Var uint soundId;
     @Var uint category;
-    Tuple!(int, "xyz") position;
+    Vector!(int, "xyz") position;
     float volume;
     float pitch;
 
     this() pure nothrow @safe @nogc {}
 
-    this(uint soundId, uint category=uint.init, Tuple!(int, "xyz") position=Tuple!(int, "xyz").init, float volume=float.init, float pitch=float.init) pure nothrow @safe @nogc
+    this(uint soundId, uint category=uint.init, Vector!(int, "xyz") position=Vector!(int, "xyz").init, float volume=float.init, float pitch=float.init) pure nothrow @safe @nogc
     {
         this.soundId = soundId;
         this.category = category;
@@ -4041,14 +4041,14 @@ class EntityTeleport : Java210Packet
     enum string[] __fields = ["entityId", "position", "yaw", "pitch", "onGround"];
 
     @Var uint entityId;
-    Tuple!(double, "xyz") position;
+    Vector!(double, "xyz") position;
     ubyte yaw;
     ubyte pitch;
     bool onGround;
 
     this() pure nothrow @safe @nogc {}
 
-    this(uint entityId, Tuple!(double, "xyz") position=Tuple!(double, "xyz").init, ubyte yaw=ubyte.init, ubyte pitch=ubyte.init, bool onGround=bool.init) pure nothrow @safe @nogc
+    this(uint entityId, Vector!(double, "xyz") position=Vector!(double, "xyz").init, ubyte yaw=ubyte.init, ubyte pitch=ubyte.init, bool onGround=bool.init) pure nothrow @safe @nogc
     {
         this.entityId = entityId;
         this.position = position;

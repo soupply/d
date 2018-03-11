@@ -6,8 +6,9 @@ module soupply.pocket105.types;
 
 static import std.conv;
 import packetmaker;
+import packetmaker.maker : EndianType, writeLength, readLength;
 
-import soupply.util : Tuple, UUID;
+import soupply.util : Vector, UUID;
 import soupply.pocket105.metadata;
 
 struct PackWithSize
@@ -178,21 +179,39 @@ struct Recipe
 struct ChunkData
 {
 
-    enum string[] __fields = ["sections", "heights", "biomes", "borders", "extraData", "blockEntities"];
+    private struct Container
+    {
 
-    soupply.pocket105.types.Section[] sections;
-    ushort[256] heights;
-    ubyte[256] biomes;
-    ubyte[] borders;
-    soupply.pocket105.types.ExtraData[] extraData;
-    @Bytes ubyte[] blockEntities;
+        enum string[] __fields = ["sections", "heights", "biomes", "borders", "extraData", "blockEntities"];
+
+        soupply.pocket105.types.Section[] sections;
+        ushort[256] heights;
+        ubyte[256] biomes;
+        ubyte[] borders;
+        soupply.pocket105.types.ExtraData[] extraData;
+        @Bytes ubyte[] blockEntities;
+
+        mixin Make!(Endian.bigEndian, ubyte);
+
+    }
+
+    enum string[] __fields = Container.__fields;
+
+    Container _container;
+
+    alias _container this;
 
     void encodeBody(InputBuffer buffer)
     {
+        InputBuffer _buffer = new InputBuffer();
+        _container.encodeBody(_buffer);
+        writeLength!(EndianType.var, uint)(buffer, _buffer.data.length);
+        buffer.writeBytes(_buffer.data);
     }
 
     void decodeBody(OutputBuffer buffer)
     {
+        _container.decodeBody(new OutputBuffer(buffer.readBytes(readLength!(EndianType.var, uint)(buffer))));
     }
 
     string toString()
@@ -243,7 +262,7 @@ struct Decoration
     enum string[] __fields = ["rotationAndIcon", "position", "label", "color"];
 
     @Var int rotationAndIcon;
-    Tuple!(ubyte, "xz") position;
+    Vector!(ubyte, "xz") position;
     string label;
     @LittleEndian uint color;
 
