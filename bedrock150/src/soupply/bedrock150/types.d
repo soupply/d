@@ -62,6 +62,7 @@ struct PackWithSize
     ulong size;
 
     mixin Make!(Endian.littleEndian, varuint);
+
     string toString()
     {
         return "PackWithSize(id: " ~ std.conv.to!string(this.id) ~ ", version_: " ~ std.conv.to!string(this.version_) ~ ", size: " ~ std.conv.to!string(this.size) ~ ")";
@@ -78,6 +79,7 @@ struct Pack
     string version_;
 
     mixin Make!(Endian.littleEndian, varuint);
+
     string toString()
     {
         return "Pack(id: " ~ std.conv.to!string(this.id) ~ ", version_: " ~ std.conv.to!string(this.version_) ~ ")";
@@ -97,6 +99,7 @@ struct Slot
     string[] canDestroy;
 
     mixin Make!(Endian.littleEndian, varuint);
+
     string toString()
     {
         return "Slot(id: " ~ std.conv.to!string(this.id) ~ ", metaAndCount: " ~ std.conv.to!string(this.metaAndCount) ~ ", nbt: " ~ std.conv.to!string(this.nbt) ~ ", canPlaceOn: " ~ std.conv.to!string(this.canPlaceOn) ~ ", canDestroy: " ~ std.conv.to!string(this.canDestroy) ~ ")";
@@ -116,6 +119,7 @@ struct Attribute
     string name;
 
     mixin Make!(Endian.littleEndian, varuint);
+
     string toString()
     {
         return "Attribute(min: " ~ std.conv.to!string(this.min) ~ ", max: " ~ std.conv.to!string(this.max) ~ ", value: " ~ std.conv.to!string(this.value) ~ ", default_: " ~ std.conv.to!string(this.default_) ~ ", name: " ~ std.conv.to!string(this.name) ~ ")";
@@ -133,6 +137,7 @@ struct BlockPosition
     @Var int z;
 
     mixin Make!(Endian.littleEndian, varuint);
+
     string toString()
     {
         return "BlockPosition(x: " ~ std.conv.to!string(this.x) ~ ", y: " ~ std.conv.to!string(this.y) ~ ", z: " ~ std.conv.to!string(this.z) ~ ")";
@@ -149,6 +154,7 @@ struct McpeUuid
     long leastSignificantBits;
 
     mixin Make!(Endian.littleEndian, varuint);
+
     string toString()
     {
         return "McpeUuid(mostSignificantBits: " ~ std.conv.to!string(this.mostSignificantBits) ~ ", leastSignificantBits: " ~ std.conv.to!string(this.leastSignificantBits) ~ ")";
@@ -168,6 +174,7 @@ struct PlayerList
     string unknown4;
 
     mixin Make!(Endian.littleEndian, varuint);
+
     string toString()
     {
         return "PlayerList(uuid: " ~ std.conv.to!string(this.uuid) ~ ", entityId: " ~ std.conv.to!string(this.entityId) ~ ", displayName: " ~ std.conv.to!string(this.displayName) ~ ", skin: " ~ std.conv.to!string(this.skin) ~ ", unknown4: " ~ std.conv.to!string(this.unknown4) ~ ")";
@@ -187,6 +194,7 @@ struct Skin
     ubyte[] geometryData;
 
     mixin Make!(Endian.littleEndian, varuint);
+
     string toString()
     {
         return "Skin(name: " ~ std.conv.to!string(this.name) ~ ", data: " ~ std.conv.to!string(this.data) ~ ", capeData: " ~ std.conv.to!string(this.capeData) ~ ", geometryName: " ~ std.conv.to!string(this.geometryName) ~ ", geometryData: " ~ std.conv.to!string(this.geometryData) ~ ")";
@@ -210,6 +218,7 @@ struct Link
     ubyte unknown3;
 
     mixin Make!(Endian.littleEndian, varuint);
+
     string toString()
     {
         return "Link(from: " ~ std.conv.to!string(this.from) ~ ", to: " ~ std.conv.to!string(this.to) ~ ", action: " ~ std.conv.to!string(this.action) ~ ", unknown3: " ~ std.conv.to!string(this.unknown3) ~ ")";
@@ -233,6 +242,7 @@ struct Recipe
     @Bytes ubyte[] data;
 
     mixin Make!(Endian.littleEndian, varuint);
+
     string toString()
     {
         return "Recipe(type: " ~ std.conv.to!string(this.type) ~ ", data: " ~ std.conv.to!string(this.data) ~ ")";
@@ -258,6 +268,7 @@ struct InventoryAction
     soupply.bedrock150.types.Slot newItem;
 
     mixin Make!(Endian.littleEndian, varuint);
+
     string toString()
     {
         return "InventoryAction(source: " ~ std.conv.to!string(this.source) ~ ", container: " ~ std.conv.to!string(this.container) ~ ", unknown2: " ~ std.conv.to!string(this.unknown2) ~ ", slot: " ~ std.conv.to!string(this.slot) ~ ", oldItem: " ~ std.conv.to!string(this.oldItem) ~ ", newItem: " ~ std.conv.to!string(this.newItem) ~ ")";
@@ -320,6 +331,7 @@ struct Section
     ubyte[2048] blockMetas;
 
     mixin Make!(Endian.littleEndian, varuint);
+
     string toString()
     {
         return "Section(storageVersion: " ~ std.conv.to!string(this.storageVersion) ~ ", blockIds: " ~ std.conv.to!string(this.blockIds) ~ ", blockMetas: " ~ std.conv.to!string(this.blockMetas) ~ ")";
@@ -336,6 +348,7 @@ struct ExtraData
     ushort value;
 
     mixin Make!(Endian.littleEndian, varuint);
+
     string toString()
     {
         return "ExtraData(key: " ~ std.conv.to!string(this.key) ~ ", value: " ~ std.conv.to!string(this.value) ~ ")";
@@ -354,6 +367,7 @@ struct Decoration
     uint color;
 
     mixin Make!(Endian.littleEndian, varuint);
+
     string toString()
     {
         return "Decoration(rotationAndIcon: " ~ std.conv.to!string(this.rotationAndIcon) ~ ", position: " ~ std.conv.to!string(this.position) ~ ", label: " ~ std.conv.to!string(this.label) ~ ", color: " ~ std.conv.to!string(this.color) ~ ")";
@@ -395,6 +409,7 @@ struct Rule
     @Condition("type==3") float floatingValue;
 
     mixin Make!(Endian.littleEndian, varuint);
+
     string toString()
     {
         return "Rule(name: " ~ std.conv.to!string(this.name) ~ ", type: " ~ std.conv.to!string(this.type) ~ ", booleanValue: " ~ std.conv.to!string(this.booleanValue) ~ ", integerValue: " ~ std.conv.to!string(this.integerValue) ~ ", floatingValue: " ~ std.conv.to!string(this.floatingValue) ~ ")";
@@ -411,6 +426,7 @@ struct Enum
     ushort[] valuesIndexes;
 
     mixin Make!(Endian.littleEndian, varuint);
+
     string toString()
     {
         return "Enum(name: " ~ std.conv.to!string(this.name) ~ ", valuesIndexes: " ~ std.conv.to!string(this.valuesIndexes) ~ ")";
@@ -431,6 +447,7 @@ struct Command
     soupply.bedrock150.types.Overload[] overloads;
 
     mixin Make!(Endian.littleEndian, varuint);
+
     string toString()
     {
         return "Command(name: " ~ std.conv.to!string(this.name) ~ ", description: " ~ std.conv.to!string(this.description) ~ ", unknown2: " ~ std.conv.to!string(this.unknown2) ~ ", permissionLevel: " ~ std.conv.to!string(this.permissionLevel) ~ ", aliasesEnum: " ~ std.conv.to!string(this.aliasesEnum) ~ ", overloads: " ~ std.conv.to!string(this.overloads) ~ ")";
@@ -446,6 +463,7 @@ struct Overload
     soupply.bedrock150.types.Parameter[] parameters;
 
     mixin Make!(Endian.littleEndian, varuint);
+
     string toString()
     {
         return "Overload(parameters: " ~ std.conv.to!string(this.parameters) ~ ")";
@@ -478,6 +496,7 @@ struct Parameter
     bool optional;
 
     mixin Make!(Endian.littleEndian, varuint);
+
     string toString()
     {
         return "Parameter(name: " ~ std.conv.to!string(this.name) ~ ", type: " ~ std.conv.to!string(this.type) ~ ", optional: " ~ std.conv.to!string(this.optional) ~ ")";

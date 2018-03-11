@@ -62,6 +62,7 @@ struct PackWithSize
     @LittleEndian ulong size;
 
     mixin Make!(Endian.bigEndian, ubyte);
+
     string toString()
     {
         return "PackWithSize(id: " ~ std.conv.to!string(this.id) ~ ", version_: " ~ std.conv.to!string(this.version_) ~ ", size: " ~ std.conv.to!string(this.size) ~ ")";
@@ -78,6 +79,7 @@ struct Pack
     string version_;
 
     mixin Make!(Endian.bigEndian, ubyte);
+
     string toString()
     {
         return "Pack(id: " ~ std.conv.to!string(this.id) ~ ", version_: " ~ std.conv.to!string(this.version_) ~ ")";
@@ -97,6 +99,7 @@ struct Slot
     string[] canDestroy;
 
     mixin Make!(Endian.bigEndian, ubyte);
+
     string toString()
     {
         return "Slot(id: " ~ std.conv.to!string(this.id) ~ ", metaAndCount: " ~ std.conv.to!string(this.metaAndCount) ~ ", nbt: " ~ std.conv.to!string(this.nbt) ~ ", canPlaceOn: " ~ std.conv.to!string(this.canPlaceOn) ~ ", canDestroy: " ~ std.conv.to!string(this.canDestroy) ~ ")";
@@ -116,6 +119,7 @@ struct Attribute
     string name;
 
     mixin Make!(Endian.bigEndian, ubyte);
+
     string toString()
     {
         return "Attribute(min: " ~ std.conv.to!string(this.min) ~ ", max: " ~ std.conv.to!string(this.max) ~ ", value: " ~ std.conv.to!string(this.value) ~ ", default_: " ~ std.conv.to!string(this.default_) ~ ", name: " ~ std.conv.to!string(this.name) ~ ")";
@@ -133,6 +137,7 @@ struct BlockPosition
     @Var int z;
 
     mixin Make!(Endian.bigEndian, ubyte);
+
     string toString()
     {
         return "BlockPosition(x: " ~ std.conv.to!string(this.x) ~ ", y: " ~ std.conv.to!string(this.y) ~ ", z: " ~ std.conv.to!string(this.z) ~ ")";
@@ -149,6 +154,7 @@ struct McpeUuid
     @LittleEndian long leastSignificantBits;
 
     mixin Make!(Endian.bigEndian, ubyte);
+
     string toString()
     {
         return "McpeUuid(mostSignificantBits: " ~ std.conv.to!string(this.mostSignificantBits) ~ ", leastSignificantBits: " ~ std.conv.to!string(this.leastSignificantBits) ~ ")";
@@ -165,6 +171,7 @@ struct Skin
     ubyte[] data;
 
     mixin Make!(Endian.bigEndian, ubyte);
+
     string toString()
     {
         return "Skin(name: " ~ std.conv.to!string(this.name) ~ ", data: " ~ std.conv.to!string(this.data) ~ ")";
@@ -183,6 +190,7 @@ struct PlayerList
     soupply.pocket113.types.Skin skin;
 
     mixin Make!(Endian.bigEndian, ubyte);
+
     string toString()
     {
         return "PlayerList(uuid: " ~ std.conv.to!string(this.uuid) ~ ", entityId: " ~ std.conv.to!string(this.entityId) ~ ", displayName: " ~ std.conv.to!string(this.displayName) ~ ", skin: " ~ std.conv.to!string(this.skin) ~ ")";
@@ -205,6 +213,7 @@ struct Link
     ubyte action;
 
     mixin Make!(Endian.bigEndian, ubyte);
+
     string toString()
     {
         return "Link(from: " ~ std.conv.to!string(this.from) ~ ", to: " ~ std.conv.to!string(this.to) ~ ", action: " ~ std.conv.to!string(this.action) ~ ")";
@@ -228,6 +237,7 @@ struct Recipe
     @Bytes ubyte[] data;
 
     mixin Make!(Endian.bigEndian, ubyte);
+
     string toString()
     {
         return "Recipe(type: " ~ std.conv.to!string(this.type) ~ ", data: " ~ std.conv.to!string(this.data) ~ ")";
@@ -292,6 +302,7 @@ struct Section
     ubyte[2048] blockLight;
 
     mixin Make!(Endian.bigEndian, ubyte);
+
     string toString()
     {
         return "Section(storageVersion: " ~ std.conv.to!string(this.storageVersion) ~ ", blockIds: " ~ std.conv.to!string(this.blockIds) ~ ", blockMetas: " ~ std.conv.to!string(this.blockMetas) ~ ", skyLight: " ~ std.conv.to!string(this.skyLight) ~ ", blockLight: " ~ std.conv.to!string(this.blockLight) ~ ")";
@@ -308,6 +319,7 @@ struct ExtraData
     @LittleEndian ushort value;
 
     mixin Make!(Endian.bigEndian, ubyte);
+
     string toString()
     {
         return "ExtraData(key: " ~ std.conv.to!string(this.key) ~ ", value: " ~ std.conv.to!string(this.value) ~ ")";
@@ -326,6 +338,7 @@ struct Decoration
     @LittleEndian uint color;
 
     mixin Make!(Endian.bigEndian, ubyte);
+
     string toString()
     {
         return "Decoration(rotationAndIcon: " ~ std.conv.to!string(this.rotationAndIcon) ~ ", position: " ~ std.conv.to!string(this.position) ~ ", label: " ~ std.conv.to!string(this.label) ~ ", color: " ~ std.conv.to!string(this.color) ~ ")";
@@ -367,6 +380,7 @@ struct Rule
     @Condition("type==3") float floatingValue;
 
     mixin Make!(Endian.bigEndian, ubyte);
+
     string toString()
     {
         return "Rule(name: " ~ std.conv.to!string(this.name) ~ ", type: " ~ std.conv.to!string(this.type) ~ ", booleanValue: " ~ std.conv.to!string(this.booleanValue) ~ ", integerValue: " ~ std.conv.to!string(this.integerValue) ~ ", floatingValue: " ~ std.conv.to!string(this.floatingValue) ~ ")";

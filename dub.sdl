@@ -22,6 +22,7 @@ subPackage "pocket101"
 subPackage "pocket102"
 subPackage "pocket105"
 subPackage "pocket113"
+subPackage "test0"
 subPackage "util"
 
 dependency "soupply:bedrock" version="*"

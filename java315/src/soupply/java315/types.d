@@ -20,6 +20,7 @@ struct Statistic
     @Var uint value;
 
     mixin Make!(Endian.bigEndian, varuint);
+
     string toString()
     {
         return "Statistic(name: " ~ std.conv.to!string(this.name) ~ ", value: " ~ std.conv.to!string(this.value) ~ ")";
@@ -37,6 +38,7 @@ struct BlockChange
     @Var uint block;
 
     mixin Make!(Endian.bigEndian, varuint);
+
     string toString()
     {
         return "BlockChange(xz: " ~ std.conv.to!string(this.xz) ~ ", y: " ~ std.conv.to!string(this.y) ~ ", block: " ~ std.conv.to!string(this.block) ~ ")";
@@ -55,6 +57,7 @@ struct Slot
     @Condition("id>0") @Bytes ubyte[] nbt;
 
     mixin Make!(Endian.bigEndian, varuint);
+
     string toString()
     {
         return "Slot(id: " ~ std.conv.to!string(this.id) ~ ", count: " ~ std.conv.to!string(this.count) ~ ", damage: " ~ std.conv.to!string(this.damage) ~ ", nbt: " ~ std.conv.to!string(this.nbt) ~ ")";
@@ -83,6 +86,7 @@ struct Icon
     Vector!(ubyte, "xz") position;
 
     mixin Make!(Endian.bigEndian, varuint);
+
     string toString()
     {
         return "Icon(directionAndType: " ~ std.conv.to!string(this.directionAndType) ~ ", position: " ~ std.conv.to!string(this.position) ~ ")";
@@ -101,6 +105,7 @@ struct Property
     @Condition("signed==true") string signature;
 
     mixin Make!(Endian.bigEndian, varuint);
+
     string toString()
     {
         return "Property(name: " ~ std.conv.to!string(this.name) ~ ", value: " ~ std.conv.to!string(this.value) ~ ", signed: " ~ std.conv.to!string(this.signed) ~ ", signature: " ~ std.conv.to!string(this.signature) ~ ")";
@@ -128,6 +133,7 @@ struct ListAddPlayer
     @Condition("hasDisplayName==true") string displayName;
 
     mixin Make!(Endian.bigEndian, varuint);
+
     string toString()
     {
         return "ListAddPlayer(uuid: " ~ std.conv.to!string(this.uuid) ~ ", name: " ~ std.conv.to!string(this.name) ~ ", properties: " ~ std.conv.to!string(this.properties) ~ ", gamemode: " ~ std.conv.to!string(this.gamemode) ~ ", latency: " ~ std.conv.to!string(this.latency) ~ ", hasDisplayName: " ~ std.conv.to!string(this.hasDisplayName) ~ ", displayName: " ~ std.conv.to!string(this.displayName) ~ ")";
@@ -150,6 +156,7 @@ struct ListUpdateGamemode
     @Var uint gamemode;
 
     mixin Make!(Endian.bigEndian, varuint);
+
     string toString()
     {
         return "ListUpdateGamemode(uuid: " ~ std.conv.to!string(this.uuid) ~ ", gamemode: " ~ std.conv.to!string(this.gamemode) ~ ")";
@@ -166,6 +173,7 @@ struct ListUpdateLatency
     @Var uint latency;
 
     mixin Make!(Endian.bigEndian, varuint);
+
     string toString()
     {
         return "ListUpdateLatency(uuid: " ~ std.conv.to!string(this.uuid) ~ ", latency: " ~ std.conv.to!string(this.latency) ~ ")";
@@ -183,6 +191,7 @@ struct ListUpdateDisplayName
     @Condition("hasDisplayName==true") string displayName;
 
     mixin Make!(Endian.bigEndian, varuint);
+
     string toString()
     {
         return "ListUpdateDisplayName(uuid: " ~ std.conv.to!string(this.uuid) ~ ", hasDisplayName: " ~ std.conv.to!string(this.hasDisplayName) ~ ", displayName: " ~ std.conv.to!string(this.displayName) ~ ")";
@@ -205,6 +214,7 @@ struct Modifier
     ubyte operation;
 
     mixin Make!(Endian.bigEndian, varuint);
+
     string toString()
     {
         return "Modifier(uuid: " ~ std.conv.to!string(this.uuid) ~ ", amount: " ~ std.conv.to!string(this.amount) ~ ", operation: " ~ std.conv.to!string(this.operation) ~ ")";
@@ -222,6 +232,7 @@ struct Attribute
     soupply.java315.types.Modifier[] modifiers;
 
     mixin Make!(Endian.bigEndian, varuint);
+
     string toString()
     {
         return "Attribute(key: " ~ std.conv.to!string(this.key) ~ ", value: " ~ std.conv.to!string(this.value) ~ ", modifiers: " ~ std.conv.to!string(this.modifiers) ~ ")";
@@ -238,6 +249,7 @@ struct OptionalPosition
     @Condition("hasPosition==true") ulong position;
 
     mixin Make!(Endian.bigEndian, varuint);
+
     string toString()
     {
         return "OptionalPosition(hasPosition: " ~ std.conv.to!string(this.hasPosition) ~ ", position: " ~ std.conv.to!string(this.position) ~ ")";
@@ -254,6 +266,7 @@ struct OptionalUuid
     UUID uuid;
 
     mixin Make!(Endian.bigEndian, varuint);
+
     string toString()
     {
         return "OptionalUuid(hasUuid: " ~ std.conv.to!string(this.hasUuid) ~ ", uuid: " ~ std.conv.to!string(this.uuid) ~ ")";
