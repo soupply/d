@@ -3,4 +3,4 @@
  */
 module soupply.java.protocol.status;
 
-public import soupply.java210.protocol.status;
+public import soupply.java340.protocol.status;

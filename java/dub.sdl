@@ -1,4 +1,4 @@
 name "java"
 description "Libraries for the latest Minecraft: Java Edition protocol"
 targetType "library"
-dependency "soupply:java210" version="*"
+dependency "soupply:java340" version="*"

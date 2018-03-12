@@ -3,4 +3,4 @@
  */
 module soupply.java.metadata;
 
-public import soupply.java210.metadata;
+public import soupply.java340.metadata;

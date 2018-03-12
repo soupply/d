@@ -3,6 +3,6 @@
  */
 module soupply.java.packet;
 
-public import soupply.java210.packet;
+public import soupply.java340.packet;
 
-alias JavaPacket = Java210Packet;
+alias JavaPacket = Java340Packet;

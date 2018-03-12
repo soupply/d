@@ -1,4 +1,0 @@
-name "pocket100"
-description "Libraries for Minecraft: Pocket Edition protocol 100"
-targetType "library"
-dependency "soupply:util" version="*"

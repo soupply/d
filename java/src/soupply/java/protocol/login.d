@@ -3,4 +3,4 @@
  */
 module soupply.java.protocol.login;
 
-public import soupply.java210.protocol.login;
+public import soupply.java340.protocol.login;
