@@ -7,6 +7,7 @@ module soupply.java338.types;
 static import std.conv;
 import packetmaker;
 import packetmaker.maker : EndianType, writeLength, readLength;
+import packetmaker.memory : alloc, free;
 
 import soupply.util : Vector, UUID;
 import soupply.java338.metadata;

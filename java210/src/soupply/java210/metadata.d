@@ -6,6 +6,7 @@ module soupply.java210.metadata;
 
 import packetmaker;
 import packetmaker.maker : EndianType, writeLength;
+import packetmaker.memory : malloc, realloc, alloc, free;
 
 import soupply.util : Vector;
 
@@ -244,20 +245,13 @@ struct Metadata
 {
 
     private MetadataValue[ubyte] _store;
-    private bool _cached = false;
-    private ubyte[] _cache;
-
-    void encodeBody(InputBuffer buffer)
+    void encodeBody(InputBuffer buffer) @nogc
     {
-        if(!_cached)
-        {
-            InputBuffer _buffer = new InputBuffer();
-            foreach(value ; _store) value.encodeBody(_buffer);
-            _buffer.writeUnsignedByte(ubyte(255));
-            _cached = true;
-            _cache = _buffer.data;
-        }
-        buffer.writeBytes(_cache);
+        InputBuffer _buffer = alloc!InputBuffer();
+        scope(exit) free(_buffer);
+        foreach(value ; _store) value.encodeBody(_buffer);
+        _buffer.writeUnsignedByte(ubyte(255));
+        buffer.writeBytes(_buffer.data);
     }
 
     void decodeBody(OutputBuffer buffer)

@@ -54,7 +54,7 @@ class SpawnObject : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SpawnObject ret = new SpawnObject();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -93,7 +93,7 @@ class SpawnExperienceOrb : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SpawnExperienceOrb ret = new SpawnExperienceOrb();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -135,7 +135,7 @@ class SpawnGlobalEntity : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SpawnGlobalEntity ret = new SpawnGlobalEntity();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -186,7 +186,7 @@ class SpawnMob : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SpawnMob ret = new SpawnMob();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -235,7 +235,7 @@ class SpawnPainting : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SpawnPainting ret = new SpawnPainting();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -280,7 +280,7 @@ class SpawnPlayer : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SpawnPlayer ret = new SpawnPlayer();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -325,7 +325,7 @@ class Animation : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Animation ret = new Animation();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -360,7 +360,7 @@ class Statistics : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Statistics ret = new Statistics();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -399,7 +399,7 @@ class BlockBreakAnimation : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         BlockBreakAnimation ret = new BlockBreakAnimation();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -451,7 +451,7 @@ class UpdateBlockEntity : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         UpdateBlockEntity ret = new UpdateBlockEntity();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -514,7 +514,7 @@ class BlockAction : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         BlockAction ret = new BlockAction();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -551,7 +551,7 @@ class BlockChange : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         BlockChange ret = new BlockChange();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -588,7 +588,7 @@ class BossBar : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         BossBar ret = new BossBar();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -824,7 +824,7 @@ class ServerDifficulty : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ServerDifficulty ret = new ServerDifficulty();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -859,7 +859,7 @@ class TabComplete : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         TabComplete ret = new TabComplete();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -901,7 +901,7 @@ class ChatMessage : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ChatMessage ret = new ChatMessage();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -938,7 +938,7 @@ class MultiBlockChange : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         MultiBlockChange ret = new MultiBlockChange();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -977,7 +977,7 @@ class ConfirmTransaction : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ConfirmTransaction ret = new ConfirmTransaction();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1012,7 +1012,7 @@ class CloseWindow : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         CloseWindow ret = new CloseWindow();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1053,7 +1053,7 @@ class OpenWindow : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         OpenWindow ret = new OpenWindow();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1090,7 +1090,7 @@ class WindowItems : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         WindowItems ret = new WindowItems();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1150,7 +1150,7 @@ class WindowProperty : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         WindowProperty ret = new WindowProperty();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1189,7 +1189,7 @@ class SetSlot : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SetSlot ret = new SetSlot();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1226,7 +1226,7 @@ class SetCooldown : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SetCooldown ret = new SetCooldown();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1263,7 +1263,7 @@ class PluginMessage : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         PluginMessage ret = new PluginMessage();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1306,7 +1306,7 @@ class NamedSoundEffect : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         NamedSoundEffect ret = new NamedSoundEffect();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1341,7 +1341,7 @@ class Disconnect : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Disconnect ret = new Disconnect();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1417,7 +1417,7 @@ class EntityStatus : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         EntityStatus ret = new EntityStatus();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1458,7 +1458,7 @@ class Explosion : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Explosion ret = new Explosion();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1493,7 +1493,7 @@ class UnloadChunk : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         UnloadChunk ret = new UnloadChunk();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1556,7 +1556,7 @@ class ChangeGameState : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ChangeGameState ret = new ChangeGameState();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1591,7 +1591,7 @@ class KeepAlive : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         KeepAlive ret = new KeepAlive();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1636,7 +1636,7 @@ class ChunkData : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ChunkData ret = new ChunkData();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1726,7 +1726,7 @@ class Effect : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Effect ret = new Effect();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1822,7 +1822,7 @@ class Particle : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Particle ret = new Particle();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1892,7 +1892,7 @@ class JoinGame : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         JoinGame ret = new JoinGame();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1941,7 +1941,7 @@ class Map : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Map ret = new Map();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1976,7 +1976,7 @@ class Entity : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Entity ret = new Entity();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2015,7 +2015,7 @@ class EntityRelativeMove : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         EntityRelativeMove ret = new EntityRelativeMove();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2058,7 +2058,7 @@ class EntityLookAndRelativeMove : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         EntityLookAndRelativeMove ret = new EntityLookAndRelativeMove();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2099,7 +2099,7 @@ class EntityLook : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         EntityLook ret = new EntityLook();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2138,7 +2138,7 @@ class VehicleMove : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         VehicleMove ret = new VehicleMove();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2173,7 +2173,7 @@ class OpenSignEditor : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         OpenSignEditor ret = new OpenSignEditor();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2210,7 +2210,7 @@ class CraftRecipeResponse : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         CraftRecipeResponse ret = new CraftRecipeResponse();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2255,7 +2255,7 @@ class PlayerAbilities : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         PlayerAbilities ret = new PlayerAbilities();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2290,7 +2290,7 @@ class CombatEvent : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         CombatEvent ret = new CombatEvent();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2401,7 +2401,7 @@ class PlayerListItem : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         PlayerListItem ret = new PlayerListItem();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2580,7 +2580,7 @@ class PlayerPositionAndLook : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         PlayerPositionAndLook ret = new PlayerPositionAndLook();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2617,7 +2617,7 @@ class UseBed : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         UseBed ret = new UseBed();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2665,7 +2665,7 @@ class UnlockRecipes : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         UnlockRecipes ret = new UnlockRecipes();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2700,7 +2700,7 @@ class DestroyEntities : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         DestroyEntities ret = new DestroyEntities();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2737,7 +2737,7 @@ class RemoveEntityEffect : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         RemoveEntityEffect ret = new RemoveEntityEffect();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2774,7 +2774,7 @@ class ResourcePackSend : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ResourcePackSend ret = new ResourcePackSend();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2838,7 +2838,7 @@ class Respawn : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Respawn ret = new Respawn();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2875,7 +2875,7 @@ class EntityHeadLook : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         EntityHeadLook ret = new EntityHeadLook();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2912,7 +2912,7 @@ class AdvancementProgress : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         AdvancementProgress ret = new AdvancementProgress();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2947,7 +2947,7 @@ class WorldBorder : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         WorldBorder ret = new WorldBorder();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3152,7 +3152,7 @@ class Camera : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Camera ret = new Camera();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3187,7 +3187,7 @@ class HeldItemChange : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         HeldItemChange ret = new HeldItemChange();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3229,7 +3229,7 @@ class DisplayScoreboard : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         DisplayScoreboard ret = new DisplayScoreboard();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3266,7 +3266,7 @@ class EntityMetadata : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         EntityMetadata ret = new EntityMetadata();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3303,7 +3303,7 @@ class AttachEntity : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         AttachEntity ret = new AttachEntity();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3340,7 +3340,7 @@ class EntityVelocity : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         EntityVelocity ret = new EntityVelocity();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3379,7 +3379,7 @@ class EntityEquipment : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         EntityEquipment ret = new EntityEquipment();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3418,7 +3418,7 @@ class SetExperience : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SetExperience ret = new SetExperience();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3457,7 +3457,7 @@ class UpdateHealth : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         UpdateHealth ret = new UpdateHealth();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3507,7 +3507,7 @@ class ScoreboardObjective : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ScoreboardObjective ret = new ScoreboardObjective();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3544,7 +3544,7 @@ class SetPassengers : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SetPassengers ret = new SetPassengers();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3581,7 +3581,7 @@ class Teams : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Teams ret = new Teams();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3804,7 +3804,7 @@ class UpdateScore : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         UpdateScore ret = new UpdateScore();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3839,7 +3839,7 @@ class SpawnPosition : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SpawnPosition ret = new SpawnPosition();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3876,7 +3876,7 @@ class TimeUpdate : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         TimeUpdate ret = new TimeUpdate();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3911,7 +3911,7 @@ class Title : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Title ret = new Title();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -4094,7 +4094,7 @@ class SoundEffect : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SoundEffect ret = new SoundEffect();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -4131,7 +4131,7 @@ class PlayerListHeaderAndFooter : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         PlayerListHeaderAndFooter ret = new PlayerListHeaderAndFooter();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -4170,7 +4170,7 @@ class CollectItem : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         CollectItem ret = new CollectItem();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -4213,7 +4213,7 @@ class EntityTeleport : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         EntityTeleport ret = new EntityTeleport();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -4239,7 +4239,7 @@ class Advencements : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Advencements ret = new Advencements();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -4276,7 +4276,7 @@ class EntityProperties : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         EntityProperties ret = new EntityProperties();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -4323,7 +4323,7 @@ class EntityEffect : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         EntityEffect ret = new EntityEffect();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 

@@ -42,7 +42,7 @@ class Login : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Login ret = new Login();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -86,7 +86,7 @@ class PlayStatus : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         PlayStatus ret = new PlayStatus();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -123,7 +123,7 @@ class ServerToClientHandshake : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ServerToClientHandshake ret = new ServerToClientHandshake();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -149,7 +149,7 @@ class ClientToServerHandshake : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ClientToServerHandshake ret = new ClientToServerHandshake();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -186,7 +186,7 @@ class Disconnect : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Disconnect ret = new Disconnect();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -225,7 +225,7 @@ class ResourcePacksInfo : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ResourcePacksInfo ret = new ResourcePacksInfo();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -264,7 +264,7 @@ class ResourcePacksStackPacket : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ResourcePacksStackPacket ret = new ResourcePacksStackPacket();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -307,7 +307,7 @@ class ResourcePackClientResponse : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ResourcePackClientResponse ret = new ResourcePackClientResponse();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -344,7 +344,7 @@ class Text : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Text ret = new Text();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -624,7 +624,7 @@ class SetTime : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SetTime ret = new SetTime();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -752,7 +752,7 @@ class StartGame : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         StartGame ret = new StartGame();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -821,7 +821,7 @@ class AddPlayer : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         AddPlayer ret = new AddPlayer();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -874,7 +874,7 @@ class AddEntity : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         AddEntity ret = new AddEntity();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -909,7 +909,7 @@ class RemoveEntity : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         RemoveEntity ret = new RemoveEntity();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -954,7 +954,7 @@ class AddItemEntity : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         AddItemEntity ret = new AddItemEntity();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -995,7 +995,7 @@ class AddHangingEntity : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         AddHangingEntity ret = new AddHangingEntity();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1032,7 +1032,7 @@ class TakeItemEntity : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         TakeItemEntity ret = new TakeItemEntity();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1079,7 +1079,7 @@ class MoveEntity : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         MoveEntity ret = new MoveEntity();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1138,7 +1138,7 @@ class MovePlayer : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         MovePlayer ret = new MovePlayer();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1173,7 +1173,7 @@ class RiderJump : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         RiderJump ret = new RiderJump();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1218,7 +1218,7 @@ class UpdateBlock : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         UpdateBlock ret = new UpdateBlock();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1261,7 +1261,7 @@ class AddPainting : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         AddPainting ret = new AddPainting();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1300,7 +1300,7 @@ class Explode : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Explode ret = new Explode();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1513,7 +1513,7 @@ class LevelSoundEvent : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         LevelSoundEvent ret = new LevelSoundEvent();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1607,7 +1607,7 @@ class LevelEvent : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         LevelEvent ret = new LevelEvent();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1644,7 +1644,7 @@ class BlockEvent : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         BlockEvent ret = new BlockEvent();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1723,7 +1723,7 @@ class EntityEvent : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         EntityEvent ret = new EntityEvent();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1773,7 +1773,7 @@ class MobEffect : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         MobEffect ret = new MobEffect();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1810,7 +1810,7 @@ class UpdateAttributes : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         UpdateAttributes ret = new UpdateAttributes();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1847,7 +1847,7 @@ class InventoryTransaction : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         InventoryTransaction ret = new InventoryTransaction();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2042,7 +2042,7 @@ class MobEquipment : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         MobEquipment ret = new MobEquipment();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2079,7 +2079,7 @@ class MobArmorEquipment : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         MobArmorEquipment ret = new MobArmorEquipment();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2123,7 +2123,7 @@ class Interact : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Interact ret = new Interact();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2162,7 +2162,7 @@ class BlockPickRequest : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         BlockPickRequest ret = new BlockPickRequest();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2199,7 +2199,7 @@ class EntityPickRequest : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         EntityPickRequest ret = new EntityPickRequest();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2260,7 +2260,7 @@ class PlayerAction : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         PlayerAction ret = new PlayerAction();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2299,7 +2299,7 @@ class EntityFall : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         EntityFall ret = new EntityFall();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2334,7 +2334,7 @@ class HurtArmor : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         HurtArmor ret = new HurtArmor();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2371,7 +2371,7 @@ class SetEntityData : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SetEntityData ret = new SetEntityData();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2408,7 +2408,7 @@ class SetEntityMotion : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SetEntityMotion ret = new SetEntityMotion();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2451,7 +2451,7 @@ class SetEntityLink : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SetEntityLink ret = new SetEntityLink();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2486,7 +2486,7 @@ class SetHealth : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SetHealth ret = new SetHealth();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2529,7 +2529,7 @@ class SetSpawnPosition : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SetSpawnPosition ret = new SetSpawnPosition();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2572,7 +2572,7 @@ class Animate : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Animate ret = new Animate();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2607,7 +2607,7 @@ class Respawn : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Respawn ret = new Respawn();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2648,7 +2648,7 @@ class ContainerOpen : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ContainerOpen ret = new ContainerOpen();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2683,7 +2683,7 @@ class ContainerClose : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ContainerClose ret = new ContainerClose();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2709,7 +2709,7 @@ class PlayerHotbar : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         PlayerHotbar ret = new PlayerHotbar();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2746,7 +2746,7 @@ class InventoryContent : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         InventoryContent ret = new InventoryContent();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2772,7 +2772,7 @@ class InventorySlot : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         InventorySlot ret = new InventorySlot();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2811,7 +2811,7 @@ class ContainerSetData : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ContainerSetData ret = new ContainerSetData();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2846,7 +2846,7 @@ class CraftingData : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         CraftingData ret = new CraftingData();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2889,7 +2889,7 @@ class CraftingEvent : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         CraftingEvent ret = new CraftingEvent();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2924,7 +2924,7 @@ class GuiDataPickItem : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         GuiDataPickItem ret = new GuiDataPickItem();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3003,7 +3003,7 @@ class AdventureSettings : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         AdventureSettings ret = new AdventureSettings();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3040,7 +3040,7 @@ class BlockEntityData : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         BlockEntityData ret = new BlockEntityData();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3081,7 +3081,7 @@ class PlayerInput : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         PlayerInput ret = new PlayerInput();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3118,7 +3118,7 @@ class FullChunkData : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         FullChunkData ret = new FullChunkData();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3153,7 +3153,7 @@ class SetCommandsEnabled : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SetCommandsEnabled ret = new SetCommandsEnabled();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3194,7 +3194,7 @@ class SetDifficulty : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SetDifficulty ret = new SetDifficulty();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3238,7 +3238,7 @@ class ChangeDimension : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ChangeDimension ret = new ChangeDimension();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3278,7 +3278,7 @@ class SetPlayerGameType : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SetPlayerGameType ret = new SetPlayerGameType();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3313,7 +3313,7 @@ class PlayerList : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         PlayerList ret = new PlayerList();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3393,7 +3393,7 @@ class SimpleEvent : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SimpleEvent ret = new SimpleEvent();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3430,7 +3430,7 @@ class TelemetryEvent : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         TelemetryEvent ret = new TelemetryEvent();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3467,7 +3467,7 @@ class SpawnExperienceOrb : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SpawnExperienceOrb ret = new SpawnExperienceOrb();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3519,7 +3519,7 @@ class ClientboundMapItemData : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ClientboundMapItemData ret = new ClientboundMapItemData();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3554,7 +3554,7 @@ class MapInfoRequest : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         MapInfoRequest ret = new MapInfoRequest();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3589,7 +3589,7 @@ class RequestChunkRadius : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         RequestChunkRadius ret = new RequestChunkRadius();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3624,7 +3624,7 @@ class ChunkRadiusUpdated : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ChunkRadiusUpdated ret = new ChunkRadiusUpdated();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3661,7 +3661,7 @@ class ItemFrameDropItem : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ItemFrameDropItem ret = new ItemFrameDropItem();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3696,7 +3696,7 @@ class GameRulesChanged : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         GameRulesChanged ret = new GameRulesChanged();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3733,7 +3733,7 @@ class Camera : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Camera ret = new Camera();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3775,7 +3775,7 @@ class BossEvent : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         BossEvent ret = new BossEvent();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3816,7 +3816,7 @@ class ShowCredits : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ShowCredits ret = new ShowCredits();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3857,7 +3857,7 @@ class AvailableCommands : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         AvailableCommands ret = new AvailableCommands();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3908,7 +3908,7 @@ class CommandRequest : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         CommandRequest ret = new CommandRequest();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3961,7 +3961,7 @@ class CommandBlockUpdate : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         CommandBlockUpdate ret = new CommandBlockUpdate();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -4012,7 +4012,7 @@ class UpdateTrade : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         UpdateTrade ret = new UpdateTrade();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -4038,7 +4038,7 @@ class UpdateEquip : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         UpdateEquip ret = new UpdateEquip();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -4081,7 +4081,7 @@ class ResourcePackDataInfo : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ResourcePackDataInfo ret = new ResourcePackDataInfo();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -4122,7 +4122,7 @@ class ResourcePackChunkData : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ResourcePackChunkData ret = new ResourcePackChunkData();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -4159,7 +4159,7 @@ class ResourcePackChunkRequest : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ResourcePackChunkRequest ret = new ResourcePackChunkRequest();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -4196,7 +4196,7 @@ class Transfer : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Transfer ret = new Transfer();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -4237,7 +4237,7 @@ class PlaySound : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         PlaySound ret = new PlaySound();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -4274,7 +4274,7 @@ class StopSound : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         StopSound ret = new StopSound();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -4325,7 +4325,7 @@ class SetTitle : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SetTitle ret = new SetTitle();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -4360,7 +4360,7 @@ class AddBehaviorTree : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         AddBehaviorTree ret = new AddBehaviorTree();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -4386,7 +4386,7 @@ class StructureBlockUpdate : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         StructureBlockUpdate ret = new StructureBlockUpdate();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -4425,7 +4425,7 @@ class ShowStoreOffer : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ShowStoreOffer ret = new ShowStoreOffer();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -4460,7 +4460,7 @@ class PurchaseReceipt : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         PurchaseReceipt ret = new PurchaseReceipt();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -4509,7 +4509,7 @@ class PlayerSkin : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         PlayerSkin ret = new PlayerSkin();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -4535,7 +4535,7 @@ class SubClientLogin : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SubClientLogin ret = new SubClientLogin();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -4570,7 +4570,7 @@ class InitiateWebSocketConnection : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         InitiateWebSocketConnection ret = new InitiateWebSocketConnection();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -4605,7 +4605,7 @@ class SetLastHurtBy : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SetLastHurtBy ret = new SetLastHurtBy();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -4642,7 +4642,7 @@ class BookEdit : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         BookEdit ret = new BookEdit();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -4824,7 +4824,7 @@ class NpcRequest : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         NpcRequest ret = new NpcRequest();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -4863,7 +4863,7 @@ class PhotoTransfer : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         PhotoTransfer ret = new PhotoTransfer();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -4900,7 +4900,7 @@ class ModalFormRequest : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ModalFormRequest ret = new ModalFormRequest();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -4937,7 +4937,7 @@ class ModalFormResponse : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ModalFormResponse ret = new ModalFormResponse();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -4963,7 +4963,7 @@ class ServerSettingsRequest : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ServerSettingsRequest ret = new ServerSettingsRequest();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -5000,7 +5000,7 @@ class ServerSettingsResponse : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ServerSettingsResponse ret = new ServerSettingsResponse();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -5026,7 +5026,7 @@ class ShowProfile : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ShowProfile ret = new ShowProfile();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -5066,7 +5066,7 @@ class SetDefaultGameType : Bedrock201Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SetDefaultGameType ret = new SetDefaultGameType();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 

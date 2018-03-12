@@ -40,7 +40,7 @@ class Disconnect : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Disconnect ret = new Disconnect();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -75,7 +75,7 @@ class LoginStart : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         LoginStart ret = new LoginStart();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -114,7 +114,7 @@ class EncryptionRequest : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         EncryptionRequest ret = new EncryptionRequest();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -151,7 +151,7 @@ class EncryptionResponse : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         EncryptionResponse ret = new EncryptionResponse();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -188,7 +188,7 @@ class LoginSuccess : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         LoginSuccess ret = new LoginSuccess();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -223,7 +223,7 @@ class SetCompression : Java338Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SetCompression ret = new SetCompression();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 

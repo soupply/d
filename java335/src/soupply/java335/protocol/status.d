@@ -50,7 +50,7 @@ class Handshake : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Handshake ret = new Handshake();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -76,7 +76,7 @@ class Request : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Request ret = new Request();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -111,7 +111,7 @@ class Response : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Response ret = new Response();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -146,7 +146,7 @@ class Latency : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Latency ret = new Latency();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 

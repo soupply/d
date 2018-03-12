@@ -7,6 +7,7 @@ module soupply.bedrock141.types;
 static import std.conv;
 import packetmaker;
 import packetmaker.maker : EndianType, writeLength, readLength;
+import packetmaker.memory : alloc, free;
 
 import soupply.util : Vector, UUID;
 import soupply.bedrock141.metadata;
@@ -32,9 +33,10 @@ struct LoginBody
 
     alias _container this;
 
-    void encodeBody(InputBuffer buffer)
+    void encodeBody(InputBuffer buffer) @nogc
     {
-        InputBuffer _buffer = new InputBuffer();
+        InputBuffer _buffer = alloc!InputBuffer();
+        scope(exit) free(_buffer);
         _container.encodeBody(_buffer);
         writeLength!(EndianType.var, uint)(buffer, _buffer.data.length);
         buffer.writeBytes(_buffer.data);
@@ -42,7 +44,9 @@ struct LoginBody
 
     void decodeBody(OutputBuffer buffer)
     {
-        _container.decodeBody(new OutputBuffer(buffer.readBytes(readLength!(EndianType.var, uint)(buffer))));
+        OutputBuffer _buffer = alloc!OutputBuffer(buffer.readBytes(readLength!(EndianType.var, uint)(buffer)));
+        scope(exit) free(_buffer);
+        _container.decodeBody(_buffer);
     }
 
     string toString()
@@ -301,9 +305,10 @@ struct ChunkData
 
     alias _container this;
 
-    void encodeBody(InputBuffer buffer)
+    void encodeBody(InputBuffer buffer) @nogc
     {
-        InputBuffer _buffer = new InputBuffer();
+        InputBuffer _buffer = alloc!InputBuffer();
+        scope(exit) free(_buffer);
         _container.encodeBody(_buffer);
         writeLength!(EndianType.var, uint)(buffer, _buffer.data.length);
         buffer.writeBytes(_buffer.data);
@@ -311,7 +316,9 @@ struct ChunkData
 
     void decodeBody(OutputBuffer buffer)
     {
-        _container.decodeBody(new OutputBuffer(buffer.readBytes(readLength!(EndianType.var, uint)(buffer))));
+        OutputBuffer _buffer = alloc!OutputBuffer(buffer.readBytes(readLength!(EndianType.var, uint)(buffer)));
+        scope(exit) free(_buffer);
+        _container.decodeBody(_buffer);
     }
 
     string toString()

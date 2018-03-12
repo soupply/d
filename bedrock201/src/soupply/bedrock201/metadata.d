@@ -6,6 +6,7 @@ module soupply.bedrock201.metadata;
 
 import packetmaker;
 import packetmaker.maker : EndianType, writeLength;
+import packetmaker.memory : malloc, realloc, alloc, free;
 
 import soupply.util : Vector;
 
@@ -180,20 +181,13 @@ struct Metadata
 {
 
     private MetadataValue[uint] _store;
-    private bool _cached = false;
-    private ubyte[] _cache;
-
-    void encodeBody(InputBuffer buffer)
+    void encodeBody(InputBuffer buffer) @nogc
     {
-        if(!_cached)
-        {
-            InputBuffer _buffer = new InputBuffer();
-            writeLength!(EndianType.var, uint)(_buffer, _store.length);
-            foreach(value ; _store) value.encodeBody(_buffer);
-            _cached = true;
-            _cache = _buffer.data;
-        }
-        buffer.writeBytes(_cache);
+        InputBuffer _buffer = alloc!InputBuffer();
+        scope(exit) free(_buffer);
+        writeLength!(EndianType.var, uint)(_buffer, _store.length);
+        foreach(value ; _store) value.encodeBody(_buffer);
+        buffer.writeBytes(_buffer.data);
     }
 
     void decodeBody(OutputBuffer buffer)

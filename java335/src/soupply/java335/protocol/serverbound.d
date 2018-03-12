@@ -40,7 +40,7 @@ class TeleportConfirm : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         TeleportConfirm ret = new TeleportConfirm();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -81,7 +81,7 @@ class CraftingGrid : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         CraftingGrid ret = new CraftingGrid();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -122,7 +122,7 @@ class TabComplete : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         TabComplete ret = new TabComplete();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -157,7 +157,7 @@ class ChatMessage : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ChatMessage ret = new ChatMessage();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -196,7 +196,7 @@ class ClientStatus : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ClientStatus ret = new ClientStatus();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -259,7 +259,7 @@ class ClientSettings : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ClientSettings ret = new ClientSettings();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -298,7 +298,7 @@ class ConfirmTransaction : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ConfirmTransaction ret = new ConfirmTransaction();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -335,7 +335,7 @@ class EnchantItem : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         EnchantItem ret = new EnchantItem();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -380,7 +380,7 @@ class ClickWindow : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ClickWindow ret = new ClickWindow();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -415,7 +415,7 @@ class CloseWindow : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         CloseWindow ret = new CloseWindow();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -452,7 +452,7 @@ class PluginMessage : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         PluginMessage ret = new PluginMessage();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -502,7 +502,7 @@ class UseEntity : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         UseEntity ret = new UseEntity();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -537,7 +537,7 @@ class KeepAlive : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         KeepAlive ret = new KeepAlive();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -572,7 +572,7 @@ class Player : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Player ret = new Player();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -609,7 +609,7 @@ class PlayerPosition : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         PlayerPosition ret = new PlayerPosition();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -650,7 +650,7 @@ class PlayerPositionAndLook : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         PlayerPositionAndLook ret = new PlayerPositionAndLook();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -689,7 +689,7 @@ class PlayerLook : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         PlayerLook ret = new PlayerLook();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -728,7 +728,7 @@ class VehicleMove : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         VehicleMove ret = new VehicleMove();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -765,7 +765,7 @@ class SteerBoat : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SteerBoat ret = new SteerBoat();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -810,7 +810,7 @@ class PlayerAbilities : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         PlayerAbilities ret = new PlayerAbilities();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -859,7 +859,7 @@ class PlayerDigging : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         PlayerDigging ret = new PlayerDigging();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -909,7 +909,7 @@ class EntityAction : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         EntityAction ret = new EntityAction();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -952,7 +952,7 @@ class SteerVehicle : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SteerVehicle ret = new SteerVehicle();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -987,7 +987,7 @@ class CraftingBookData : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         CraftingBookData ret = new CraftingBookData();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1084,7 +1084,7 @@ class ResourcePackStatus : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ResourcePackStatus ret = new ResourcePackStatus();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1125,7 +1125,7 @@ class AdvencementTab : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         AdvencementTab ret = new AdvencementTab();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1160,7 +1160,7 @@ class HeldItemChange : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         HeldItemChange ret = new HeldItemChange();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1197,7 +1197,7 @@ class CreativeInventoryAction : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         CreativeInventoryAction ret = new CreativeInventoryAction();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1234,7 +1234,7 @@ class UpdateSign : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         UpdateSign ret = new UpdateSign();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1273,7 +1273,7 @@ class Animation : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Animation ret = new Animation();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1308,7 +1308,7 @@ class Spectate : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Spectate ret = new Spectate();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1353,7 +1353,7 @@ class PlayerBlockPlacement : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         PlayerBlockPlacement ret = new PlayerBlockPlacement();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1392,7 +1392,7 @@ class UseItem : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         UseItem ret = new UseItem();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 

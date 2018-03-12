@@ -48,7 +48,7 @@ class Login : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Login ret = new Login();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -91,7 +91,7 @@ class PlayStatus : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         PlayStatus ret = new PlayStatus();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -128,7 +128,7 @@ class ServerToClientHandshake : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ServerToClientHandshake ret = new ServerToClientHandshake();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -154,7 +154,7 @@ class ClientToServerHandshake : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ClientToServerHandshake ret = new ClientToServerHandshake();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -191,7 +191,7 @@ class Disconnect : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Disconnect ret = new Disconnect();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -226,7 +226,7 @@ class Batch : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Batch ret = new Batch();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -265,7 +265,7 @@ class ResourcePacksInfo : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ResourcePacksInfo ret = new ResourcePacksInfo();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -304,7 +304,7 @@ class ResourcePacksStackPacket : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ResourcePacksStackPacket ret = new ResourcePacksStackPacket();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -347,7 +347,7 @@ class ResourcePackClientResponse : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ResourcePackClientResponse ret = new ResourcePackClientResponse();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -382,7 +382,7 @@ class Text : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Text ret = new Text();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -606,7 +606,7 @@ class SetTime : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SetTime ret = new SetTime();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -703,7 +703,7 @@ class StartGame : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         StartGame ret = new StartGame();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -758,7 +758,7 @@ class AddPlayer : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         AddPlayer ret = new AddPlayer();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -811,7 +811,7 @@ class AddEntity : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         AddEntity ret = new AddEntity();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -846,7 +846,7 @@ class RemoveEntity : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         RemoveEntity ret = new RemoveEntity();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -889,7 +889,7 @@ class AddItemEntity : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         AddItemEntity ret = new AddItemEntity();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -930,7 +930,7 @@ class AddHangingEntity : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         AddHangingEntity ret = new AddHangingEntity();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -967,7 +967,7 @@ class TakeItemEntity : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         TakeItemEntity ret = new TakeItemEntity();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1010,7 +1010,7 @@ class MoveEntity : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         MoveEntity ret = new MoveEntity();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1062,7 +1062,7 @@ class MovePlayer : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         MovePlayer ret = new MovePlayer();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1097,7 +1097,7 @@ class RiderJump : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         RiderJump ret = new RiderJump();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1132,7 +1132,7 @@ class RemoveBlock : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         RemoveBlock ret = new RemoveBlock();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1177,7 +1177,7 @@ class UpdateBlock : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         UpdateBlock ret = new UpdateBlock();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1220,7 +1220,7 @@ class AddPainting : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         AddPainting ret = new AddPainting();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1259,7 +1259,7 @@ class Explode : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Explode ret = new Explode();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1400,7 +1400,7 @@ class LevelSoundEvent : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         LevelSoundEvent ret = new LevelSoundEvent();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1489,7 +1489,7 @@ class LevelEvent : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         LevelEvent ret = new LevelEvent();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1526,7 +1526,7 @@ class BlockEvent : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         BlockEvent ret = new BlockEvent();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1581,7 +1581,7 @@ class EntityEvent : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         EntityEvent ret = new EntityEvent();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1631,7 +1631,7 @@ class MobEffect : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         MobEffect ret = new MobEffect();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1668,7 +1668,7 @@ class UpdateAttributes : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         UpdateAttributes ret = new UpdateAttributes();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1711,7 +1711,7 @@ class MobEquipment : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         MobEquipment ret = new MobEquipment();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1748,7 +1748,7 @@ class MobArmorEquipment : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         MobArmorEquipment ret = new MobArmorEquipment();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1791,7 +1791,7 @@ class Interact : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Interact ret = new Interact();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1838,7 +1838,7 @@ class UseItem : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         UseItem ret = new UseItem();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1894,7 +1894,7 @@ class PlayerAction : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         PlayerAction ret = new PlayerAction();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1929,7 +1929,7 @@ class PlayerFall : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         PlayerFall ret = new PlayerFall();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -1964,7 +1964,7 @@ class HurtArmor : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         HurtArmor ret = new HurtArmor();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2001,7 +2001,7 @@ class SetEntityData : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SetEntityData ret = new SetEntityData();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2038,7 +2038,7 @@ class SetEntityMotion : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SetEntityMotion ret = new SetEntityMotion();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2082,7 +2082,7 @@ class SetEntityLink : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SetEntityLink ret = new SetEntityLink();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2117,7 +2117,7 @@ class SetHealth : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SetHealth ret = new SetHealth();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2156,7 +2156,7 @@ class SetSpawnPosition : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SetSpawnPosition ret = new SetSpawnPosition();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2197,7 +2197,7 @@ class Animate : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Animate ret = new Animate();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2232,7 +2232,7 @@ class Respawn : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Respawn ret = new Respawn();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2272,7 +2272,7 @@ class DropItem : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         DropItem ret = new DropItem();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2309,7 +2309,7 @@ class InventoryAction : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         InventoryAction ret = new InventoryAction();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2352,7 +2352,7 @@ class ContainerOpen : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ContainerOpen ret = new ContainerOpen();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2387,7 +2387,7 @@ class ContainerClose : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ContainerClose ret = new ContainerClose();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2430,7 +2430,7 @@ class ContainerSetSlot : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ContainerSetSlot ret = new ContainerSetSlot();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2469,7 +2469,7 @@ class ContainerSetData : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ContainerSetData ret = new ContainerSetData();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2508,7 +2508,7 @@ class ContainerSetContent : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ContainerSetContent ret = new ContainerSetContent();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2543,7 +2543,7 @@ class CraftingData : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         CraftingData ret = new CraftingData();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2586,7 +2586,7 @@ class CraftingEvent : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         CraftingEvent ret = new CraftingEvent();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2641,7 +2641,7 @@ class AdventureSettings : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         AdventureSettings ret = new AdventureSettings();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2678,7 +2678,7 @@ class BlockEntityData : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         BlockEntityData ret = new BlockEntityData();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2717,7 +2717,7 @@ class PlayerInput : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         PlayerInput ret = new PlayerInput();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2754,7 +2754,7 @@ class FullChunkData : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         FullChunkData ret = new FullChunkData();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2789,7 +2789,7 @@ class SetCommandsEnabled : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SetCommandsEnabled ret = new SetCommandsEnabled();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2830,7 +2830,7 @@ class SetDifficulty : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SetDifficulty ret = new SetDifficulty();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2874,7 +2874,7 @@ class ChangeDimension : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ChangeDimension ret = new ChangeDimension();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2913,7 +2913,7 @@ class SetPlayerGameType : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SetPlayerGameType ret = new SetPlayerGameType();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -2948,7 +2948,7 @@ class PlayerList : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         PlayerList ret = new PlayerList();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3039,7 +3039,7 @@ class TelemetryEvent : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         TelemetryEvent ret = new TelemetryEvent();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3076,7 +3076,7 @@ class SpawnExperienceOrb : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SpawnExperienceOrb ret = new SpawnExperienceOrb();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3128,7 +3128,7 @@ class ClientboundMapItemData : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ClientboundMapItemData ret = new ClientboundMapItemData();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3163,7 +3163,7 @@ class MapInfoRequest : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         MapInfoRequest ret = new MapInfoRequest();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3198,7 +3198,7 @@ class RequestChunkRadius : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         RequestChunkRadius ret = new RequestChunkRadius();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3233,7 +3233,7 @@ class ChunkRadiusUpdated : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ChunkRadiusUpdated ret = new ChunkRadiusUpdated();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3270,7 +3270,7 @@ class ItemFrameDropItem : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ItemFrameDropItem ret = new ItemFrameDropItem();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3305,7 +3305,7 @@ class ReplaceSelectedItem : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ReplaceSelectedItem ret = new ReplaceSelectedItem();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3340,7 +3340,7 @@ class GameRulesChanged : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         GameRulesChanged ret = new GameRulesChanged();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3377,7 +3377,7 @@ class Camera : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Camera ret = new Camera();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3412,7 +3412,7 @@ class AddItem : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         AddItem ret = new AddItem();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3454,7 +3454,7 @@ class BossEvent : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         BossEvent ret = new BossEvent();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3495,7 +3495,7 @@ class ShowCredits : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ShowCredits ret = new ShowCredits();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3532,7 +3532,7 @@ class AvailableCommands : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         AvailableCommands ret = new AvailableCommands();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3581,7 +3581,7 @@ class CommandStep : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         CommandStep ret = new CommandStep();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3632,7 +3632,7 @@ class UpdateTrade : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         UpdateTrade ret = new UpdateTrade();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3675,7 +3675,7 @@ class ResourcePackDataInfo : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ResourcePackDataInfo ret = new ResourcePackDataInfo();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3716,7 +3716,7 @@ class ResourcePackChunkData : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ResourcePackChunkData ret = new ResourcePackChunkData();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3753,7 +3753,7 @@ class ResourcePackChunkRequest : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         ResourcePackChunkRequest ret = new ResourcePackChunkRequest();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
@@ -3790,7 +3790,7 @@ class Transfer : Pocket102Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Transfer ret = new Transfer();
-        ret.decode(buffer);
+        ret.autoDecode(buffer);
         return ret;
     }
 
