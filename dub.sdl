@@ -3,29 +3,11 @@ description "Automatically generated libraries for encoding and decoding Minecra
 license "MIT"
 targetType "library"
 
-subPackage "bedrock"
-subPackage "bedrock137"
-subPackage "bedrock141"
-subPackage "bedrock150"
-subPackage "bedrock160"
-subPackage "bedrock201"
-subPackage "java"
-subPackage "java210"
-subPackage "java315"
-subPackage "java316"
-subPackage "java335"
-subPackage "java338"
-subPackage "java340"
-subPackage "test0"
-subPackage "util"
-
-dependency "soupply:bedrock" version="*"
 dependency "soupply:bedrock137" version="*"
 dependency "soupply:bedrock141" version="*"
 dependency "soupply:bedrock150" version="*"
 dependency "soupply:bedrock160" version="*"
 dependency "soupply:bedrock201" version="*"
-dependency "soupply:java" version="*"
 dependency "soupply:java210" version="*"
 dependency "soupply:java315" version="*"
 dependency "soupply:java316" version="*"
@@ -33,3 +15,115 @@ dependency "soupply:java335" version="*"
 dependency "soupply:java338" version="*"
 dependency "soupply:java340" version="*"
 dependency "soupply:util" version="*"
+
+subPackage "bedrock"
+subPackage "java"
+subPackage "util"
+
+subPackage {
+	name "bedrock137"
+	description "Libraries for Minecraft (Bedrock Engine) protocol 137"
+	targetType "library"
+	sourcePaths "packages/bedrock137"
+	importPaths "packages/bedrock137"
+	dependency "soupply:util" version="*"
+}
+
+subPackage {
+	name "bedrock141"
+	description "Libraries for Minecraft (Bedrock Engine) protocol 141"
+	targetType "library"
+	sourcePaths "packages/bedrock141"
+	importPaths "packages/bedrock141"
+	dependency "soupply:util" version="*"
+}
+
+subPackage {
+	name "bedrock150"
+	description "Libraries for Minecraft (Bedrock Engine) protocol 150"
+	targetType "library"
+	sourcePaths "packages/bedrock150"
+	importPaths "packages/bedrock150"
+	dependency "soupply:util" version="*"
+}
+
+subPackage {
+	name "bedrock160"
+	description "Libraries for Minecraft (Bedrock Engine) protocol 160"
+	targetType "library"
+	sourcePaths "packages/bedrock160"
+	importPaths "packages/bedrock160"
+	dependency "soupply:util" version="*"
+}
+
+subPackage {
+	name "bedrock201"
+	description "Libraries for Minecraft (Bedrock Engine) protocol 201"
+	targetType "library"
+	sourcePaths "packages/bedrock201"
+	importPaths "packages/bedrock201"
+	dependency "soupply:util" version="*"
+}
+
+subPackage {
+	name "java210"
+	description "Libraries for Minecraft: Java Edition protocol 210"
+	targetType "library"
+	sourcePaths "packages/java210"
+	importPaths "packages/java210"
+	dependency "soupply:util" version="*"
+}
+
+subPackage {
+	name "java315"
+	description "Libraries for Minecraft: Java Edition protocol 315"
+	targetType "library"
+	sourcePaths "packages/java315"
+	importPaths "packages/java315"
+	dependency "soupply:util" version="*"
+}
+
+subPackage {
+	name "java316"
+	description "Libraries for Minecraft: Java Edition protocol 316"
+	targetType "library"
+	sourcePaths "packages/java316"
+	importPaths "packages/java316"
+	dependency "soupply:util" version="*"
+}
+
+subPackage {
+	name "java335"
+	description "Libraries for Minecraft: Java Edition protocol 335"
+	targetType "library"
+	sourcePaths "packages/java335"
+	importPaths "packages/java335"
+	dependency "soupply:util" version="*"
+}
+
+subPackage {
+	name "java338"
+	description "Libraries for Minecraft: Java Edition protocol 338"
+	targetType "library"
+	sourcePaths "packages/java338"
+	importPaths "packages/java338"
+	dependency "soupply:util" version="*"
+}
+
+subPackage {
+	name "java340"
+	description "Libraries for Minecraft: Java Edition protocol 340"
+	targetType "library"
+	sourcePaths "packages/java340"
+	importPaths "packages/java340"
+	dependency "soupply:util" version="*"
+}
+
+subPackage {
+	name "test0"
+	description "Libraries for Test protocol 0"
+	targetType "library"
+	sourcePaths "packages/test0"
+	importPaths "packages/test0"
+	dependency "soupply:util" version="*"
+}

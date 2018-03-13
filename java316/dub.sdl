@@ -1,4 +1,0 @@
-name "java316"
-description "Libraries for Minecraft: Java Edition protocol 316"
-targetType "library"
-dependency "soupply:util" version="*"

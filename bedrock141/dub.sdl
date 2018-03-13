@@ -1,4 +1,0 @@
-name "bedrock141"
-description "Libraries for Minecraft (Bedrock Engine) protocol 141"
-targetType "library"
-dependency "soupply:util" version="*"

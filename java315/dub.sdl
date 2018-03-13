@@ -1,4 +1,0 @@
-name "java315"
-description "Libraries for Minecraft: Java Edition protocol 315"
-targetType "library"
-dependency "soupply:util" version="*"

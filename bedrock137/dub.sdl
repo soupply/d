@@ -1,4 +1,0 @@
-name "bedrock137"
-description "Libraries for Minecraft (Bedrock Engine) protocol 137"
-targetType "library"
-dependency "soupply:util" version="*"

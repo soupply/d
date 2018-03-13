@@ -1,4 +1,0 @@
-name "java340"
-description "Libraries for Minecraft: Java Edition protocol 340"
-targetType "library"
-dependency "soupply:util" version="*"
