@@ -1,4 +1,3 @@
 name "test0"
-description "Libraries for Test protocol 0"
 targetType "library"
 dependency "soupply:util" version="*"

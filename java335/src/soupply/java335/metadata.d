@@ -5,12 +5,12 @@
 module soupply.java335.metadata;
 
 import packetmaker;
-import packetmaker.maker : EndianType, writeLength;
+import packetmaker.maker : EndianType, writeLength, writeImpl, readLength, readImpl;
 import packetmaker.memory : malloc, realloc, alloc, free;
 
 import soupply.util : Vector;
-
 import soupply.java335.packet : Java335Packet;
+
 static import soupply.java335.types;
 
 enum MetadataType : ubyte
@@ -34,12 +34,10 @@ enum MetadataType : ubyte
 class MetadataValue : Java335Packet
 {
 
-    ubyte id;
-    ubyte type;
+    @EncodeOnly ubyte type;
 
-    this(ubyte id, ubyte type) pure nothrow @safe @nogc
+    this(ubyte type) pure nothrow @safe @nogc
     {
-        this.id = id;
         this.type = type;
     }
 
@@ -52,9 +50,14 @@ class MetadataValue0 : MetadataValue
 
     byte value;
 
-    this(ubyte id, byte value) pure nothrow @safe @nogc
+    this() pure nothrow @safe @nogc
     {
-        super(id, 0);
+        super(0);
+    }
+
+    this(byte value) pure nothrow @safe @nogc
+    {
+        this();
         this.value = value;
     }
 
@@ -67,9 +70,14 @@ class MetadataValue1 : MetadataValue
 
     @Var uint value;
 
-    this(ubyte id, uint value) pure nothrow @safe @nogc
+    this() pure nothrow @safe @nogc
     {
-        super(id, 1);
+        super(1);
+    }
+
+    this(uint value) pure nothrow @safe @nogc
+    {
+        this();
         this.value = value;
     }
 
@@ -82,9 +90,14 @@ class MetadataValue2 : MetadataValue
 
     float value;
 
-    this(ubyte id, float value) pure nothrow @safe @nogc
+    this() pure nothrow @safe @nogc
     {
-        super(id, 2);
+        super(2);
+    }
+
+    this(float value) pure nothrow @safe @nogc
+    {
+        this();
         this.value = value;
     }
 
@@ -97,9 +110,14 @@ class MetadataValue3 : MetadataValue
 
     string value;
 
-    this(ubyte id, string value) pure nothrow @safe @nogc
+    this() pure nothrow @safe @nogc
     {
-        super(id, 3);
+        super(3);
+    }
+
+    this(string value) pure nothrow @safe @nogc
+    {
+        this();
         this.value = value;
     }
 
@@ -112,9 +130,14 @@ class MetadataValue4 : MetadataValue
 
     string value;
 
-    this(ubyte id, string value) pure nothrow @safe @nogc
+    this() pure nothrow @safe @nogc
     {
-        super(id, 4);
+        super(4);
+    }
+
+    this(string value) pure nothrow @safe @nogc
+    {
+        this();
         this.value = value;
     }
 
@@ -127,9 +150,14 @@ class MetadataValue5 : MetadataValue
 
     soupply.java335.types.Slot value;
 
-    this(ubyte id, soupply.java335.types.Slot value) pure nothrow @safe @nogc
+    this() pure nothrow @safe @nogc
     {
-        super(id, 5);
+        super(5);
+    }
+
+    this(soupply.java335.types.Slot value) pure nothrow @safe @nogc
+    {
+        this();
         this.value = value;
     }
 
@@ -142,9 +170,14 @@ class MetadataValue6 : MetadataValue
 
     bool value;
 
-    this(ubyte id, bool value) pure nothrow @safe @nogc
+    this() pure nothrow @safe @nogc
     {
-        super(id, 6);
+        super(6);
+    }
+
+    this(bool value) pure nothrow @safe @nogc
+    {
+        this();
         this.value = value;
     }
 
@@ -157,9 +190,14 @@ class MetadataValue7 : MetadataValue
 
     Vector!(float, "xyz") value;
 
-    this(ubyte id, Vector!(float, "xyz") value) pure nothrow @safe @nogc
+    this() pure nothrow @safe @nogc
     {
-        super(id, 7);
+        super(7);
+    }
+
+    this(Vector!(float, "xyz") value) pure nothrow @safe @nogc
+    {
+        this();
         this.value = value;
     }
 
@@ -172,9 +210,14 @@ class MetadataValue8 : MetadataValue
 
     ulong value;
 
-    this(ubyte id, ulong value) pure nothrow @safe @nogc
+    this() pure nothrow @safe @nogc
     {
-        super(id, 8);
+        super(8);
+    }
+
+    this(ulong value) pure nothrow @safe @nogc
+    {
+        this();
         this.value = value;
     }
 
@@ -187,9 +230,14 @@ class MetadataValue9 : MetadataValue
 
     soupply.java335.types.OptionalPosition value;
 
-    this(ubyte id, soupply.java335.types.OptionalPosition value) pure nothrow @safe @nogc
+    this() pure nothrow @safe @nogc
     {
-        super(id, 9);
+        super(9);
+    }
+
+    this(soupply.java335.types.OptionalPosition value) pure nothrow @safe @nogc
+    {
+        this();
         this.value = value;
     }
 
@@ -202,9 +250,14 @@ class MetadataValue10 : MetadataValue
 
     @Var uint value;
 
-    this(ubyte id, uint value) pure nothrow @safe @nogc
+    this() pure nothrow @safe @nogc
     {
-        super(id, 10);
+        super(10);
+    }
+
+    this(uint value) pure nothrow @safe @nogc
+    {
+        this();
         this.value = value;
     }
 
@@ -217,9 +270,14 @@ class MetadataValue11 : MetadataValue
 
     soupply.java335.types.OptionalUuid value;
 
-    this(ubyte id, soupply.java335.types.OptionalUuid value) pure nothrow @safe @nogc
+    this() pure nothrow @safe @nogc
     {
-        super(id, 11);
+        super(11);
+    }
+
+    this(soupply.java335.types.OptionalUuid value) pure nothrow @safe @nogc
+    {
+        this();
         this.value = value;
     }
 
@@ -232,9 +290,14 @@ class MetadataValue12 : MetadataValue
 
     @Var uint value;
 
-    this(ubyte id, uint value) pure nothrow @safe @nogc
+    this() pure nothrow @safe @nogc
     {
-        super(id, 12);
+        super(12);
+    }
+
+    this(uint value) pure nothrow @safe @nogc
+    {
+        this();
         this.value = value;
     }
 
@@ -247,9 +310,14 @@ class MetadataValue13 : MetadataValue
 
     @Bytes ubyte[] value;
 
-    this(ubyte id, ubyte[] value) pure nothrow @safe @nogc
+    this() pure nothrow @safe @nogc
     {
-        super(id, 13);
+        super(13);
+    }
+
+    this(ubyte[] value) pure nothrow @safe @nogc
+    {
+        this();
         this.value = value;
     }
 
@@ -260,19 +328,98 @@ class MetadataValue13 : MetadataValue
 struct Metadata
 {
 
-    private MetadataValue[ubyte] _store;
+    MetadataValue[ubyte] values;
+
     void encodeBody(InputBuffer buffer) @nogc
     {
-        InputBuffer _buffer = alloc!InputBuffer();
-        scope(exit) free(_buffer);
-        foreach(value ; _store) value.encodeBody(_buffer);
-        _buffer.writeUnsignedByte(ubyte(255));
-        buffer.writeBytes(_buffer.data);
+        foreach(id, value; values)
+        {
+            writeImpl!(EndianType.bigEndian, ubyte)(buffer, id);
+            value.encodeBody(buffer);
+        }
+        buffer.writeUnsignedByte(ubyte(255));
     }
 
     void decodeBody(OutputBuffer buffer)
     {
-        assert(0, `Cannot decode Metadata`);
+        ubyte id;
+        while((id = readImpl!(EndianType.bigEndian, ubyte)(buffer)) != 255)
+        {
+            switch(readImpl!(EndianType.bigEndian, ubyte)(buffer))
+            {
+                case 0:
+                    auto value = new MetadataValue0();
+                    value.decodeBody(buffer);
+                    this.values[id] = value;
+                    break;
+                case 1:
+                    auto value = new MetadataValue1();
+                    value.decodeBody(buffer);
+                    this.values[id] = value;
+                    break;
+                case 2:
+                    auto value = new MetadataValue2();
+                    value.decodeBody(buffer);
+                    this.values[id] = value;
+                    break;
+                case 3:
+                    auto value = new MetadataValue3();
+                    value.decodeBody(buffer);
+                    this.values[id] = value;
+                    break;
+                case 4:
+                    auto value = new MetadataValue4();
+                    value.decodeBody(buffer);
+                    this.values[id] = value;
+                    break;
+                case 5:
+                    auto value = new MetadataValue5();
+                    value.decodeBody(buffer);
+                    this.values[id] = value;
+                    break;
+                case 6:
+                    auto value = new MetadataValue6();
+                    value.decodeBody(buffer);
+                    this.values[id] = value;
+                    break;
+                case 7:
+                    auto value = new MetadataValue7();
+                    value.decodeBody(buffer);
+                    this.values[id] = value;
+                    break;
+                case 8:
+                    auto value = new MetadataValue8();
+                    value.decodeBody(buffer);
+                    this.values[id] = value;
+                    break;
+                case 9:
+                    auto value = new MetadataValue9();
+                    value.decodeBody(buffer);
+                    this.values[id] = value;
+                    break;
+                case 10:
+                    auto value = new MetadataValue10();
+                    value.decodeBody(buffer);
+                    this.values[id] = value;
+                    break;
+                case 11:
+                    auto value = new MetadataValue11();
+                    value.decodeBody(buffer);
+                    this.values[id] = value;
+                    break;
+                case 12:
+                    auto value = new MetadataValue12();
+                    value.decodeBody(buffer);
+                    this.values[id] = value;
+                    break;
+                case 13:
+                    auto value = new MetadataValue13();
+                    value.decodeBody(buffer);
+                    this.values[id] = value;
+                    break;
+                default: throw new Exception("Unknown metadata type");
+            }
+        }
     }
 
 }

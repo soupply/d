@@ -5,12 +5,12 @@
 module soupply.test0.metadata;
 
 import packetmaker;
-import packetmaker.maker : EndianType, writeLength;
+import packetmaker.maker : EndianType, writeLength, writeImpl, readLength, readImpl;
 import packetmaker.memory : malloc, realloc, alloc, free;
 
 import soupply.util : Vector;
-
 import soupply.test0.packet : Test0Packet;
+
 static import soupply.test0.types;
 
 enum MetadataType : uint
@@ -21,12 +21,10 @@ enum MetadataType : uint
 class MetadataValue : Test0Packet
 {
 
-    @Var uint id;
-    @Var uint type;
+    @Var @EncodeOnly uint type;
 
-    this(uint id, uint type) pure nothrow @safe @nogc
+    this(uint type) pure nothrow @safe @nogc
     {
-        this.id = id;
         this.type = type;
     }
 
@@ -39,9 +37,14 @@ class MetadataValue0 : MetadataValue
 
     byte value;
 
-    this(uint id, byte value) pure nothrow @safe @nogc
+    this() pure nothrow @safe @nogc
     {
-        super(id, 0);
+        super(0);
+    }
+
+    this(byte value) pure nothrow @safe @nogc
+    {
+        this();
         this.value = value;
     }
 
@@ -52,19 +55,33 @@ class MetadataValue0 : MetadataValue
 struct Metadata
 {
 
-    private MetadataValue[uint] _store;
+    MetadataValue[uint] values;
+
     void encodeBody(InputBuffer buffer) @nogc
     {
-        InputBuffer _buffer = alloc!InputBuffer();
-        scope(exit) free(_buffer);
-        writeLength!(EndianType.var, uint)(_buffer, _store.length);
-        foreach(value ; _store) value.encodeBody(_buffer);
-        buffer.writeBytes(_buffer.data);
+        writeLength!(EndianType.var, uint)(buffer, values.length);
+        foreach(id, value; values)
+        {
+            writeImpl!(EndianType.var, uint)(buffer, id);
+            value.encodeBody(buffer);
+        }
     }
 
     void decodeBody(OutputBuffer buffer)
     {
-        assert(0, `Cannot decode Metadata`);
+        foreach(i ; 0..readLength!(EndianType.var, uint)(buffer))
+        {
+            uint id = readImpl!(EndianType.var, uint)(buffer);
+            switch(readImpl!(EndianType.var, uint)(buffer))
+            {
+                case 0:
+                    auto value = new MetadataValue0();
+                    value.decodeBody(buffer);
+                    this.values[id] = value;
+                    break;
+                default: throw new Exception("Unknown metadata type");
+            }
+        }
     }
 
 }
