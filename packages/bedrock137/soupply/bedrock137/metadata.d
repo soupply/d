@@ -225,7 +225,7 @@ struct Metadata
 
     MetadataValue[uint] values;
 
-    void encodeBody(InputBuffer buffer) @nogc
+    void encodeBody(Buffer buffer) @nogc
     {
         writeLength!(EndianType.var, uint)(buffer, values.length);
         foreach(id, value; values)
@@ -235,7 +235,7 @@ struct Metadata
         }
     }
 
-    void decodeBody(OutputBuffer buffer)
+    void decodeBody(Buffer buffer)
     {
         foreach(i ; 0..readLength!(EndianType.var, uint)(buffer))
         {

@@ -208,8 +208,8 @@ class ResourcePacksInfo : Bedrock160Packet
     enum string[] __fields = ["mustAccept", "behaviourPacks", "resourcePacks"];
 
     bool mustAccept;
-    @EndianLength!ushort(Endian.bigEndian) soupply.bedrock160.types.PackWithSize[] behaviourPacks;
-    @EndianLength!ushort(Endian.bigEndian) soupply.bedrock160.types.PackWithSize[] resourcePacks;
+    @Length!ushort soupply.bedrock160.types.PackWithSize[] behaviourPacks;
+    @Length!ushort soupply.bedrock160.types.PackWithSize[] resourcePacks;
 
     this() pure nothrow @safe @nogc {}
 
@@ -4103,7 +4103,7 @@ class ResourcePackChunkData : Bedrock160Packet
     string id;
     uint chunkIndex;
     ulong progress;
-    @EndianLength!uint(Endian.littleEndian) ubyte[] data;
+    @Length!uint ubyte[] data;
 
     this() pure nothrow @safe @nogc {}
 

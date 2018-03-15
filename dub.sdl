@@ -121,7 +121,6 @@ subPackage {
 
 subPackage {
 	name "test0"
-	description "Libraries for Test protocol 0"
 	targetType "library"
 	sourcePaths "packages/test0"
 	importPaths "packages/test0"

@@ -330,7 +330,7 @@ struct Metadata
 
     MetadataValue[ubyte] values;
 
-    void encodeBody(InputBuffer buffer) @nogc
+    void encodeBody(Buffer buffer) @nogc
     {
         foreach(id, value; values)
         {
@@ -340,7 +340,7 @@ struct Metadata
         buffer.writeUnsignedByte(ubyte(255));
     }
 
-    void decodeBody(OutputBuffer buffer)
+    void decodeBody(Buffer buffer)
     {
         ubyte id;
         while((id = readImpl!(EndianType.bigEndian, ubyte)(buffer)) != 255)

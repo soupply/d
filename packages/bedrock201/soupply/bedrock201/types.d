@@ -33,18 +33,18 @@ struct LoginBody
 
     alias _container this;
 
-    void encodeBody(InputBuffer buffer) @nogc
+    void encodeBody(Buffer buffer) @nogc
     {
-        InputBuffer _buffer = alloc!InputBuffer();
+        Buffer _buffer = alloc!Buffer(Container.sizeof + 4);
         scope(exit) free(_buffer);
         _container.encodeBody(_buffer);
         writeLength!(EndianType.var, uint)(buffer, _buffer.data.length);
         buffer.writeBytes(_buffer.data);
     }
 
-    void decodeBody(OutputBuffer buffer)
+    void decodeBody(Buffer buffer)
     {
-        OutputBuffer _buffer = alloc!OutputBuffer(buffer.readBytes(readLength!(EndianType.var, uint)(buffer)));
+        Buffer _buffer = alloc!Buffer(buffer.readBytes(readLength!(EndianType.var, uint)(buffer)));
         scope(exit) free(_buffer);
         _container.decodeBody(_buffer);
     }
@@ -308,18 +308,18 @@ struct ChunkData
 
     alias _container this;
 
-    void encodeBody(InputBuffer buffer) @nogc
+    void encodeBody(Buffer buffer) @nogc
     {
-        InputBuffer _buffer = alloc!InputBuffer();
+        Buffer _buffer = alloc!Buffer(Container.sizeof + 4);
         scope(exit) free(_buffer);
         _container.encodeBody(_buffer);
         writeLength!(EndianType.var, uint)(buffer, _buffer.data.length);
         buffer.writeBytes(_buffer.data);
     }
 
-    void decodeBody(OutputBuffer buffer)
+    void decodeBody(Buffer buffer)
     {
-        OutputBuffer _buffer = alloc!OutputBuffer(buffer.readBytes(readLength!(EndianType.var, uint)(buffer)));
+        Buffer _buffer = alloc!Buffer(buffer.readBytes(readLength!(EndianType.var, uint)(buffer)));
         scope(exit) free(_buffer);
         _container.decodeBody(_buffer);
     }
