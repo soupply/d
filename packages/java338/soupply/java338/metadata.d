@@ -9,7 +9,6 @@ import packetmaker.maker : EndianType, writeLength, writeImpl, readLength, readI
 import packetmaker.memory : malloc, realloc, alloc, free;
 
 import soupply.util : Vector;
-import soupply.java338.packet : Java338Packet;
 
 static import soupply.java338.types;
 
@@ -31,7 +30,7 @@ enum MetadataType : ubyte
     NBT = 13,
 }
 
-class MetadataValue : Java338Packet
+class MetadataValue : PacketImpl!(Endian.bigEndian, varuint, varuint)
 {
 
     @EncodeOnly ubyte type;
@@ -337,13 +336,13 @@ struct Metadata
             writeImpl!(EndianType.bigEndian, ubyte)(buffer, id);
             value.encodeBody(buffer);
         }
-        buffer.writeUnsignedByte(ubyte(255));
+        buffer.write(ubyte(255));
     }
 
     void decodeBody(Buffer buffer)
     {
         ubyte id;
-        while((id = readImpl!(EndianType.bigEndian, ubyte)(buffer)) != 255)
+        while((id = buffer.read!ubyte()) != 255)
         {
             switch(readImpl!(EndianType.bigEndian, ubyte)(buffer))
             {

@@ -9,7 +9,6 @@ import packetmaker.maker : EndianType, writeLength, writeImpl, readLength, readI
 import packetmaker.memory : malloc, realloc, alloc, free;
 
 import soupply.util : Vector;
-import soupply.test0.packet : Test0Packet;
 
 static import soupply.test0.types;
 
@@ -18,7 +17,7 @@ enum MetadataType : uint
     BYTE = 0,
 }
 
-class MetadataValue : Test0Packet
+class MetadataValue : PacketImpl!(Endian.bigEndian, ubyte, varuint)
 {
 
     @Var @EncodeOnly uint type;

@@ -36,17 +36,17 @@ struct LoginBody
     void encodeBody(Buffer buffer) @nogc
     {
         Buffer _buffer = alloc!Buffer(Container.sizeof + 4);
-        scope(exit) free(_buffer);
         _container.encodeBody(_buffer);
-        writeLength!(EndianType.var, uint)(buffer, _buffer.data.length);
-        buffer.writeBytes(_buffer.data);
+        writeLength!(EndianType.var, uint)(buffer, _buffer.data!ubyte.length);
+        buffer.writeData(_buffer.data!ubyte);
+        free(_buffer);
     }
 
     void decodeBody(Buffer buffer)
     {
-        Buffer _buffer = alloc!Buffer(buffer.readBytes(readLength!(EndianType.var, uint)(buffer)));
-        scope(exit) free(_buffer);
+        Buffer _buffer = alloc!Buffer(cast(ubyte[])buffer.readData(readLength!(EndianType.var, uint)(buffer)));
         _container.decodeBody(_buffer);
+        free(_buffer);
     }
 
     string toString()
@@ -311,17 +311,17 @@ struct ChunkData
     void encodeBody(Buffer buffer) @nogc
     {
         Buffer _buffer = alloc!Buffer(Container.sizeof + 4);
-        scope(exit) free(_buffer);
         _container.encodeBody(_buffer);
-        writeLength!(EndianType.var, uint)(buffer, _buffer.data.length);
-        buffer.writeBytes(_buffer.data);
+        writeLength!(EndianType.var, uint)(buffer, _buffer.data!ubyte.length);
+        buffer.writeData(_buffer.data!ubyte);
+        free(_buffer);
     }
 
     void decodeBody(Buffer buffer)
     {
-        Buffer _buffer = alloc!Buffer(buffer.readBytes(readLength!(EndianType.var, uint)(buffer)));
-        scope(exit) free(_buffer);
+        Buffer _buffer = alloc!Buffer(cast(ubyte[])buffer.readData(readLength!(EndianType.var, uint)(buffer)));
         _container.decodeBody(_buffer);
+        free(_buffer);
     }
 
     string toString()

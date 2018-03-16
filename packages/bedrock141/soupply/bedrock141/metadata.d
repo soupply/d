@@ -9,7 +9,6 @@ import packetmaker.maker : EndianType, writeLength, writeImpl, readLength, readI
 import packetmaker.memory : malloc, realloc, alloc, free;
 
 import soupply.util : Vector;
-import soupply.bedrock141.packet : Bedrock141Packet;
 
 static import soupply.bedrock141.types;
 
@@ -26,7 +25,7 @@ enum MetadataType : uint
     ENTITY_POSITION = 8,
 }
 
-class MetadataValue : Bedrock141Packet
+class MetadataValue : PacketImpl!(Endian.littleEndian, varuint, varuint)
 {
 
     @Var @EncodeOnly uint type;
