@@ -6,7 +6,8 @@ module soupply.java335.metadata;
 
 import packetmaker;
 import packetmaker.maker : EndianType, writeLength, writeImpl, readLength, readImpl;
-import packetmaker.memory : malloc, realloc, alloc, free;
+
+import xbuffer.memory : malloc, realloc, alloc, free;
 
 import soupply.util : Vector;
 
