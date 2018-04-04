@@ -3,6 +3,8 @@ description "Automatically generated libraries for encoding and decoding Minecra
 license "MIT"
 targetType "library"
 
+dependency "soupply:Minecraft (Bedrock Engine)" version="*"
+dependency "soupply:Minecraft: Java Edition" version="*"
 dependency "soupply:bedrock137" version="*"
 dependency "soupply:bedrock141" version="*"
 dependency "soupply:bedrock150" version="*"
@@ -14,6 +16,7 @@ dependency "soupply:java316" version="*"
 dependency "soupply:java335" version="*"
 dependency "soupply:java338" version="*"
 dependency "soupply:java340" version="*"
+dependency "soupply:test0" version="*"
 dependency "soupply:util" version="*"
 
 subPackage "bedrock"
