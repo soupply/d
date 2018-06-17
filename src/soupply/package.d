@@ -9,6 +9,7 @@ public import soupply.bedrock141;
 public import soupply.bedrock150;
 public import soupply.bedrock160;
 public import soupply.bedrock201;
+public import soupply.bedrock261;
 public import soupply.java;
 public import soupply.java210;
 public import soupply.java315;

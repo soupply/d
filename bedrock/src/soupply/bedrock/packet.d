@@ -3,6 +3,6 @@
  */
 module soupply.bedrock.packet;
 
-public import soupply.bedrock201.packet;
+public import soupply.bedrock261.packet;
 
-alias BedrockPacket = Bedrock201Packet;
+alias BedrockPacket = Bedrock261Packet;
