@@ -669,7 +669,7 @@ class StartGame : Bedrock261Packet
     enum ubyte VANILLA = 0;
     enum ubyte EDUCATION = 1;
 
-    enum string[] __fields = ["entityId", "runtimeId", "gamemode", "position", "yaw", "pitch", "seed", "dimension", "generator", "worldGamemode", "difficulty", "spawnPosition", "loadedInCreative", "time", "version_", "rainLevel", "lightningLevel", "multiplayerGame", "broadcastToLan", "broadcastToXbl", "commandsEnabled", "textureRequired", "gameRules", "bonusChestEnabled", "startWithMapEnabled", "trustPlayersEnabled", "defaultPermissionLevel", "xboxLiveBroadcastMode", "serverChunkTickRadius", "levelId", "worldName", "premiumWorldTemplate", "unknown32", "worldTicks", "enchantmentSeed"];
+    enum string[] __fields = ["entityId", "runtimeId", "gamemode", "position", "yaw", "pitch", "seed", "dimension", "generator", "worldGamemode", "difficulty", "spawnPosition", "loadedInCreative", "time", "version_", "eduFeaturesEnabled", "rainLevel", "lightningLevel", "multiplayerGame", "broadcastToLan", "broadcastToXbl", "commandsEnabled", "textureRequired", "gameRules", "hasBonusChestEnabled", "hasStartWithMapEnabled", "hasTrustPlayersEnabled", "defaultPermissionLevel", "xboxLiveBroadcastMode", "serverChunkTickRadius", "hasPlatformBroadcast", "platformBroadcastMode", "xboxLiveBroadcastIntent", "hasLockedBehaviorPack", "hasLockedResourcePack", "isFromLockedWorldTemplate", "levelId", "worldName", "premiumWorldTemplate", "isTrial", "currentTick", "enchantmentSeed"];
 
     @Var long entityId;
     @Var ulong runtimeId;
@@ -686,6 +686,7 @@ class StartGame : Bedrock261Packet
     bool loadedInCreative;
     @Var int time;
     ubyte version_;
+    bool eduFeaturesEnabled;
     float rainLevel;
     float lightningLevel;
     bool multiplayerGame = true;
@@ -694,22 +695,28 @@ class StartGame : Bedrock261Packet
     bool commandsEnabled;
     bool textureRequired;
     soupply.bedrock261.types.Rule[] gameRules;
-    bool bonusChestEnabled;
-    bool startWithMapEnabled;
-    bool trustPlayersEnabled;
+    bool hasBonusChestEnabled;
+    bool hasStartWithMapEnabled;
+    bool hasTrustPlayersEnabled;
     @Var int defaultPermissionLevel;
     @Var int xboxLiveBroadcastMode;
     uint serverChunkTickRadius;
+    bool hasPlatformBroadcast;
+    @Var int platformBroadcastMode;
+    bool xboxLiveBroadcastIntent;
+    bool hasLockedBehaviorPack;
+    bool hasLockedResourcePack;
+    bool isFromLockedWorldTemplate;
     string levelId;
     string worldName;
     string premiumWorldTemplate;
-    bool unknown32;
-    ulong worldTicks;
+    bool isTrial;
+    ulong currentTick;
     @Var int enchantmentSeed;
 
     this() pure nothrow @safe @nogc {}
 
-    this(long entityId, ulong runtimeId=ulong.init, int gamemode=int.init, Vector!(float, "xyz") position=Vector!(float, "xyz").init, float yaw=float.init, float pitch=float.init, int seed=int.init, int dimension=0, int generator=1, int worldGamemode=int.init, int difficulty=int.init, Vector!(int, "xyz") spawnPosition=Vector!(int, "xyz").init, bool loadedInCreative=bool.init, int time=int.init, ubyte version_=ubyte.init, float rainLevel=float.init, float lightningLevel=float.init, bool multiplayerGame=true, bool broadcastToLan=bool.init, bool broadcastToXbl=bool.init, bool commandsEnabled=bool.init, bool textureRequired=bool.init, soupply.bedrock261.types.Rule[] gameRules=(soupply.bedrock261.types.Rule[]).init, bool bonusChestEnabled=bool.init, bool startWithMapEnabled=bool.init, bool trustPlayersEnabled=bool.init, int defaultPermissionLevel=int.init, int xboxLiveBroadcastMode=int.init, uint serverChunkTickRadius=uint.init, string levelId=string.init, string worldName=string.init, string premiumWorldTemplate=string.init, bool unknown32=bool.init, ulong worldTicks=ulong.init, int enchantmentSeed=int.init) pure nothrow @safe @nogc
+    this(long entityId, ulong runtimeId=ulong.init, int gamemode=int.init, Vector!(float, "xyz") position=Vector!(float, "xyz").init, float yaw=float.init, float pitch=float.init, int seed=int.init, int dimension=0, int generator=1, int worldGamemode=int.init, int difficulty=int.init, Vector!(int, "xyz") spawnPosition=Vector!(int, "xyz").init, bool loadedInCreative=bool.init, int time=int.init, ubyte version_=ubyte.init, bool eduFeaturesEnabled=bool.init, float rainLevel=float.init, float lightningLevel=float.init, bool multiplayerGame=true, bool broadcastToLan=bool.init, bool broadcastToXbl=bool.init, bool commandsEnabled=bool.init, bool textureRequired=bool.init, soupply.bedrock261.types.Rule[] gameRules=(soupply.bedrock261.types.Rule[]).init, bool hasBonusChestEnabled=bool.init, bool hasStartWithMapEnabled=bool.init, bool hasTrustPlayersEnabled=bool.init, int defaultPermissionLevel=int.init, int xboxLiveBroadcastMode=int.init, uint serverChunkTickRadius=uint.init, bool hasPlatformBroadcast=bool.init, int platformBroadcastMode=int.init, bool xboxLiveBroadcastIntent=bool.init, bool hasLockedBehaviorPack=bool.init, bool hasLockedResourcePack=bool.init, bool isFromLockedWorldTemplate=bool.init, string levelId=string.init, string worldName=string.init, string premiumWorldTemplate=string.init, bool isTrial=bool.init, ulong currentTick=ulong.init, int enchantmentSeed=int.init) pure nothrow @safe @nogc
     {
         this.entityId = entityId;
         this.runtimeId = runtimeId;
@@ -726,6 +733,7 @@ class StartGame : Bedrock261Packet
         this.loadedInCreative = loadedInCreative;
         this.time = time;
         this.version_ = version_;
+        this.eduFeaturesEnabled = eduFeaturesEnabled;
         this.rainLevel = rainLevel;
         this.lightningLevel = lightningLevel;
         this.multiplayerGame = multiplayerGame;
@@ -734,17 +742,23 @@ class StartGame : Bedrock261Packet
         this.commandsEnabled = commandsEnabled;
         this.textureRequired = textureRequired;
         this.gameRules = gameRules;
-        this.bonusChestEnabled = bonusChestEnabled;
-        this.startWithMapEnabled = startWithMapEnabled;
-        this.trustPlayersEnabled = trustPlayersEnabled;
+        this.hasBonusChestEnabled = hasBonusChestEnabled;
+        this.hasStartWithMapEnabled = hasStartWithMapEnabled;
+        this.hasTrustPlayersEnabled = hasTrustPlayersEnabled;
         this.defaultPermissionLevel = defaultPermissionLevel;
         this.xboxLiveBroadcastMode = xboxLiveBroadcastMode;
         this.serverChunkTickRadius = serverChunkTickRadius;
+        this.hasPlatformBroadcast = hasPlatformBroadcast;
+        this.platformBroadcastMode = platformBroadcastMode;
+        this.xboxLiveBroadcastIntent = xboxLiveBroadcastIntent;
+        this.hasLockedBehaviorPack = hasLockedBehaviorPack;
+        this.hasLockedResourcePack = hasLockedResourcePack;
+        this.isFromLockedWorldTemplate = isFromLockedWorldTemplate;
         this.levelId = levelId;
         this.worldName = worldName;
         this.premiumWorldTemplate = premiumWorldTemplate;
-        this.unknown32 = unknown32;
-        this.worldTicks = worldTicks;
+        this.isTrial = isTrial;
+        this.currentTick = currentTick;
         this.enchantmentSeed = enchantmentSeed;
     }
 
@@ -759,7 +773,7 @@ class StartGame : Bedrock261Packet
 
     override string toString()
     {
-        return "StartGame(entityId: " ~ std.conv.to!string(this.entityId) ~ ", runtimeId: " ~ std.conv.to!string(this.runtimeId) ~ ", gamemode: " ~ std.conv.to!string(this.gamemode) ~ ", position: " ~ std.conv.to!string(this.position) ~ ", yaw: " ~ std.conv.to!string(this.yaw) ~ ", pitch: " ~ std.conv.to!string(this.pitch) ~ ", seed: " ~ std.conv.to!string(this.seed) ~ ", dimension: " ~ std.conv.to!string(this.dimension) ~ ", generator: " ~ std.conv.to!string(this.generator) ~ ", worldGamemode: " ~ std.conv.to!string(this.worldGamemode) ~ ", difficulty: " ~ std.conv.to!string(this.difficulty) ~ ", spawnPosition: " ~ std.conv.to!string(this.spawnPosition) ~ ", loadedInCreative: " ~ std.conv.to!string(this.loadedInCreative) ~ ", time: " ~ std.conv.to!string(this.time) ~ ", version_: " ~ std.conv.to!string(this.version_) ~ ", rainLevel: " ~ std.conv.to!string(this.rainLevel) ~ ", lightningLevel: " ~ std.conv.to!string(this.lightningLevel) ~ ", multiplayerGame: " ~ std.conv.to!string(this.multiplayerGame) ~ ", broadcastToLan: " ~ std.conv.to!string(this.broadcastToLan) ~ ", broadcastToXbl: " ~ std.conv.to!string(this.broadcastToXbl) ~ ", commandsEnabled: " ~ std.conv.to!string(this.commandsEnabled) ~ ", textureRequired: " ~ std.conv.to!string(this.textureRequired) ~ ", gameRules: " ~ std.conv.to!string(this.gameRules) ~ ", bonusChestEnabled: " ~ std.conv.to!string(this.bonusChestEnabled) ~ ", startWithMapEnabled: " ~ std.conv.to!string(this.startWithMapEnabled) ~ ", trustPlayersEnabled: " ~ std.conv.to!string(this.trustPlayersEnabled) ~ ", defaultPermissionLevel: " ~ std.conv.to!string(this.defaultPermissionLevel) ~ ", xboxLiveBroadcastMode: " ~ std.conv.to!string(this.xboxLiveBroadcastMode) ~ ", serverChunkTickRadius: " ~ std.conv.to!string(this.serverChunkTickRadius) ~ ", levelId: " ~ std.conv.to!string(this.levelId) ~ ", worldName: " ~ std.conv.to!string(this.worldName) ~ ", premiumWorldTemplate: " ~ std.conv.to!string(this.premiumWorldTemplate) ~ ", unknown32: " ~ std.conv.to!string(this.unknown32) ~ ", worldTicks: " ~ std.conv.to!string(this.worldTicks) ~ ", enchantmentSeed: " ~ std.conv.to!string(this.enchantmentSeed) ~ ")";
+        return "StartGame(entityId: " ~ std.conv.to!string(this.entityId) ~ ", runtimeId: " ~ std.conv.to!string(this.runtimeId) ~ ", gamemode: " ~ std.conv.to!string(this.gamemode) ~ ", position: " ~ std.conv.to!string(this.position) ~ ", yaw: " ~ std.conv.to!string(this.yaw) ~ ", pitch: " ~ std.conv.to!string(this.pitch) ~ ", seed: " ~ std.conv.to!string(this.seed) ~ ", dimension: " ~ std.conv.to!string(this.dimension) ~ ", generator: " ~ std.conv.to!string(this.generator) ~ ", worldGamemode: " ~ std.conv.to!string(this.worldGamemode) ~ ", difficulty: " ~ std.conv.to!string(this.difficulty) ~ ", spawnPosition: " ~ std.conv.to!string(this.spawnPosition) ~ ", loadedInCreative: " ~ std.conv.to!string(this.loadedInCreative) ~ ", time: " ~ std.conv.to!string(this.time) ~ ", version_: " ~ std.conv.to!string(this.version_) ~ ", eduFeaturesEnabled: " ~ std.conv.to!string(this.eduFeaturesEnabled) ~ ", rainLevel: " ~ std.conv.to!string(this.rainLevel) ~ ", lightningLevel: " ~ std.conv.to!string(this.lightningLevel) ~ ", multiplayerGame: " ~ std.conv.to!string(this.multiplayerGame) ~ ", broadcastToLan: " ~ std.conv.to!string(this.broadcastToLan) ~ ", broadcastToXbl: " ~ std.conv.to!string(this.broadcastToXbl) ~ ", commandsEnabled: " ~ std.conv.to!string(this.commandsEnabled) ~ ", textureRequired: " ~ std.conv.to!string(this.textureRequired) ~ ", gameRules: " ~ std.conv.to!string(this.gameRules) ~ ", hasBonusChestEnabled: " ~ std.conv.to!string(this.hasBonusChestEnabled) ~ ", hasStartWithMapEnabled: " ~ std.conv.to!string(this.hasStartWithMapEnabled) ~ ", hasTrustPlayersEnabled: " ~ std.conv.to!string(this.hasTrustPlayersEnabled) ~ ", defaultPermissionLevel: " ~ std.conv.to!string(this.defaultPermissionLevel) ~ ", xboxLiveBroadcastMode: " ~ std.conv.to!string(this.xboxLiveBroadcastMode) ~ ", serverChunkTickRadius: " ~ std.conv.to!string(this.serverChunkTickRadius) ~ ", hasPlatformBroadcast: " ~ std.conv.to!string(this.hasPlatformBroadcast) ~ ", platformBroadcastMode: " ~ std.conv.to!string(this.platformBroadcastMode) ~ ", xboxLiveBroadcastIntent: " ~ std.conv.to!string(this.xboxLiveBroadcastIntent) ~ ", hasLockedBehaviorPack: " ~ std.conv.to!string(this.hasLockedBehaviorPack) ~ ", hasLockedResourcePack: " ~ std.conv.to!string(this.hasLockedResourcePack) ~ ", isFromLockedWorldTemplate: " ~ std.conv.to!string(this.isFromLockedWorldTemplate) ~ ", levelId: " ~ std.conv.to!string(this.levelId) ~ ", worldName: " ~ std.conv.to!string(this.worldName) ~ ", premiumWorldTemplate: " ~ std.conv.to!string(this.premiumWorldTemplate) ~ ", isTrial: " ~ std.conv.to!string(this.isTrial) ~ ", currentTick: " ~ std.conv.to!string(this.currentTick) ~ ", enchantmentSeed: " ~ std.conv.to!string(this.enchantmentSeed) ~ ")";
     }
 
 }
@@ -1199,19 +1213,25 @@ class UpdateBlock : Bedrock261Packet
     enum uint NO_GRAPHIC = 4;
     enum uint PRIORITY = 8;
 
-    enum string[] __fields = ["position", "block", "flagsAndMeta"];
+    // data layer id
+    enum uint NORMAL = 0;
+    enum uint LIQUID = 1;
+
+    enum string[] __fields = ["position", "block", "flagsAndMeta", "dataLayerId"];
 
     soupply.bedrock261.types.BlockPosition position;
     @Var uint block;
     @Var uint flagsAndMeta;
+    @Var uint dataLayerId;
 
     this() pure nothrow @safe @nogc {}
 
-    this(soupply.bedrock261.types.BlockPosition position, uint block=uint.init, uint flagsAndMeta=uint.init) pure nothrow @safe @nogc
+    this(soupply.bedrock261.types.BlockPosition position, uint block=uint.init, uint flagsAndMeta=uint.init, uint dataLayerId=uint.init) pure nothrow @safe @nogc
     {
         this.position = position;
         this.block = block;
         this.flagsAndMeta = flagsAndMeta;
+        this.dataLayerId = dataLayerId;
     }
 
     mixin Make;
@@ -1225,7 +1245,7 @@ class UpdateBlock : Bedrock261Packet
 
     override string toString()
     {
-        return "UpdateBlock(position: " ~ std.conv.to!string(this.position) ~ ", block: " ~ std.conv.to!string(this.block) ~ ", flagsAndMeta: " ~ std.conv.to!string(this.flagsAndMeta) ~ ")";
+        return "UpdateBlock(position: " ~ std.conv.to!string(this.position) ~ ", block: " ~ std.conv.to!string(this.block) ~ ", flagsAndMeta: " ~ std.conv.to!string(this.flagsAndMeta) ~ ", dataLayerId: " ~ std.conv.to!string(this.dataLayerId) ~ ")";
     }
 
 }
@@ -1359,134 +1379,177 @@ class LevelSoundEvent : Bedrock261Packet
     enum ubyte LAND = 35;
     enum ubyte SADDLE = 36;
     enum ubyte ARMOR = 37;
-    enum ubyte ADD_CHEST = 38;
-    enum ubyte THROW = 39;
-    enum ubyte ATTACK = 40;
-    enum ubyte ATTACK_NODAMAGE = 41;
-    enum ubyte ATTACK_STRONG = 42;
-    enum ubyte WARN = 43;
-    enum ubyte SHEAR = 44;
-    enum ubyte MILK = 45;
-    enum ubyte THUNDER = 46;
-    enum ubyte EXPLODE = 47;
-    enum ubyte FIRE = 48;
-    enum ubyte IGNITE = 49;
-    enum ubyte FUSE = 50;
-    enum ubyte STARE = 51;
-    enum ubyte SPAWN = 52;
-    enum ubyte SHOOT = 53;
-    enum ubyte BREAK_BLOCK = 54;
-    enum ubyte LAUNCH = 55;
-    enum ubyte BLAST = 56;
-    enum ubyte LARGE_BLAST = 57;
-    enum ubyte TWINKLE = 58;
-    enum ubyte REMEDY = 59;
-    enum ubyte UNFECT = 60;
-    enum ubyte LEVELUP = 61;
-    enum ubyte BOW_HIT = 62;
-    enum ubyte BULLET_HIT = 63;
-    enum ubyte EXTINGUISH_FIRE = 64;
-    enum ubyte ITEM_FIZZ = 65;
-    enum ubyte CHEST_OPEN = 66;
-    enum ubyte CHEST_CLOSED = 67;
-    enum ubyte SHULKER_BOX_OPEN = 68;
-    enum ubyte SHULKER_BOX_CLOSE = 69;
-    enum ubyte POWER_ON = 70;
-    enum ubyte POWER_OFF = 71;
-    enum ubyte ATTACH = 72;
-    enum ubyte DETACH = 73;
-    enum ubyte DENY = 74;
-    enum ubyte TRIPOD = 75;
-    enum ubyte POP = 76;
-    enum ubyte DROP_SLOT = 77;
-    enum ubyte NOTE = 78;
-    enum ubyte THORNS = 79;
-    enum ubyte PISTON_IN = 80;
-    enum ubyte PISTON_OUT = 81;
-    enum ubyte PORTAL = 82;
-    enum ubyte WATER = 83;
-    enum ubyte LAVA_POP = 84;
-    enum ubyte LAVA = 85;
-    enum ubyte BURP = 86;
-    enum ubyte BUCKET_FILL_WATER = 87;
-    enum ubyte BUCKET_FILL_LAVA = 88;
-    enum ubyte BUCKET_EMPTY_WATER = 89;
-    enum ubyte BUCKET_EMPTY_LAVA = 90;
-    enum ubyte RECORD_13 = 91;
-    enum ubyte RECORD_CAT = 92;
-    enum ubyte RECORD_BLOCKS = 93;
-    enum ubyte RECORD_CHIRP = 94;
-    enum ubyte RECORD_FAR = 95;
-    enum ubyte RECORD_MALL = 96;
-    enum ubyte RECORD_MELLOHI = 97;
-    enum ubyte RECORD_STAL = 98;
-    enum ubyte RECORD_STRAD = 99;
-    enum ubyte RECORD_WARD = 100;
-    enum ubyte RECORD_11 = 101;
-    enum ubyte RECORD_WAIT = 102;
-    enum ubyte GUARDIAN_FLOP = 104;
-    enum ubyte ELDERGUARDIAN_CURSE = 105;
-    enum ubyte MOB_WARNING = 106;
-    enum ubyte MOB_WARNING_BABY = 107;
-    enum ubyte TELEPORT = 108;
-    enum ubyte SHULKER_OPEN = 109;
-    enum ubyte SHULKER_CLOSE = 110;
-    enum ubyte HAGGLE = 111;
-    enum ubyte HAGGLE_YES = 112;
-    enum ubyte HAGGLE_NO = 113;
-    enum ubyte HAGGLE_IDLE = 114;
-    enum ubyte CHORUS_GROW = 115;
-    enum ubyte CHORUS_DEATH = 116;
-    enum ubyte GLASS = 117;
-    enum ubyte CAST_SPELL = 118;
-    enum ubyte PREPARE_ATTACK = 119;
-    enum ubyte PREPARE_SUMMON = 120;
-    enum ubyte PREPARE_WOLOLO = 121;
-    enum ubyte FANG = 122;
-    enum ubyte CHARGE = 123;
-    enum ubyte CAMERA_TAKE_PICTURE = 124;
-    enum ubyte LEASHKNOT_PLACE = 125;
-    enum ubyte LEASHKNOT_BREAK = 126;
-    enum ubyte GROWL = 127;
-    enum ubyte WHINE = 128;
-    enum ubyte PANT = 129;
-    enum ubyte PURR = 130;
-    enum ubyte PURREOW = 131;
-    enum ubyte DEATH_MIN_VOLUME = 132;
-    enum ubyte DEATH_MID_VOLUME = 133;
-    enum ubyte INITIATE_BLAZE = 134;
-    enum ubyte INITIATE_CAVE_SPIDER = 135;
-    enum ubyte INITIATE_CREEPER = 136;
-    enum ubyte INITIATE_ELDER_GUARDIAN = 137;
-    enum ubyte INITIATE_ENDER_DRAGON = 138;
-    enum ubyte INITIATE_ENDERMAN = 139;
-    enum ubyte INITIATE_EVOCATION_ILLAGER = 141;
-    enum ubyte INITIATE_GHAST = 142;
-    enum ubyte INITIATE_HUSK = 143;
-    enum ubyte INITIATE_ILLUSION_ILLAGER = 144;
-    enum ubyte INITIATE_MAGMA_CUBE = 145;
-    enum ubyte INITIATE_POLAR_BEAR = 146;
-    enum ubyte INITIATE_SHULKER = 147;
-    enum ubyte INITIATE_SILVERFISH = 148;
-    enum ubyte INITIATE_SKELETON = 149;
-    enum ubyte INITIATE_SLIME = 150;
-    enum ubyte INITIATE_SPIDER = 151;
-    enum ubyte INITIATE_STRAY = 152;
-    enum ubyte INITIATE_VEX = 153;
-    enum ubyte INITIATE_VINDICATION_ILLAGER = 154;
-    enum ubyte INITIATE_WITCH = 155;
-    enum ubyte INITIATE_WITHER = 156;
-    enum ubyte INITIATE_WITHER_SKELETON = 157;
-    enum ubyte INITIATE_WOLF = 158;
-    enum ubyte INITIATE_ZOMBIE = 159;
-    enum ubyte INITIATE_ZOMBIE_PIGMAN = 160;
-    enum ubyte INITIATE_ZOMBIE_VILLAGER = 161;
-    enum ubyte BLOCK_END_PORTAL_FRAME_FILL = 162;
-    enum ubyte BLOCK_END_PORTAL_SPAWN = 163;
-    enum ubyte RANDOM_ANVIL_USE = 164;
-    enum ubyte BOTTLE_DRAGONBREATH = 165;
-    enum ubyte DEFAULT = 166;
-    enum ubyte UNDEFINED = 167;
+    enum ubyte MOB_ARMOR_STAND_PLACE = 38;
+    enum ubyte ADD_CHEST = 39;
+    enum ubyte THROW = 40;
+    enum ubyte ATTACK = 41;
+    enum ubyte ATTACK_NODAMAGE = 42;
+    enum ubyte ATTACK_STRONG = 43;
+    enum ubyte WARN = 44;
+    enum ubyte SHEAR = 45;
+    enum ubyte MILK = 46;
+    enum ubyte THUNDER = 47;
+    enum ubyte EXPLODE = 48;
+    enum ubyte FIRE = 49;
+    enum ubyte IGNITE = 50;
+    enum ubyte FUSE = 51;
+    enum ubyte STARE = 52;
+    enum ubyte SPAWN = 53;
+    enum ubyte SHOOT = 54;
+    enum ubyte BREAK_BLOCK = 55;
+    enum ubyte LAUNCH = 56;
+    enum ubyte BLAST = 57;
+    enum ubyte LARGE_BLAST = 58;
+    enum ubyte TWINKLE = 59;
+    enum ubyte REMEDY = 60;
+    enum ubyte UNFECT = 61;
+    enum ubyte LEVELUP = 62;
+    enum ubyte BOW_HIT = 63;
+    enum ubyte BULLET_HIT = 64;
+    enum ubyte EXTINGUISH_FIRE = 65;
+    enum ubyte ITEM_FIZZ = 66;
+    enum ubyte CHEST_OPEN = 67;
+    enum ubyte CHEST_CLOSED = 68;
+    enum ubyte SHULKERBOX_OPEN = 69;
+    enum ubyte SHULKERBOX_CLOSED = 70;
+    enum ubyte ENDERCHEST_OPEN = 71;
+    enum ubyte ENDERCHEST_CLOSED = 72;
+    enum ubyte POWER_ON = 73;
+    enum ubyte POWER_OFF = 74;
+    enum ubyte ATTACH = 75;
+    enum ubyte DETACH = 76;
+    enum ubyte DENY = 77;
+    enum ubyte TRIPOD = 78;
+    enum ubyte POP = 79;
+    enum ubyte DROP_SLOT = 80;
+    enum ubyte NOTE = 81;
+    enum ubyte THORNS = 82;
+    enum ubyte PISTON_IN = 83;
+    enum ubyte PISTON_OUT = 84;
+    enum ubyte PORTAL = 85;
+    enum ubyte WATER = 86;
+    enum ubyte LAVA_POP = 87;
+    enum ubyte LAVA = 88;
+    enum ubyte BURP = 89;
+    enum ubyte BUCKET_FILL_WATER = 90;
+    enum ubyte BUCKET_FILL_LAVA = 91;
+    enum ubyte BUCKET_EMPTY_WATER = 92;
+    enum ubyte BUCKET_EMPTY_LAVA = 93;
+    enum ubyte ARMOR_EQUIP_CHAIN = 94;
+    enum ubyte ARMOR_EQUIP_DIAMOND = 95;
+    enum ubyte ARMOR_EQUIP_GENERIC = 96;
+    enum ubyte ARMOR_EQUIP_GOLD = 97;
+    enum ubyte ARMOR_EQUIP_IRON = 98;
+    enum ubyte ARMOR_EQUIP_LEATHER = 99;
+    enum ubyte ARMOR_EQUIP_ELYTRA = 100;
+    enum ubyte RECORD_13 = 101;
+    enum ubyte RECORD_CAT = 102;
+    enum ubyte RECORD_BLOCKS = 103;
+    enum ubyte RECORD_CHIRP = 104;
+    enum ubyte RECORD_FAR = 105;
+    enum ubyte RECORD_MALL = 106;
+    enum ubyte RECORD_MELLOHI = 107;
+    enum ubyte RECORD_STAL = 108;
+    enum ubyte RECORD_STRAD = 109;
+    enum ubyte RECORD_WARD = 110;
+    enum ubyte RECORD_11 = 111;
+    enum ubyte RECORD_WAIT = 112;
+    enum ubyte STOP_RECORD = 113;
+    enum ubyte FLOP = 114;
+    enum ubyte ELDERGUARDIAN_CURSE = 115;
+    enum ubyte MOB_WARNING = 116;
+    enum ubyte MOB_WARNING_BABY = 117;
+    enum ubyte TELEPORT = 118;
+    enum ubyte SHULKER_OPEN = 119;
+    enum ubyte SHULKER_CLOSE = 120;
+    enum ubyte HAGGLE = 121;
+    enum ubyte HAGGLE_YES = 122;
+    enum ubyte HAGGLE_NO = 123;
+    enum ubyte HAGGLE_IDLE = 124;
+    enum ubyte CHORUSGROW = 125;
+    enum ubyte CHORUSDEATH = 126;
+    enum ubyte GLASS = 127;
+    enum ubyte POTION_BREWED = 128;
+    enum ubyte CAST_SPELL = 129;
+    enum ubyte PREPARE_ATTACK = 130;
+    enum ubyte PREPARE_SUMMON = 131;
+    enum ubyte PREPARE_WOLOLO = 132;
+    enum ubyte FANG = 133;
+    enum ubyte CHARGE = 134;
+    enum ubyte CAMERA_TAKE_PICTURE = 135;
+    enum ubyte LEASHKNOT_PLACE = 136;
+    enum ubyte LEASHKNOT_BREAK = 137;
+    enum ubyte GROWL = 138;
+    enum ubyte WHINE = 139;
+    enum ubyte PANT = 140;
+    enum ubyte PURR = 141;
+    enum ubyte PURREOW = 142;
+    enum ubyte DEATH_MIN_VOLUME = 143;
+    enum ubyte DEATH_MID_VOLUME = 144;
+    enum ubyte IMITATE_BLAZE = 145;
+    enum ubyte IMITATE_CAVE_SPIDER = 146;
+    enum ubyte IMITATE_CREEPER = 147;
+    enum ubyte IMITATE_ELDER_GUARDIAN = 148;
+    enum ubyte IMITATE_ENDER_DRAGON = 149;
+    enum ubyte IMITATE_ENDERMAN = 150;
+    enum ubyte IMITATE_EVOCATION_ILLAGER = 152;
+    enum ubyte IMITATE_GHAST = 153;
+    enum ubyte IMITATE_HUSK = 154;
+    enum ubyte IMITATE_ILLUSION_ILLAGER = 155;
+    enum ubyte IMITATE_MAGMA_CUBE = 156;
+    enum ubyte IMITATE_POLAR_BEAR = 157;
+    enum ubyte IMITATE_SHULKER = 158;
+    enum ubyte IMITATE_SILVERFISH = 159;
+    enum ubyte IMITATE_SKELETON = 160;
+    enum ubyte IMITATE_SLIME = 161;
+    enum ubyte IMITATE_SPIDER = 162;
+    enum ubyte IMITATE_STRAY = 163;
+    enum ubyte IMITATE_VEX = 164;
+    enum ubyte IMITATE_VINDICATION_ILLAGER = 165;
+    enum ubyte IMITATE_WITCH = 166;
+    enum ubyte IMITATE_WITHER = 167;
+    enum ubyte IMITATE_WITHER_SKELETON = 168;
+    enum ubyte IMITATE_WOLF = 169;
+    enum ubyte IMITATE_ZOMBIE = 170;
+    enum ubyte IMITATE_ZOMBIE_PIGMAN = 171;
+    enum ubyte IMITATE_ZOMBIE_VILLAGER = 172;
+    enum ubyte BLOCK_END_PORTAL_FRAME_FILL = 173;
+    enum ubyte BLOCK_END_PORTAL_SPAWN = 174;
+    enum ubyte RANDOM_ANVIL_USE = 175;
+    enum ubyte BOTTLE_DRAGONBREATH = 176;
+    enum ubyte PORTAL_TRAVEL = 177;
+    enum ubyte ITEM_TRIDENT_HIT = 178;
+    enum ubyte ITEM_TRIDENT_RETURN = 179;
+    enum ubyte ITEM_TRIDENT_RIPTIDE_1 = 180;
+    enum ubyte ITEM_TRIDENT_RIPTIDE_2 = 181;
+    enum ubyte ITEM_TRIDENT_RIPTIDE_3 = 182;
+    enum ubyte ITEM_TRIDENT_THROW = 183;
+    enum ubyte ITEM_TRIDENT_THUNDER = 184;
+    enum ubyte ITEM_TRIDENT_HIT_GROUND = 185;
+    enum ubyte DEFAULT = 186;
+    enum ubyte ELEMCONSTRUCT_OPEN = 188;
+    enum ubyte ICEBOMB_HIT = 189;
+    enum ubyte BALLOONPOP = 190;
+    enum ubyte LT_REACTION_ICEBOMB = 191;
+    enum ubyte LT_REACTION_BLEACH = 192;
+    enum ubyte LT_REACTION_EPASTE = 193;
+    enum ubyte LT_REACTION_EPASTE2 = 194;
+    enum ubyte LT_REACTION_FERTILIZER = 199;
+    enum ubyte LT_REACTION_FIREBALL = 200;
+    enum ubyte LT_REACTION_MGSALT = 201;
+    enum ubyte LT_REACTION_MISCFIRE = 202;
+    enum ubyte LT_REACTION_FIRE = 203;
+    enum ubyte LT_REACTION_MISCEXPLOSION = 204;
+    enum ubyte LT_REACTION_MISCMYSTICAL = 205;
+    enum ubyte LT_REACTION_MISCMYSTICAL2 = 206;
+    enum ubyte LT_REACTION_PRODUCT = 207;
+    enum ubyte SPARKLER_USE = 208;
+    enum ubyte GLOWSTICK_USE = 209;
+    enum ubyte SPARKLER_ACTIVE = 210;
+    enum ubyte CONVERT_TO_DROWNED = 211;
+    enum ubyte BUCKET_FILL_FISH = 212;
+    enum ubyte BUCKET_EMPTY_FISH = 213;
+    enum ubyte UNDEFINED = 214;
 
     enum string[] __fields = ["sound", "position", "volume", "pitch", "unknown4", "disableRelativeVolume"];
 
