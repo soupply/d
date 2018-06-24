@@ -13,50 +13,6 @@ import xbuffer.memory : alloc, free;
 import soupply.util : Vector, UUID;
 import soupply.bedrock261.metadata;
 
-struct LoginBody
-{
-
-    private struct Container
-    {
-
-        enum string[] __fields = ["chain", "clientData"];
-
-        @Length!uint ubyte[] chain;
-        @Length!uint ubyte[] clientData;
-
-        mixin Make!(Endian.littleEndian, varuint);
-
-    }
-
-    enum string[] __fields = Container.__fields;
-
-    Container _container;
-
-    alias _container this;
-
-    void encodeBody(Buffer buffer) @nogc
-    {
-        Buffer _buffer = alloc!Buffer(Container.sizeof + 4);
-        _container.encodeBody(_buffer);
-        writeLength!(EndianType.var, uint)(buffer, _buffer.data!ubyte.length);
-        buffer.writeData(_buffer.data!ubyte);
-        free(_buffer);
-    }
-
-    void decodeBody(Buffer buffer)
-    {
-        Buffer _buffer = alloc!Buffer(cast(ubyte[])buffer.readData(readLength!(EndianType.var, uint)(buffer)));
-        _container.decodeBody(_buffer);
-        free(_buffer);
-    }
-
-    string toString()
-    {
-        return "LoginBody(chain: " ~ std.conv.to!string(this.chain) ~ ", clientData: " ~ std.conv.to!string(this.clientData) ~ ")";
-    }
-
-}
-
 struct PackWithSize
 {
 
@@ -170,46 +126,6 @@ struct McpeUuid
 
 }
 
-struct PlayerList
-{
-
-    enum string[] __fields = ["uuid", "entityId", "displayName", "skin", "unknown4"];
-
-    soupply.bedrock261.types.McpeUuid uuid;
-    @Var long entityId;
-    string displayName;
-    soupply.bedrock261.types.Skin skin;
-    string unknown4;
-
-    mixin Make!(Endian.littleEndian, varuint);
-
-    string toString()
-    {
-        return "PlayerList(uuid: " ~ std.conv.to!string(this.uuid) ~ ", entityId: " ~ std.conv.to!string(this.entityId) ~ ", displayName: " ~ std.conv.to!string(this.displayName) ~ ", skin: " ~ std.conv.to!string(this.skin) ~ ", unknown4: " ~ std.conv.to!string(this.unknown4) ~ ")";
-    }
-
-}
-
-struct Skin
-{
-
-    enum string[] __fields = ["name", "data", "capeData", "geometryName", "geometryData"];
-
-    string name;
-    ubyte[] data;
-    ubyte[] capeData;
-    string geometryName;
-    ubyte[] geometryData;
-
-    mixin Make!(Endian.littleEndian, varuint);
-
-    string toString()
-    {
-        return "Skin(name: " ~ std.conv.to!string(this.name) ~ ", data: " ~ std.conv.to!string(this.data) ~ ", capeData: " ~ std.conv.to!string(this.capeData) ~ ", geometryName: " ~ std.conv.to!string(this.geometryName) ~ ", geometryData: " ~ std.conv.to!string(this.geometryData) ~ ")";
-    }
-
-}
-
 struct Link
 {
 
@@ -258,6 +174,92 @@ struct Recipe
 
 }
 
+struct Rule
+{
+
+    // name
+    enum string COMMAND_BLOCK_OUTPUT = "commandblockoutput";
+    enum string DO_DAYLIGHT_CYCLE = "dodaylightcycle";
+    enum string DO_ENTITY_DROPS = "doentitydrops";
+    enum string DO_FIRE_TICK = "dofiretick";
+    enum string DO_MOB_LOOT = "domobloot";
+    enum string DO_MOB_SPAWNING = "domobspawning";
+    enum string DO_TILE_DROPS = "dotiledrops";
+    enum string DO_WEATHER_CYCLE = "doweathercycle";
+    enum string DROWNING_DAMAGE = "drowningdamage";
+    enum string FALL_DAMAGE = "falldamage";
+    enum string FIRE_DAMAGE = "firedamage";
+    enum string KEEP_INVENTORY = "keepinventory";
+    enum string MOB_GRIEFING = "mobgriefing";
+    enum string PVP = "pvp";
+    enum string SEND_COMMAND_FEEDBACK = "sendcommandfeedback";
+
+    // type
+    enum ubyte BOOLEAN = 1;
+    enum ubyte INTEGER = 2;
+    enum ubyte FLOATING = 3;
+
+    enum string[] __fields = ["name", "type", "booleanValue", "integerValue", "floatingValue"];
+
+    string name;
+    ubyte type;
+    @Condition("type==1") bool booleanValue;
+    @Condition("type==2") @Var uint integerValue;
+    @Condition("type==3") float floatingValue;
+
+    mixin Make!(Endian.littleEndian, varuint);
+
+    string toString()
+    {
+        return "Rule(name: " ~ std.conv.to!string(this.name) ~ ", type: " ~ std.conv.to!string(this.type) ~ ", booleanValue: " ~ std.conv.to!string(this.booleanValue) ~ ", integerValue: " ~ std.conv.to!string(this.integerValue) ~ ", floatingValue: " ~ std.conv.to!string(this.floatingValue) ~ ")";
+    }
+
+}
+
+struct LoginBody
+{
+
+    private struct Container
+    {
+
+        enum string[] __fields = ["chain", "clientData"];
+
+        @Length!uint ubyte[] chain;
+        @Length!uint ubyte[] clientData;
+
+        mixin Make!(Endian.littleEndian, varuint);
+
+    }
+
+    enum string[] __fields = Container.__fields;
+
+    Container _container;
+
+    alias _container this;
+
+    void encodeBody(Buffer buffer) @nogc
+    {
+        Buffer _buffer = alloc!Buffer(Container.sizeof + 4);
+        _container.encodeBody(_buffer);
+        writeLength!(EndianType.var, uint)(buffer, _buffer.data!ubyte.length);
+        buffer.writeData(_buffer.data!ubyte);
+        free(_buffer);
+    }
+
+    void decodeBody(Buffer buffer)
+    {
+        Buffer _buffer = alloc!Buffer(cast(ubyte[])buffer.readData(readLength!(EndianType.var, uint)(buffer)));
+        _container.decodeBody(_buffer);
+        free(_buffer);
+    }
+
+    string toString()
+    {
+        return "LoginBody(chain: " ~ std.conv.to!string(this.chain) ~ ", clientData: " ~ std.conv.to!string(this.clientData) ~ ")";
+    }
+
+}
+
 struct InventoryAction
 {
 
@@ -280,6 +282,65 @@ struct InventoryAction
     string toString()
     {
         return "InventoryAction(source: " ~ std.conv.to!string(this.source) ~ ", container: " ~ std.conv.to!string(this.container) ~ ", unknown2: " ~ std.conv.to!string(this.unknown2) ~ ", slot: " ~ std.conv.to!string(this.slot) ~ ", oldItem: " ~ std.conv.to!string(this.oldItem) ~ ", newItem: " ~ std.conv.to!string(this.newItem) ~ ")";
+    }
+
+}
+
+struct Recipe
+{
+
+    // type
+    enum int SHAPELESS = 0;
+    enum int SHAPED = 1;
+    enum int FURNACE = 2;
+    enum int FURNACE_DATA = 3;
+    enum int MULTI = 4;
+
+    enum string[] __fields = ["type", "data"];
+
+    @Var int type;
+    @Bytes ubyte[] data;
+
+    mixin Make!(Endian.littleEndian, varuint);
+
+    string toString()
+    {
+        return "Recipe(type: " ~ std.conv.to!string(this.type) ~ ", data: " ~ std.conv.to!string(this.data) ~ ")";
+    }
+
+}
+
+struct Section
+{
+
+    enum string[] __fields = ["storageVersion", "blockIds", "blockMetas"];
+
+    ubyte storageVersion = 0;
+    ubyte[4096] blockIds;
+    ubyte[2048] blockMetas;
+
+    mixin Make!(Endian.littleEndian, varuint);
+
+    string toString()
+    {
+        return "Section(storageVersion: " ~ std.conv.to!string(this.storageVersion) ~ ", blockIds: " ~ std.conv.to!string(this.blockIds) ~ ", blockMetas: " ~ std.conv.to!string(this.blockMetas) ~ ")";
+    }
+
+}
+
+struct ExtraData
+{
+
+    enum string[] __fields = ["key", "value"];
+
+    @Var uint key;
+    ushort value;
+
+    mixin Make!(Endian.littleEndian, varuint);
+
+    string toString()
+    {
+        return "ExtraData(key: " ~ std.conv.to!string(this.key) ~ ", value: " ~ std.conv.to!string(this.value) ~ ")";
     }
 
 }
@@ -332,37 +393,42 @@ struct ChunkData
 
 }
 
-struct Section
+struct Skin
 {
 
-    enum string[] __fields = ["storageVersion", "blockIds", "blockMetas"];
+    enum string[] __fields = ["name", "data", "capeData", "geometryName", "geometryData"];
 
-    ubyte storageVersion = 0;
-    ubyte[4096] blockIds;
-    ubyte[2048] blockMetas;
+    string name;
+    ubyte[] data;
+    ubyte[] capeData;
+    string geometryName;
+    ubyte[] geometryData;
 
     mixin Make!(Endian.littleEndian, varuint);
 
     string toString()
     {
-        return "Section(storageVersion: " ~ std.conv.to!string(this.storageVersion) ~ ", blockIds: " ~ std.conv.to!string(this.blockIds) ~ ", blockMetas: " ~ std.conv.to!string(this.blockMetas) ~ ")";
+        return "Skin(name: " ~ std.conv.to!string(this.name) ~ ", data: " ~ std.conv.to!string(this.data) ~ ", capeData: " ~ std.conv.to!string(this.capeData) ~ ", geometryName: " ~ std.conv.to!string(this.geometryName) ~ ", geometryData: " ~ std.conv.to!string(this.geometryData) ~ ")";
     }
 
 }
 
-struct ExtraData
+struct PlayerList
 {
 
-    enum string[] __fields = ["key", "value"];
+    enum string[] __fields = ["uuid", "entityId", "displayName", "skin", "unknown4"];
 
-    @Var uint key;
-    ushort value;
+    soupply.bedrock261.types.McpeUuid uuid;
+    @Var long entityId;
+    string displayName;
+    soupply.bedrock261.types.Skin skin;
+    string unknown4;
 
     mixin Make!(Endian.littleEndian, varuint);
 
     string toString()
     {
-        return "ExtraData(key: " ~ std.conv.to!string(this.key) ~ ", value: " ~ std.conv.to!string(this.value) ~ ")";
+        return "PlayerList(uuid: " ~ std.conv.to!string(this.uuid) ~ ", entityId: " ~ std.conv.to!string(this.entityId) ~ ", displayName: " ~ std.conv.to!string(this.displayName) ~ ", skin: " ~ std.conv.to!string(this.skin) ~ ", unknown4: " ~ std.conv.to!string(this.unknown4) ~ ")";
     }
 
 }
@@ -386,48 +452,6 @@ struct Decoration
 
 }
 
-struct Rule
-{
-
-    // name
-    enum string COMMAND_BLOCK_OUTPUT = "commandblockoutput";
-    enum string DO_DAYLIGHT_CYCLE = "dodaylightcycle";
-    enum string DO_ENTITY_DROPS = "doentitydrops";
-    enum string DO_FIRE_TICK = "dofiretick";
-    enum string DO_MOB_LOOT = "domobloot";
-    enum string DO_MOB_SPAWNING = "domobspawning";
-    enum string DO_TILE_DROPS = "dotiledrops";
-    enum string DO_WEATHER_CYCLE = "doweathercycle";
-    enum string DROWNING_DAMAGE = "drowningdamage";
-    enum string FALL_DAMAGE = "falldamage";
-    enum string FIRE_DAMAGE = "firedamage";
-    enum string KEEP_INVENTORY = "keepinventory";
-    enum string MOB_GRIEFING = "mobgriefing";
-    enum string PVP = "pvp";
-    enum string SEND_COMMAND_FEEDBACK = "sendcommandfeedback";
-
-    // type
-    enum ubyte BOOLEAN = 1;
-    enum ubyte INTEGER = 2;
-    enum ubyte FLOATING = 3;
-
-    enum string[] __fields = ["name", "type", "booleanValue", "integerValue", "floatingValue"];
-
-    string name;
-    ubyte type;
-    @Condition("type==1") bool booleanValue;
-    @Condition("type==2") @Var uint integerValue;
-    @Condition("type==3") float floatingValue;
-
-    mixin Make!(Endian.littleEndian, varuint);
-
-    string toString()
-    {
-        return "Rule(name: " ~ std.conv.to!string(this.name) ~ ", type: " ~ std.conv.to!string(this.type) ~ ", booleanValue: " ~ std.conv.to!string(this.booleanValue) ~ ", integerValue: " ~ std.conv.to!string(this.integerValue) ~ ", floatingValue: " ~ std.conv.to!string(this.floatingValue) ~ ")";
-    }
-
-}
-
 struct Enum
 {
 
@@ -441,43 +465,6 @@ struct Enum
     string toString()
     {
         return "Enum(name: " ~ std.conv.to!string(this.name) ~ ", valuesIndexes: " ~ std.conv.to!string(this.valuesIndexes) ~ ")";
-    }
-
-}
-
-struct Command
-{
-
-    enum string[] __fields = ["name", "description", "unknown2", "permissionLevel", "aliasesEnum", "overloads"];
-
-    string name;
-    string description;
-    ubyte unknown2;
-    ubyte permissionLevel;
-    int aliasesEnum = -1;
-    soupply.bedrock261.types.Overload[] overloads;
-
-    mixin Make!(Endian.littleEndian, varuint);
-
-    string toString()
-    {
-        return "Command(name: " ~ std.conv.to!string(this.name) ~ ", description: " ~ std.conv.to!string(this.description) ~ ", unknown2: " ~ std.conv.to!string(this.unknown2) ~ ", permissionLevel: " ~ std.conv.to!string(this.permissionLevel) ~ ", aliasesEnum: " ~ std.conv.to!string(this.aliasesEnum) ~ ", overloads: " ~ std.conv.to!string(this.overloads) ~ ")";
-    }
-
-}
-
-struct Overload
-{
-
-    enum string[] __fields = ["parameters"];
-
-    soupply.bedrock261.types.Parameter[] parameters;
-
-    mixin Make!(Endian.littleEndian, varuint);
-
-    string toString()
-    {
-        return "Overload(parameters: " ~ std.conv.to!string(this.parameters) ~ ")";
     }
 
 }
@@ -513,6 +500,43 @@ struct Parameter
     string toString()
     {
         return "Parameter(name: " ~ std.conv.to!string(this.name) ~ ", type: " ~ std.conv.to!string(this.type) ~ ", optional: " ~ std.conv.to!string(this.optional) ~ ")";
+    }
+
+}
+
+struct Overload
+{
+
+    enum string[] __fields = ["parameters"];
+
+    soupply.bedrock261.types.Parameter[] parameters;
+
+    mixin Make!(Endian.littleEndian, varuint);
+
+    string toString()
+    {
+        return "Overload(parameters: " ~ std.conv.to!string(this.parameters) ~ ")";
+    }
+
+}
+
+struct Command
+{
+
+    enum string[] __fields = ["name", "description", "unknown2", "permissionLevel", "aliasesEnum", "overloads"];
+
+    string name;
+    string description;
+    ubyte unknown2;
+    ubyte permissionLevel;
+    int aliasesEnum = -1;
+    soupply.bedrock261.types.Overload[] overloads;
+
+    mixin Make!(Endian.littleEndian, varuint);
+
+    string toString()
+    {
+        return "Command(name: " ~ std.conv.to!string(this.name) ~ ", description: " ~ std.conv.to!string(this.description) ~ ", unknown2: " ~ std.conv.to!string(this.unknown2) ~ ", permissionLevel: " ~ std.conv.to!string(this.permissionLevel) ~ ", aliasesEnum: " ~ std.conv.to!string(this.aliasesEnum) ~ ", overloads: " ~ std.conv.to!string(this.overloads) ~ ")";
     }
 
 }
