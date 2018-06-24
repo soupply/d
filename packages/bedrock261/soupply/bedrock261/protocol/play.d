@@ -1811,6 +1811,33 @@ class MobEffect : Bedrock261Packet
     enum ubyte MODIFY = 2;
     enum ubyte REMOVE = 3;
 
+    // effect
+    enum int SPEED = 1;
+    enum int SLOWNESS = 2;
+    enum int HASTE = 3;
+    enum int MINING_FATIGUE = 4;
+    enum int STRENGTH = 5;
+    enum int INSTANT_HEALTH = 6;
+    enum int INSTANT_DAMAGE = 7;
+    enum int JUMP_BOOST = 8;
+    enum int NAUSEA = 9;
+    enum int REGENERATION = 10;
+    enum int RESISTANCE = 11;
+    enum int FIRE_RESISTANCE = 12;
+    enum int WATER_BREATHING = 13;
+    enum int INVISIBILITY = 14;
+    enum int BLINDNESS = 15;
+    enum int NIGHT_VISION = 16;
+    enum int HUNGER = 17;
+    enum int WEAKNESS = 18;
+    enum int POISON = 19;
+    enum int WITHER = 20;
+    enum int HEALTH_BOOST = 21;
+    enum int ABSORPTION = 22;
+    enum int SATURATION = 23;
+    enum int LEVITATION = 24;
+    enum int FATAL_POISON = 25;
+
     enum string[] __fields = ["entityId", "eventId", "effect", "amplifier", "particles", "duration"];
 
     @Var long entityId;

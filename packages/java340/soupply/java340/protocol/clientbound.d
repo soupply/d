@@ -4295,6 +4295,35 @@ class EntityEffect : Java340Packet
     enum bool CLIENTBOUND = true;
     enum bool SERVERBOUND = false;
 
+    // effect id
+    enum ubyte SPEED = 1;
+    enum ubyte SLOWNESS = 2;
+    enum ubyte HASTE = 3;
+    enum ubyte MINING_FATIGUE = 4;
+    enum ubyte STRENGTH = 5;
+    enum ubyte INSTANT_HEALTH = 6;
+    enum ubyte INSTANT_DAMAGE = 7;
+    enum ubyte JUMP_BOOST = 8;
+    enum ubyte NAUSEA = 9;
+    enum ubyte REGENERATION = 10;
+    enum ubyte RESISTANCE = 11;
+    enum ubyte FIRE_RESISTANCE = 12;
+    enum ubyte WATER_BREATHING = 13;
+    enum ubyte INVISIBILITY = 14;
+    enum ubyte BLINDNESS = 15;
+    enum ubyte NIGHT_VISION = 16;
+    enum ubyte HUNGER = 17;
+    enum ubyte WEAKNESS = 18;
+    enum ubyte POISON = 19;
+    enum ubyte WITHER = 20;
+    enum ubyte HEALTH_BOOST = 21;
+    enum ubyte ABSORPTION = 22;
+    enum ubyte SATURATION = 23;
+    enum ubyte GLOWING = 24;
+    enum ubyte LEVITATION = 25;
+    enum ubyte LUCK = 26;
+    enum ubyte BAD_LUCK = 27;
+
     // flags
     enum ubyte AMBIENT = 1;
     enum ubyte SHOW_PARTICLES = 2;
