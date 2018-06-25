@@ -150,30 +150,6 @@ struct Link
 
 }
 
-struct Recipe
-{
-
-    // type
-    enum int SHAPELESS = 0;
-    enum int SHAPED = 1;
-    enum int FURNACE = 2;
-    enum int FURNACE_DATA = 3;
-    enum int MULTI = 4;
-
-    enum string[] __fields = ["type", "data"];
-
-    @Var int type;
-    @Bytes ubyte[] data;
-
-    mixin Make!(Endian.littleEndian, varuint);
-
-    string toString()
-    {
-        return "Recipe(type: " ~ std.conv.to!string(this.type) ~ ", data: " ~ std.conv.to!string(this.data) ~ ")";
-    }
-
-}
-
 struct Rule
 {
 
