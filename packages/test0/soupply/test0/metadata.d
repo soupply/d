@@ -7,9 +7,7 @@ module soupply.test0.metadata;
 import packetmaker;
 import packetmaker.maker : EndianType, writeLength, writeImpl, readLength, readImpl;
 
-import xbuffer.memory : malloc, realloc, alloc, free;
-
-import soupply.util : Vector;
+import soupply.util;
 
 static import soupply.test0.types;
 
@@ -32,7 +30,7 @@ class MetadataValue : PacketImpl!(Endian.bigEndian, ubyte, varuint)
 
 }
 
-class MetadataValue0 : MetadataValue
+class MetadataByte : MetadataValue
 {
 
     byte value;
@@ -57,7 +55,7 @@ struct Metadata
 
     MetadataValue[uint] values;
 
-    void encodeBody(Buffer buffer) @nogc
+    void encodeBody(Buffer buffer)
     {
         writeLength!(EndianType.var, uint)(buffer, values.length);
         foreach(id, value; values)
@@ -75,7 +73,7 @@ struct Metadata
             switch(readImpl!(EndianType.var, uint)(buffer))
             {
                 case 0:
-                    auto value = new MetadataValue0();
+                    auto value = new MetadataByte();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;

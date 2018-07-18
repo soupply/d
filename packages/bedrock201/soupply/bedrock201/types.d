@@ -8,9 +8,9 @@ static import std.conv;
 import packetmaker;
 import packetmaker.maker : EndianType, writeLength, readLength;
 
-import xbuffer.memory : alloc, free;
+import xbuffer.memory : xalloc, xfree;
 
-import soupply.util : Vector, UUID;
+import soupply.util;
 import soupply.bedrock201.metadata;
 
 struct LoginBody
@@ -34,20 +34,20 @@ struct LoginBody
 
     alias _container this;
 
-    void encodeBody(Buffer buffer) @nogc
+    void encodeBody(Buffer buffer)
     {
-        Buffer _buffer = alloc!Buffer(Container.sizeof + 4);
+        Buffer _buffer = xalloc!Buffer(Container.sizeof + 4);
         _container.encodeBody(_buffer);
         writeLength!(EndianType.var, uint)(buffer, _buffer.data!ubyte.length);
         buffer.writeData(_buffer.data!ubyte);
-        free(_buffer);
+        xfree(_buffer);
     }
 
     void decodeBody(Buffer buffer)
     {
-        Buffer _buffer = alloc!Buffer(cast(ubyte[])buffer.readData(readLength!(EndianType.var, uint)(buffer)));
+        Buffer _buffer = xalloc!Buffer(cast(ubyte[])buffer.readData(readLength!(EndianType.var, uint)(buffer)));
         _container.decodeBody(_buffer);
-        free(_buffer);
+        xfree(_buffer);
     }
 
     string toString()
@@ -309,20 +309,20 @@ struct ChunkData
 
     alias _container this;
 
-    void encodeBody(Buffer buffer) @nogc
+    void encodeBody(Buffer buffer)
     {
-        Buffer _buffer = alloc!Buffer(Container.sizeof + 4);
+        Buffer _buffer = xalloc!Buffer(Container.sizeof + 4);
         _container.encodeBody(_buffer);
         writeLength!(EndianType.var, uint)(buffer, _buffer.data!ubyte.length);
         buffer.writeData(_buffer.data!ubyte);
-        free(_buffer);
+        xfree(_buffer);
     }
 
     void decodeBody(Buffer buffer)
     {
-        Buffer _buffer = alloc!Buffer(cast(ubyte[])buffer.readData(readLength!(EndianType.var, uint)(buffer)));
+        Buffer _buffer = xalloc!Buffer(cast(ubyte[])buffer.readData(readLength!(EndianType.var, uint)(buffer)));
         _container.decodeBody(_buffer);
-        free(_buffer);
+        xfree(_buffer);
     }
 
     string toString()

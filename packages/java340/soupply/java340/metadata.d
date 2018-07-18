@@ -7,9 +7,7 @@ module soupply.java340.metadata;
 import packetmaker;
 import packetmaker.maker : EndianType, writeLength, writeImpl, readLength, readImpl;
 
-import xbuffer.memory : malloc, realloc, alloc, free;
-
-import soupply.util : Vector;
+import soupply.util;
 
 static import soupply.java340.types;
 
@@ -45,7 +43,7 @@ class MetadataValue : PacketImpl!(Endian.bigEndian, varuint, varuint)
 
 }
 
-class MetadataValue0 : MetadataValue
+class MetadataByte : MetadataValue
 {
 
     byte value;
@@ -65,7 +63,7 @@ class MetadataValue0 : MetadataValue
 
 }
 
-class MetadataValue1 : MetadataValue
+class MetadataInt : MetadataValue
 {
 
     @Var uint value;
@@ -85,7 +83,7 @@ class MetadataValue1 : MetadataValue
 
 }
 
-class MetadataValue2 : MetadataValue
+class MetadataFloat : MetadataValue
 {
 
     float value;
@@ -105,7 +103,7 @@ class MetadataValue2 : MetadataValue
 
 }
 
-class MetadataValue3 : MetadataValue
+class MetadataString : MetadataValue
 {
 
     string value;
@@ -125,7 +123,7 @@ class MetadataValue3 : MetadataValue
 
 }
 
-class MetadataValue4 : MetadataValue
+class MetadataChat : MetadataValue
 {
 
     string value;
@@ -145,7 +143,7 @@ class MetadataValue4 : MetadataValue
 
 }
 
-class MetadataValue5 : MetadataValue
+class MetadataSlot : MetadataValue
 {
 
     soupply.java340.types.Slot value;
@@ -165,7 +163,7 @@ class MetadataValue5 : MetadataValue
 
 }
 
-class MetadataValue6 : MetadataValue
+class MetadataBool : MetadataValue
 {
 
     bool value;
@@ -185,7 +183,7 @@ class MetadataValue6 : MetadataValue
 
 }
 
-class MetadataValue7 : MetadataValue
+class MetadataRotation : MetadataValue
 {
 
     Vector!(float, "xyz") value;
@@ -205,7 +203,7 @@ class MetadataValue7 : MetadataValue
 
 }
 
-class MetadataValue8 : MetadataValue
+class MetadataPosition : MetadataValue
 {
 
     ulong value;
@@ -225,7 +223,7 @@ class MetadataValue8 : MetadataValue
 
 }
 
-class MetadataValue9 : MetadataValue
+class MetadataOptionalPosition : MetadataValue
 {
 
     soupply.java340.types.OptionalPosition value;
@@ -245,7 +243,7 @@ class MetadataValue9 : MetadataValue
 
 }
 
-class MetadataValue10 : MetadataValue
+class MetadataDirection : MetadataValue
 {
 
     @Var uint value;
@@ -265,7 +263,7 @@ class MetadataValue10 : MetadataValue
 
 }
 
-class MetadataValue11 : MetadataValue
+class MetadataUuid : MetadataValue
 {
 
     soupply.java340.types.OptionalUuid value;
@@ -285,7 +283,7 @@ class MetadataValue11 : MetadataValue
 
 }
 
-class MetadataValue12 : MetadataValue
+class MetadataBlock : MetadataValue
 {
 
     @Var uint value;
@@ -305,7 +303,7 @@ class MetadataValue12 : MetadataValue
 
 }
 
-class MetadataValue13 : MetadataValue
+class MetadataNbt : MetadataValue
 {
 
     @Bytes ubyte[] value;
@@ -330,7 +328,7 @@ struct Metadata
 
     MetadataValue[ubyte] values;
 
-    void encodeBody(Buffer buffer) @nogc
+    void encodeBody(Buffer buffer)
     {
         foreach(id, value; values)
         {
@@ -348,72 +346,72 @@ struct Metadata
             switch(readImpl!(EndianType.bigEndian, ubyte)(buffer))
             {
                 case 0:
-                    auto value = new MetadataValue0();
+                    auto value = new MetadataByte();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;
                 case 1:
-                    auto value = new MetadataValue1();
+                    auto value = new MetadataInt();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;
                 case 2:
-                    auto value = new MetadataValue2();
+                    auto value = new MetadataFloat();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;
                 case 3:
-                    auto value = new MetadataValue3();
+                    auto value = new MetadataString();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;
                 case 4:
-                    auto value = new MetadataValue4();
+                    auto value = new MetadataChat();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;
                 case 5:
-                    auto value = new MetadataValue5();
+                    auto value = new MetadataSlot();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;
                 case 6:
-                    auto value = new MetadataValue6();
+                    auto value = new MetadataBool();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;
                 case 7:
-                    auto value = new MetadataValue7();
+                    auto value = new MetadataRotation();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;
                 case 8:
-                    auto value = new MetadataValue8();
+                    auto value = new MetadataPosition();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;
                 case 9:
-                    auto value = new MetadataValue9();
+                    auto value = new MetadataOptionalPosition();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;
                 case 10:
-                    auto value = new MetadataValue10();
+                    auto value = new MetadataDirection();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;
                 case 11:
-                    auto value = new MetadataValue11();
+                    auto value = new MetadataUuid();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;
                 case 12:
-                    auto value = new MetadataValue12();
+                    auto value = new MetadataBlock();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;
                 case 13:
-                    auto value = new MetadataValue13();
+                    auto value = new MetadataNbt();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;

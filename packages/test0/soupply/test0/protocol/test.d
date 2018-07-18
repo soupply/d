@@ -8,7 +8,7 @@ static import std.conv;
 import std.typetuple : TypeTuple;
 import packetmaker;
 
-import soupply.util : Vector, UUID;
+import soupply.util;
 import soupply.test0.metadata : Metadata;
 import soupply.test0.packet : Test0Packet;
 

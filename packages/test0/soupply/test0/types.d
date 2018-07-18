@@ -8,7 +8,7 @@ static import std.conv;
 import packetmaker;
 import packetmaker.maker : EndianType, writeLength, readLength;
 
-import xbuffer.memory : alloc, free;
+import xbuffer.memory : xalloc, xfree;
 
-import soupply.util : Vector, UUID;
+import soupply.util;
 import soupply.test0.metadata;

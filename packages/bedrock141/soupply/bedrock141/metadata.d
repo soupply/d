@@ -7,9 +7,7 @@ module soupply.bedrock141.metadata;
 import packetmaker;
 import packetmaker.maker : EndianType, writeLength, writeImpl, readLength, readImpl;
 
-import xbuffer.memory : malloc, realloc, alloc, free;
-
-import soupply.util : Vector;
+import soupply.util;
 
 static import soupply.bedrock141.types;
 
@@ -40,7 +38,7 @@ class MetadataValue : PacketImpl!(Endian.littleEndian, varuint, varuint)
 
 }
 
-class MetadataValue0 : MetadataValue
+class MetadataByte : MetadataValue
 {
 
     byte value;
@@ -60,7 +58,7 @@ class MetadataValue0 : MetadataValue
 
 }
 
-class MetadataValue1 : MetadataValue
+class MetadataShort : MetadataValue
 {
 
     short value;
@@ -80,7 +78,7 @@ class MetadataValue1 : MetadataValue
 
 }
 
-class MetadataValue2 : MetadataValue
+class MetadataInt : MetadataValue
 {
 
     @Var int value;
@@ -100,7 +98,7 @@ class MetadataValue2 : MetadataValue
 
 }
 
-class MetadataValue3 : MetadataValue
+class MetadataFloat : MetadataValue
 {
 
     float value;
@@ -120,7 +118,7 @@ class MetadataValue3 : MetadataValue
 
 }
 
-class MetadataValue4 : MetadataValue
+class MetadataString : MetadataValue
 {
 
     string value;
@@ -140,7 +138,7 @@ class MetadataValue4 : MetadataValue
 
 }
 
-class MetadataValue5 : MetadataValue
+class MetadataSlot : MetadataValue
 {
 
     soupply.bedrock141.types.Slot value;
@@ -160,7 +158,7 @@ class MetadataValue5 : MetadataValue
 
 }
 
-class MetadataValue6 : MetadataValue
+class MetadataBlockPosition : MetadataValue
 {
 
     @Var Vector!(int, "xyz") value;
@@ -180,7 +178,7 @@ class MetadataValue6 : MetadataValue
 
 }
 
-class MetadataValue7 : MetadataValue
+class MetadataLong : MetadataValue
 {
 
     @Var long value;
@@ -200,7 +198,7 @@ class MetadataValue7 : MetadataValue
 
 }
 
-class MetadataValue8 : MetadataValue
+class MetadataEntityPosition : MetadataValue
 {
 
     Vector!(float, "xyz") value;
@@ -225,7 +223,7 @@ struct Metadata
 
     MetadataValue[uint] values;
 
-    void encodeBody(Buffer buffer) @nogc
+    void encodeBody(Buffer buffer)
     {
         writeLength!(EndianType.var, uint)(buffer, values.length);
         foreach(id, value; values)
@@ -243,47 +241,47 @@ struct Metadata
             switch(readImpl!(EndianType.var, uint)(buffer))
             {
                 case 0:
-                    auto value = new MetadataValue0();
+                    auto value = new MetadataByte();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;
                 case 1:
-                    auto value = new MetadataValue1();
+                    auto value = new MetadataShort();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;
                 case 2:
-                    auto value = new MetadataValue2();
+                    auto value = new MetadataInt();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;
                 case 3:
-                    auto value = new MetadataValue3();
+                    auto value = new MetadataFloat();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;
                 case 4:
-                    auto value = new MetadataValue4();
+                    auto value = new MetadataString();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;
                 case 5:
-                    auto value = new MetadataValue5();
+                    auto value = new MetadataSlot();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;
                 case 6:
-                    auto value = new MetadataValue6();
+                    auto value = new MetadataBlockPosition();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;
                 case 7:
-                    auto value = new MetadataValue7();
+                    auto value = new MetadataLong();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;
                 case 8:
-                    auto value = new MetadataValue8();
+                    auto value = new MetadataEntityPosition();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;
