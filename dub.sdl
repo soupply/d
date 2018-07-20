@@ -17,6 +17,7 @@ dependency "soupply:java316" version="*"
 dependency "soupply:java335" version="*"
 dependency "soupply:java338" version="*"
 dependency "soupply:java340" version="*"
+dependency "soupply:java393" version="*"
 dependency "soupply:util" version="*"
 
 subPackage "bedrock"
@@ -128,6 +129,15 @@ subPackage {
 	targetType "library"
 	sourcePaths "packages/java340"
 	importPaths "packages/java340"
+	dependency "soupply:util" version="*"
+}
+
+subPackage {
+	name "java393"
+	description "Libraries for Minecraft: Java Edition protocol 393"
+	targetType "library"
+	sourcePaths "packages/java393"
+	importPaths "packages/java393"
 	dependency "soupply:util" version="*"
 }
 

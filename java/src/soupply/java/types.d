@@ -3,4 +3,4 @@
  */
 module soupply.java.types;
 
-public import soupply.java340.types;
+public import soupply.java393.types;

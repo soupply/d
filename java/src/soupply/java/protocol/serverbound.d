@@ -3,4 +3,4 @@
  */
 module soupply.java.protocol.serverbound;
 
-public import soupply.java340.protocol.serverbound;
+public import soupply.java393.protocol.serverbound;

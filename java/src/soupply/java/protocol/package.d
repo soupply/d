@@ -3,4 +3,4 @@
  */
 module soupply.java.protocol;
 
-public import soupply.java340.protocol;
+public import soupply.java393.protocol;
