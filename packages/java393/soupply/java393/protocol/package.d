@@ -6,5 +6,5 @@ module soupply.java393.protocol;
 public import soupply.java393.protocol.login_clientbound;
 public import soupply.java393.protocol.login_serverbound;
 public import soupply.java393.protocol.play_clientbound;
-public import soupply.java393.protocol.serverbound;
+public import soupply.java393.protocol.play_serverbound;
 public import soupply.java393.protocol.status;
