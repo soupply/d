@@ -14,7 +14,7 @@ import soupply.java393.packet : Java393Packet;
 
 static import soupply.java393.types;
 
-alias Packets = TypeTuple!(TeleportConfirm, TabComplete, ChatMessage, ClientStatus, ClientSettings, ConfirmTransaction, EnchantItem, ClickWindow, CloseWindow, PluginMessage, UseEntity, KeepAlive, Player, PlayerPosition, PlayerPositionAndLook, PlayerLook, VehicleMove, SteerBoat, CraftRecipeRequest, PlayerAbilities, PlayerDigging, EntityAction, SteerVehicle, CraftingBookData, ResourcePackStatus, AdvencementTab, HeldItemChange, CreativeInventoryAction, UpdateSign, Animation, Spectate, PlayerBlockPlacement, UseItem);
+alias Packets = TypeTuple!(TeleportConfirm, QueryBlockNbt, ChatMessage, ClientStatus, ClientSettings, TabComplete, ConfirmTransaction, EnchantItem, ClickWindow, CloseWindow, PluginMessage, EditBook, QueryEntityNbt, UseEntity, KeepAlive, Player, PlayerPosition, PlayerPositionAndLook, PlayerLook, VehicleMove, SteerBoat, PickItem, CraftRecipeRequest, PlayerAbilities, PlayerDigging, EntityAction, SteerVehicle, RecipeBookData, NameItem, ResourcePackStatus, AdvencementTab, SelectTrade, SetBeaconEffect, HeldItemChange, UpdateCommandBlock, UpdateCommandBlockMinecart, CreativeInventoryAction, UpdateStructureBlock, UpdateSign, Animation, Spectate, PlayerBlockPlacement, UseItem);
 
 class TeleportConfirm : Java393Packet
 {
@@ -51,7 +51,7 @@ class TeleportConfirm : Java393Packet
 
 }
 
-class TabComplete : Java393Packet
+class QueryBlockNbt : Java393Packet
 {
 
     enum uint ID = 1;
@@ -59,35 +59,31 @@ class TabComplete : Java393Packet
     enum bool CLIENTBOUND = false;
     enum bool SERVERBOUND = true;
 
-    enum string[] __fields = ["text", "command", "hasPosition", "block"];
+    enum string[] __fields = ["transationId", "location"];
 
-    string text;
-    bool command;
-    bool hasPosition;
-    @Condition("hasPosition==true") ulong block;
+    @Var uint transationId;
+    soupply.java393.types.Position location;
 
     this() pure nothrow @safe @nogc {}
 
-    this(string text, bool command=bool.init, bool hasPosition=bool.init, ulong block=ulong.init) pure nothrow @safe @nogc
+    this(uint transationId, soupply.java393.types.Position location=soupply.java393.types.Position.init) pure nothrow @safe @nogc
     {
-        this.text = text;
-        this.command = command;
-        this.hasPosition = hasPosition;
-        this.block = block;
+        this.transationId = transationId;
+        this.location = location;
     }
 
     mixin Make;
 
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
-        TabComplete ret = new TabComplete();
+        QueryBlockNbt ret = new QueryBlockNbt();
         ret.autoDecode(buffer);
         return ret;
     }
 
     override string toString()
     {
-        return "TabComplete(text: " ~ std.conv.to!string(this.text) ~ ", command: " ~ std.conv.to!string(this.command) ~ ", hasPosition: " ~ std.conv.to!string(this.hasPosition) ~ ", block: " ~ std.conv.to!string(this.block) ~ ")";
+        return "QueryBlockNbt(transationId: " ~ std.conv.to!string(this.transationId) ~ ", location: " ~ std.conv.to!string(this.location) ~ ")";
     }
 
 }
@@ -229,10 +225,47 @@ class ClientSettings : Java393Packet
 
 }
 
-class ConfirmTransaction : Java393Packet
+class TabComplete : Java393Packet
 {
 
     enum uint ID = 5;
+
+    enum bool CLIENTBOUND = false;
+    enum bool SERVERBOUND = true;
+
+    enum string[] __fields = ["transactionId", "text"];
+
+    @Var uint transactionId;
+    string text;
+
+    this() pure nothrow @safe @nogc {}
+
+    this(uint transactionId, string text=string.init) pure nothrow @safe @nogc
+    {
+        this.transactionId = transactionId;
+        this.text = text;
+    }
+
+    mixin Make;
+
+    public static typeof(this) fromBuffer(ubyte[] buffer)
+    {
+        TabComplete ret = new TabComplete();
+        ret.autoDecode(buffer);
+        return ret;
+    }
+
+    override string toString()
+    {
+        return "TabComplete(transactionId: " ~ std.conv.to!string(this.transactionId) ~ ", text: " ~ std.conv.to!string(this.text) ~ ")";
+    }
+
+}
+
+class ConfirmTransaction : Java393Packet
+{
+
+    enum uint ID = 6;
 
     enum bool CLIENTBOUND = false;
     enum bool SERVERBOUND = true;
@@ -271,7 +304,7 @@ class ConfirmTransaction : Java393Packet
 class EnchantItem : Java393Packet
 {
 
-    enum uint ID = 6;
+    enum uint ID = 7;
 
     enum bool CLIENTBOUND = false;
     enum bool SERVERBOUND = true;
@@ -308,7 +341,7 @@ class EnchantItem : Java393Packet
 class ClickWindow : Java393Packet
 {
 
-    enum uint ID = 7;
+    enum uint ID = 8;
 
     enum bool CLIENTBOUND = false;
     enum bool SERVERBOUND = true;
@@ -353,7 +386,7 @@ class ClickWindow : Java393Packet
 class CloseWindow : Java393Packet
 {
 
-    enum uint ID = 8;
+    enum uint ID = 9;
 
     enum bool CLIENTBOUND = false;
     enum bool SERVERBOUND = true;
@@ -388,7 +421,7 @@ class CloseWindow : Java393Packet
 class PluginMessage : Java393Packet
 {
 
-    enum uint ID = 9;
+    enum uint ID = 10;
 
     enum bool CLIENTBOUND = false;
     enum bool SERVERBOUND = true;
@@ -422,10 +455,84 @@ class PluginMessage : Java393Packet
 
 }
 
+class EditBook : Java393Packet
+{
+
+    enum uint ID = 11;
+
+    enum bool CLIENTBOUND = false;
+    enum bool SERVERBOUND = true;
+
+    enum string[] __fields = ["newBook", "signing"];
+
+    soupply.java393.types.Slot newBook;
+    bool signing;
+
+    this() pure nothrow @safe @nogc {}
+
+    this(soupply.java393.types.Slot newBook, bool signing=bool.init) pure nothrow @safe @nogc
+    {
+        this.newBook = newBook;
+        this.signing = signing;
+    }
+
+    mixin Make;
+
+    public static typeof(this) fromBuffer(ubyte[] buffer)
+    {
+        EditBook ret = new EditBook();
+        ret.autoDecode(buffer);
+        return ret;
+    }
+
+    override string toString()
+    {
+        return "EditBook(newBook: " ~ std.conv.to!string(this.newBook) ~ ", signing: " ~ std.conv.to!string(this.signing) ~ ")";
+    }
+
+}
+
+class QueryEntityNbt : Java393Packet
+{
+
+    enum uint ID = 12;
+
+    enum bool CLIENTBOUND = false;
+    enum bool SERVERBOUND = true;
+
+    enum string[] __fields = ["transactionId", "entityId"];
+
+    @Var uint transactionId;
+    @Var uint entityId;
+
+    this() pure nothrow @safe @nogc {}
+
+    this(uint transactionId, uint entityId=uint.init) pure nothrow @safe @nogc
+    {
+        this.transactionId = transactionId;
+        this.entityId = entityId;
+    }
+
+    mixin Make;
+
+    public static typeof(this) fromBuffer(ubyte[] buffer)
+    {
+        QueryEntityNbt ret = new QueryEntityNbt();
+        ret.autoDecode(buffer);
+        return ret;
+    }
+
+    override string toString()
+    {
+        return "QueryEntityNbt(transactionId: " ~ std.conv.to!string(this.transactionId) ~ ", entityId: " ~ std.conv.to!string(this.entityId) ~ ")";
+    }
+
+}
+
 class UseEntity : Java393Packet
 {
 
-    enum uint ID = 10;
+    enum uint ID = 13;
 
     enum bool CLIENTBOUND = false;
     enum bool SERVERBOUND = true;
@@ -475,7 +582,7 @@ class UseEntity : Java393Packet
 class KeepAlive : Java393Packet
 {
 
-    enum uint ID = 11;
+    enum uint ID = 14;
 
     enum bool CLIENTBOUND = false;
     enum bool SERVERBOUND = true;
@@ -510,7 +617,7 @@ class KeepAlive : Java393Packet
 class Player : Java393Packet
 {
 
-    enum uint ID = 12;
+    enum uint ID = 15;
 
     enum bool CLIENTBOUND = false;
     enum bool SERVERBOUND = true;
@@ -545,7 +652,7 @@ class Player : Java393Packet
 class PlayerPosition : Java393Packet
 {
 
-    enum uint ID = 13;
+    enum uint ID = 16;
 
     enum bool CLIENTBOUND = false;
     enum bool SERVERBOUND = true;
@@ -582,7 +689,7 @@ class PlayerPosition : Java393Packet
 class PlayerPositionAndLook : Java393Packet
 {
 
-    enum uint ID = 14;
+    enum uint ID = 17;
 
     enum bool CLIENTBOUND = false;
     enum bool SERVERBOUND = true;
@@ -623,7 +730,7 @@ class PlayerPositionAndLook : Java393Packet
 class PlayerLook : Java393Packet
 {
 
-    enum uint ID = 15;
+    enum uint ID = 18;
 
     enum bool CLIENTBOUND = false;
     enum bool SERVERBOUND = true;
@@ -662,7 +769,7 @@ class PlayerLook : Java393Packet
 class VehicleMove : Java393Packet
 {
 
-    enum uint ID = 16;
+    enum uint ID = 19;
 
     enum bool CLIENTBOUND = false;
     enum bool SERVERBOUND = true;
@@ -701,7 +808,7 @@ class VehicleMove : Java393Packet
 class SteerBoat : Java393Packet
 {
 
-    enum uint ID = 17;
+    enum uint ID = 20;
 
     enum bool CLIENTBOUND = false;
     enum bool SERVERBOUND = true;
@@ -735,10 +842,45 @@ class SteerBoat : Java393Packet
 
 }
 
+class PickItem : Java393Packet
+{
+
+    enum uint ID = 21;
+
+    enum bool CLIENTBOUND = false;
+    enum bool SERVERBOUND = true;
+
+    enum string[] __fields = ["slot"];
+
+    @Var uint slot;
+
+    this() pure nothrow @safe @nogc {}
+
+    this(uint slot) pure nothrow @safe @nogc
+    {
+        this.slot = slot;
+    }
+
+    mixin Make;
+
+    public static typeof(this) fromBuffer(ubyte[] buffer)
+    {
+        PickItem ret = new PickItem();
+        ret.autoDecode(buffer);
+        return ret;
+    }
+
+    override string toString()
+    {
+        return "PickItem(slot: " ~ std.conv.to!string(this.slot) ~ ")";
+    }
+
+}
+
 class CraftRecipeRequest : Java393Packet
 {
 
-    enum uint ID = 18;
+    enum uint ID = 22;
 
     enum bool CLIENTBOUND = false;
     enum bool SERVERBOUND = true;
@@ -777,7 +919,7 @@ class CraftRecipeRequest : Java393Packet
 class PlayerAbilities : Java393Packet
 {
 
-    enum uint ID = 19;
+    enum uint ID = 23;
 
     enum bool CLIENTBOUND = false;
     enum bool SERVERBOUND = true;
@@ -822,7 +964,7 @@ class PlayerAbilities : Java393Packet
 class PlayerDigging : Java393Packet
 {
 
-    enum uint ID = 20;
+    enum uint ID = 24;
 
     enum bool CLIENTBOUND = false;
     enum bool SERVERBOUND = true;
@@ -871,7 +1013,7 @@ class PlayerDigging : Java393Packet
 class EntityAction : Java393Packet
 {
 
-    enum uint ID = 21;
+    enum uint ID = 25;
 
     enum bool CLIENTBOUND = false;
     enum bool SERVERBOUND = true;
@@ -921,7 +1063,7 @@ class EntityAction : Java393Packet
 class SteerVehicle : Java393Packet
 {
 
-    enum uint ID = 22;
+    enum uint ID = 26;
 
     enum bool CLIENTBOUND = false;
     enum bool SERVERBOUND = true;
@@ -961,10 +1103,10 @@ class SteerVehicle : Java393Packet
 
 }
 
-class CraftingBookData : Java393Packet
+class RecipeBookData : Java393Packet
 {
 
-    enum uint ID = 23;
+    enum uint ID = 27;
 
     enum bool CLIENTBOUND = false;
     enum bool SERVERBOUND = true;
@@ -984,14 +1126,14 @@ class CraftingBookData : Java393Packet
 
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
-        CraftingBookData ret = new CraftingBookData();
+        RecipeBookData ret = new RecipeBookData();
         ret.autoDecode(buffer);
         return ret;
     }
 
     override string toString()
     {
-        return "CraftingBookData(type: " ~ std.conv.to!string(this.type) ~ ")";
+        return "RecipeBookData(type: " ~ std.conv.to!string(this.type) ~ ")";
     }
 
     enum string variantField = "type";
@@ -1018,7 +1160,7 @@ class CraftingBookData : Java393Packet
 
         override string toString()
         {
-            return "CraftingBookData.DisplayedRecipe(id: " ~ std.conv.to!string(this.id) ~ ")";
+            return "RecipeBookData.DisplayedRecipe(id: " ~ std.conv.to!string(this.id) ~ ")";
         }
 
     }
@@ -1028,26 +1170,65 @@ class CraftingBookData : Java393Packet
 
         enum typeof(type) TYPE = 2;
 
-        enum string[] __fields = ["bookOpened", "filtering"];
+        enum string[] __fields = ["craftingRecipeBookOpened", "craftingRecipeFilterActive", "smeltingRecipeBookOpened", "smeltingRecipeFilterActive"];
 
-        bool bookOpened;
-        bool filtering;
+        bool craftingRecipeBookOpened;
+        bool craftingRecipeFilterActive;
+        bool smeltingRecipeBookOpened;
+        bool smeltingRecipeFilterActive;
 
         this() pure nothrow @safe @nogc {}
 
-        this(bool bookOpened, bool filtering=bool.init) pure nothrow @safe @nogc
+        this(bool craftingRecipeBookOpened, bool craftingRecipeFilterActive=bool.init, bool smeltingRecipeBookOpened=bool.init, bool smeltingRecipeFilterActive=bool.init) pure nothrow @safe @nogc
         {
-            this.bookOpened = bookOpened;
-            this.filtering = filtering;
+            this.craftingRecipeBookOpened = craftingRecipeBookOpened;
+            this.craftingRecipeFilterActive = craftingRecipeFilterActive;
+            this.smeltingRecipeBookOpened = smeltingRecipeBookOpened;
+            this.smeltingRecipeFilterActive = smeltingRecipeFilterActive;
         }
 
         mixin Make;
 
         override string toString()
         {
-            return "CraftingBookData.CraftingBookStatus(bookOpened: " ~ std.conv.to!string(this.bookOpened) ~ ", filtering: " ~ std.conv.to!string(this.filtering) ~ ")";
+            return "RecipeBookData.CraftingBookStatus(craftingRecipeBookOpened: " ~ std.conv.to!string(this.craftingRecipeBookOpened) ~ ", craftingRecipeFilterActive: " ~ std.conv.to!string(this.craftingRecipeFilterActive) ~ ", smeltingRecipeBookOpened: " ~ std.conv.to!string(this.smeltingRecipeBookOpened) ~ ", smeltingRecipeFilterActive: " ~ std.conv.to!string(this.smeltingRecipeFilterActive) ~ ")";
         }
 
+    }
+
+}
+
+class NameItem : Java393Packet
+{
+
+    enum uint ID = 28;
+
+    enum bool CLIENTBOUND = false;
+    enum bool SERVERBOUND = true;
+
+    enum string[] __fields = ["itemName"];
+
+    string itemName;
+
+    this() pure nothrow @safe @nogc {}
+
+    this(string itemName) pure nothrow @safe @nogc
+    {
+        this.itemName = itemName;
+    }
+
+    mixin Make;
+
+    public static typeof(this) fromBuffer(ubyte[] buffer)
+    {
+        NameItem ret = new NameItem();
+        ret.autoDecode(buffer);
+        return ret;
+    }
+
+    override string toString()
+    {
+        return "NameItem(itemName: " ~ std.conv.to!string(this.itemName) ~ ")";
     }
 
 }
@@ -1055,7 +1236,7 @@ class CraftingBookData : Java393Packet
 class ResourcePackStatus : Java393Packet
 {
 
-    enum uint ID = 24;
+    enum uint ID = 29;
 
     enum bool CLIENTBOUND = false;
     enum bool SERVERBOUND = true;
@@ -1096,7 +1277,7 @@ class ResourcePackStatus : Java393Packet
 class AdvencementTab : Java393Packet
 {
 
-    enum uint ID = 25;
+    enum uint ID = 30;
 
     enum bool CLIENTBOUND = false;
     enum bool SERVERBOUND = true;
@@ -1134,10 +1315,82 @@ class AdvencementTab : Java393Packet
 
 }
 
+class SelectTrade : Java393Packet
+{
+
+    enum uint ID = 31;
+
+    enum bool CLIENTBOUND = false;
+    enum bool SERVERBOUND = true;
+
+    enum string[] __fields = ["selectedSlot"];
+
+    @Var uint selectedSlot;
+
+    this() pure nothrow @safe @nogc {}
+
+    this(uint selectedSlot) pure nothrow @safe @nogc
+    {
+        this.selectedSlot = selectedSlot;
+    }
+
+    mixin Make;
+
+    public static typeof(this) fromBuffer(ubyte[] buffer)
+    {
+        SelectTrade ret = new SelectTrade();
+        ret.autoDecode(buffer);
+        return ret;
+    }
+
+    override string toString()
+    {
+        return "SelectTrade(selectedSlot: " ~ std.conv.to!string(this.selectedSlot) ~ ")";
+    }
+
+}
+
+class SetBeaconEffect : Java393Packet
+{
+
+    enum uint ID = 32;
+
+    enum bool CLIENTBOUND = false;
+    enum bool SERVERBOUND = true;
+
+    enum string[] __fields = ["primaryEffect", "secondaryEffect"];
+
+    @Var uint primaryEffect;
+    @Var uint secondaryEffect;
+
+    this() pure nothrow @safe @nogc {}
+
+    this(uint primaryEffect, uint secondaryEffect=uint.init) pure nothrow @safe @nogc
+    {
+        this.primaryEffect = primaryEffect;
+        this.secondaryEffect = secondaryEffect;
+    }
+
+    mixin Make;
+
+    public static typeof(this) fromBuffer(ubyte[] buffer)
+    {
+        SetBeaconEffect ret = new SetBeaconEffect();
+        ret.autoDecode(buffer);
+        return ret;
+    }
+
+    override string toString()
+    {
+        return "SetBeaconEffect(primaryEffect: " ~ std.conv.to!string(this.primaryEffect) ~ ", secondaryEffect: " ~ std.conv.to!string(this.secondaryEffect) ~ ")";
+    }
+
+}
+
 class HeldItemChange : Java393Packet
 {
 
-    enum uint ID = 26;
+    enum uint ID = 33;
 
     enum bool CLIENTBOUND = false;
     enum bool SERVERBOUND = true;
@@ -1169,10 +1422,100 @@ class HeldItemChange : Java393Packet
 
 }
 
+class UpdateCommandBlock : Java393Packet
+{
+
+    enum uint ID = 34;
+
+    enum bool CLIENTBOUND = false;
+    enum bool SERVERBOUND = true;
+
+    // mode
+    enum uint SEQUENCE = 0;
+    enum uint AUTO = 1;
+    enum uint REDSTONE = 2;
+
+    // flags
+    enum ubyte TRACK_OUTPUT = 1;
+    enum ubyte CONDITIONAL = 2;
+    enum ubyte AUTOMATIC = 4;
+
+    enum string[] __fields = ["location", "command", "mode", "flags"];
+
+    soupply.java393.types.Position location;
+    string command;
+    @Var uint mode;
+    ubyte flags;
+
+    this() pure nothrow @safe @nogc {}
+
+    this(soupply.java393.types.Position location, string command=string.init, uint mode=uint.init, ubyte flags=ubyte.init) pure nothrow @safe @nogc
+    {
+        this.location = location;
+        this.command = command;
+        this.mode = mode;
+        this.flags = flags;
+    }
+
+    mixin Make;
+
+    public static typeof(this) fromBuffer(ubyte[] buffer)
+    {
+        UpdateCommandBlock ret = new UpdateCommandBlock();
+        ret.autoDecode(buffer);
+        return ret;
+    }
+
+    override string toString()
+    {
+        return "UpdateCommandBlock(location: " ~ std.conv.to!string(this.location) ~ ", command: " ~ std.conv.to!string(this.command) ~ ", mode: " ~ std.conv.to!string(this.mode) ~ ", flags: " ~ std.conv.to!string(this.flags) ~ ")";
+    }
+
+}
+
+class UpdateCommandBlockMinecart : Java393Packet
+{
+
+    enum uint ID = 35;
+
+    enum bool CLIENTBOUND = false;
+    enum bool SERVERBOUND = true;
+
+    enum string[] __fields = ["entityId", "command", "trackOutput"];
+
+    @Var uint entityId;
+    string command;
+    bool trackOutput;
+
+    this() pure nothrow @safe @nogc {}
+
+    this(uint entityId, string command=string.init, bool trackOutput=bool.init) pure nothrow @safe @nogc
+    {
+        this.entityId = entityId;
+        this.command = command;
+        this.trackOutput = trackOutput;
+    }
+
+    mixin Make;
+
+    public static typeof(this) fromBuffer(ubyte[] buffer)
+    {
+        UpdateCommandBlockMinecart ret = new UpdateCommandBlockMinecart();
+        ret.autoDecode(buffer);
+        return ret;
+    }
+
+    override string toString()
+    {
+        return "UpdateCommandBlockMinecart(entityId: " ~ std.conv.to!string(this.entityId) ~ ", command: " ~ std.conv.to!string(this.command) ~ ", trackOutput: " ~ std.conv.to!string(this.trackOutput) ~ ")";
+    }
+
+}
+
 class CreativeInventoryAction : Java393Packet
 {
 
-    enum uint ID = 27;
+    enum uint ID = 36;
 
     enum bool CLIENTBOUND = false;
     enum bool SERVERBOUND = true;
@@ -1206,10 +1549,92 @@ class CreativeInventoryAction : Java393Packet
 
 }
 
+class UpdateStructureBlock : Java393Packet
+{
+
+    enum uint ID = 37;
+
+    enum bool CLIENTBOUND = false;
+    enum bool SERVERBOUND = true;
+
+    // action
+    enum uint UPDATE_DATA = 0;
+    enum uint SAVE_STRUCTURE = 1;
+    enum uint LOAD_STRUCTURE = 2;
+    enum uint DETECT_SIZE = 3;
+
+    // mode
+    enum uint SAVE = 0;
+    enum uint LOAD = 1;
+    enum uint CORNER = 2;
+    enum uint DATA = 3;
+
+    // mirror
+    enum uint NONE = 0;
+    enum uint LEFT_RIGHT = 1;
+    enum uint FRONT_BACK = 2;
+
+    // rotation
+    enum uint CLOCKWISE_90 = 1;
+    enum uint CLOCKWISE_180 = 2;
+    enum uint COUNTERCLOCKWISE_90 = 3;
+
+    // flags
+    enum ubyte IGNORE_ENTITIES = 1;
+    enum ubyte SHOW_AIR = 2;
+    enum ubyte SHOW_BOUNDING_BOX = 4;
+
+    enum string[] __fields = ["location", "action", "mode", "offset", "size", "mirror", "rotation", "metadata", "integrity", "speed", "flags"];
+
+    soupply.java393.types.Position location;
+    @Var uint action;
+    @Var uint mode;
+    Vector!(byte, "xyz") offset;
+    Vector!(ubyte, "xyz") size;
+    @Var uint mirror;
+    @Var uint rotation;
+    string metadata;
+    float integrity;
+    @Var ulong speed;
+    ubyte flags;
+
+    this() pure nothrow @safe @nogc {}
+
+    this(soupply.java393.types.Position location, uint action=uint.init, uint mode=uint.init, Vector!(byte, "xyz") offset=Vector!(byte, "xyz").init, Vector!(ubyte, "xyz") size=Vector!(ubyte, "xyz").init, uint mirror=uint.init, uint rotation=uint.init, string metadata=string.init, float integrity=float.init, ulong speed=ulong.init, ubyte flags=ubyte.init) pure nothrow @safe @nogc
+    {
+        this.location = location;
+        this.action = action;
+        this.mode = mode;
+        this.offset = offset;
+        this.size = size;
+        this.mirror = mirror;
+        this.rotation = rotation;
+        this.metadata = metadata;
+        this.integrity = integrity;
+        this.speed = speed;
+        this.flags = flags;
+    }
+
+    mixin Make;
+
+    public static typeof(this) fromBuffer(ubyte[] buffer)
+    {
+        UpdateStructureBlock ret = new UpdateStructureBlock();
+        ret.autoDecode(buffer);
+        return ret;
+    }
+
+    override string toString()
+    {
+        return "UpdateStructureBlock(location: " ~ std.conv.to!string(this.location) ~ ", action: " ~ std.conv.to!string(this.action) ~ ", mode: " ~ std.conv.to!string(this.mode) ~ ", offset: " ~ std.conv.to!string(this.offset) ~ ", size: " ~ std.conv.to!string(this.size) ~ ", mirror: " ~ std.conv.to!string(this.mirror) ~ ", rotation: " ~ std.conv.to!string(this.rotation) ~ ", metadata: " ~ std.conv.to!string(this.metadata) ~ ", integrity: " ~ std.conv.to!string(this.integrity) ~ ", speed: " ~ std.conv.to!string(this.speed) ~ ", flags: " ~ std.conv.to!string(this.flags) ~ ")";
+    }
+
+}
+
 class UpdateSign : Java393Packet
 {
 
-    enum uint ID = 28;
+    enum uint ID = 38;
 
     enum bool CLIENTBOUND = false;
     enum bool SERVERBOUND = true;
@@ -1246,7 +1671,7 @@ class UpdateSign : Java393Packet
 class Animation : Java393Packet
 {
 
-    enum uint ID = 29;
+    enum uint ID = 39;
 
     enum bool CLIENTBOUND = false;
     enum bool SERVERBOUND = true;
@@ -1285,7 +1710,7 @@ class Animation : Java393Packet
 class Spectate : Java393Packet
 {
 
-    enum uint ID = 30;
+    enum uint ID = 40;
 
     enum bool CLIENTBOUND = false;
     enum bool SERVERBOUND = true;
@@ -1320,7 +1745,7 @@ class Spectate : Java393Packet
 class PlayerBlockPlacement : Java393Packet
 {
 
-    enum uint ID = 31;
+    enum uint ID = 41;
 
     enum bool CLIENTBOUND = false;
     enum bool SERVERBOUND = true;
@@ -1365,7 +1790,7 @@ class PlayerBlockPlacement : Java393Packet
 class UseItem : Java393Packet
 {
 
-    enum uint ID = 32;
+    enum uint ID = 42;
 
     enum bool CLIENTBOUND = false;
     enum bool SERVERBOUND = true;
