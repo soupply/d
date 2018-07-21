@@ -62,11 +62,11 @@ class QueryBlockNbt : Java393Packet
     enum string[] __fields = ["transationId", "location"];
 
     @Var uint transationId;
-    soupply.java393.types.Position location;
+    ulong location;
 
     this() pure nothrow @safe @nogc {}
 
-    this(uint transationId, soupply.java393.types.Position location=soupply.java393.types.Position.init) pure nothrow @safe @nogc
+    this(uint transationId, ulong location=ulong.init) pure nothrow @safe @nogc
     {
         this.transationId = transationId;
         this.location = location;
@@ -1442,14 +1442,14 @@ class UpdateCommandBlock : Java393Packet
 
     enum string[] __fields = ["location", "command", "mode", "flags"];
 
-    soupply.java393.types.Position location;
+    ulong location;
     string command;
     @Var uint mode;
     ubyte flags;
 
     this() pure nothrow @safe @nogc {}
 
-    this(soupply.java393.types.Position location, string command=string.init, uint mode=uint.init, ubyte flags=ubyte.init) pure nothrow @safe @nogc
+    this(ulong location, string command=string.init, uint mode=uint.init, ubyte flags=ubyte.init) pure nothrow @safe @nogc
     {
         this.location = location;
         this.command = command;
@@ -1586,7 +1586,7 @@ class UpdateStructureBlock : Java393Packet
 
     enum string[] __fields = ["location", "action", "mode", "offset", "size", "mirror", "rotation", "metadata", "integrity", "speed", "flags"];
 
-    soupply.java393.types.Position location;
+    ulong location;
     @Var uint action;
     @Var uint mode;
     Vector!(byte, "xyz") offset;
@@ -1600,7 +1600,7 @@ class UpdateStructureBlock : Java393Packet
 
     this() pure nothrow @safe @nogc {}
 
-    this(soupply.java393.types.Position location, uint action=uint.init, uint mode=uint.init, Vector!(byte, "xyz") offset=Vector!(byte, "xyz").init, Vector!(ubyte, "xyz") size=Vector!(ubyte, "xyz").init, uint mirror=uint.init, uint rotation=uint.init, string metadata=string.init, float integrity=float.init, ulong speed=ulong.init, ubyte flags=ubyte.init) pure nothrow @safe @nogc
+    this(ulong location, uint action=uint.init, uint mode=uint.init, Vector!(byte, "xyz") offset=Vector!(byte, "xyz").init, Vector!(ubyte, "xyz") size=Vector!(ubyte, "xyz").init, uint mirror=uint.init, uint rotation=uint.init, string metadata=string.init, float integrity=float.init, ulong speed=ulong.init, ubyte flags=ubyte.init) pure nothrow @safe @nogc
     {
         this.location = location;
         this.action = action;
