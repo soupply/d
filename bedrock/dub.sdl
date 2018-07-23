@@ -1,4 +1,4 @@
 name "bedrock"
 description "Libraries for the latest Minecraft (Bedrock Engine) protocol"
 targetType "library"
-dependency "soupply:bedrock261" version="*"
+dependency "soupply:bedrock274" version="*"

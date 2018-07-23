@@ -3,4 +3,4 @@
  */
 module soupply.bedrock.protocol;
 
-public import soupply.bedrock261.protocol;
+public import soupply.bedrock274.protocol;

@@ -4240,8 +4240,8 @@ class StopSound : Java393Packet
     enum string[] __fields = ["flags", "source", "sound"];
 
     ubyte flags;
-    @Condition("flags&1") @Var uint source;
-    @Condition("flags&2") string sound;
+    @Condition("(flags&1)!=0") @Var uint source;
+    @Condition("(flags&2)!=0") string sound;
 
     this() pure nothrow @safe @nogc {}
 

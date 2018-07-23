@@ -3,4 +3,4 @@
  */
 module soupply.bedrock.protocol.play;
 
-public import soupply.bedrock261.protocol.play;
+public import soupply.bedrock274.protocol.play;
