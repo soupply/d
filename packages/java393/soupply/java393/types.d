@@ -343,10 +343,10 @@ struct Node
 
     ubyte flags;
     @Var uint[] children;
-    @Condition("flags&8") @Var uint redirectNode;
+    @Condition("(flags&8)!=0") @Var uint redirectNode;
     @Condition("(flags&1)!=0||(flags&2)!=0") string name;
-    @Condition("flags&2") string parser;
-    @Condition("flags&2") @Bytes ubyte[] properties;
+    @Condition("(flags&2)!=0") string parser;
+    @Condition("(flags&2)!=0") @Bytes ubyte[] properties;
 
     mixin Make!(Endian.bigEndian, varuint);
 
