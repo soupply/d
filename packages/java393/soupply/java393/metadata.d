@@ -18,15 +18,17 @@ enum MetadataType : ubyte
     FLOAT = 2,
     STRING = 3,
     CHAT = 4,
-    SLOT = 5,
-    BOOL = 6,
-    ROTATION = 7,
-    POSITION = 8,
-    OPTIONAL_POSITION = 9,
-    DIRECTION = 10,
-    UUID = 11,
-    BLOCK = 12,
-    NBT = 13,
+    OPTIONAL_CHAT = 5,
+    SLOT = 6,
+    BOOL = 7,
+    ROTATION = 8,
+    POSITION = 9,
+    OPTIONAL_POSITION = 10,
+    DIRECTION = 11,
+    OPTIONAL_UUID = 12,
+    BLOCK = 13,
+    NBT = 14,
+    PARTICLE = 15,
 }
 
 class MetadataValue : PacketImpl!(Endian.bigEndian, varuint, varuint)
@@ -143,6 +145,26 @@ class MetadataChat : MetadataValue
 
 }
 
+class MetadataOptionalChat : MetadataValue
+{
+
+    soupply.java393.types.OptionalChat value;
+
+    this() pure nothrow @safe @nogc
+    {
+        super(5);
+    }
+
+    this(soupply.java393.types.OptionalChat value) pure nothrow @safe @nogc
+    {
+        this();
+        this.value = value;
+    }
+
+    mixin Make;
+
+}
+
 class MetadataSlot : MetadataValue
 {
 
@@ -150,7 +172,7 @@ class MetadataSlot : MetadataValue
 
     this() pure nothrow @safe @nogc
     {
-        super(5);
+        super(6);
     }
 
     this(soupply.java393.types.Slot value) pure nothrow @safe @nogc
@@ -170,7 +192,7 @@ class MetadataBool : MetadataValue
 
     this() pure nothrow @safe @nogc
     {
-        super(6);
+        super(7);
     }
 
     this(bool value) pure nothrow @safe @nogc
@@ -190,7 +212,7 @@ class MetadataRotation : MetadataValue
 
     this() pure nothrow @safe @nogc
     {
-        super(7);
+        super(8);
     }
 
     this(Vector!(float, "xyz") value) pure nothrow @safe @nogc
@@ -210,7 +232,7 @@ class MetadataPosition : MetadataValue
 
     this() pure nothrow @safe @nogc
     {
-        super(8);
+        super(9);
     }
 
     this(ulong value) pure nothrow @safe @nogc
@@ -230,7 +252,7 @@ class MetadataOptionalPosition : MetadataValue
 
     this() pure nothrow @safe @nogc
     {
-        super(9);
+        super(10);
     }
 
     this(soupply.java393.types.OptionalPosition value) pure nothrow @safe @nogc
@@ -250,7 +272,7 @@ class MetadataDirection : MetadataValue
 
     this() pure nothrow @safe @nogc
     {
-        super(10);
+        super(11);
     }
 
     this(uint value) pure nothrow @safe @nogc
@@ -263,14 +285,14 @@ class MetadataDirection : MetadataValue
 
 }
 
-class MetadataUuid : MetadataValue
+class MetadataOptionalUuid : MetadataValue
 {
 
     soupply.java393.types.OptionalUuid value;
 
     this() pure nothrow @safe @nogc
     {
-        super(11);
+        super(12);
     }
 
     this(soupply.java393.types.OptionalUuid value) pure nothrow @safe @nogc
@@ -290,7 +312,7 @@ class MetadataBlock : MetadataValue
 
     this() pure nothrow @safe @nogc
     {
-        super(12);
+        super(13);
     }
 
     this(uint value) pure nothrow @safe @nogc
@@ -310,10 +332,30 @@ class MetadataNbt : MetadataValue
 
     this() pure nothrow @safe @nogc
     {
-        super(13);
+        super(14);
     }
 
     this(ubyte[] value) pure nothrow @safe @nogc
+    {
+        this();
+        this.value = value;
+    }
+
+    mixin Make;
+
+}
+
+class MetadataParticle : MetadataValue
+{
+
+    soupply.java393.types.Particle value;
+
+    this() pure nothrow @safe @nogc
+    {
+        super(15);
+    }
+
+    this(soupply.java393.types.Particle value) pure nothrow @safe @nogc
     {
         this();
         this.value = value;
@@ -371,47 +413,57 @@ struct Metadata
                     this.values[id] = value;
                     break;
                 case 5:
-                    auto value = new MetadataSlot();
+                    auto value = new MetadataOptionalChat();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;
                 case 6:
-                    auto value = new MetadataBool();
+                    auto value = new MetadataSlot();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;
                 case 7:
-                    auto value = new MetadataRotation();
+                    auto value = new MetadataBool();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;
                 case 8:
-                    auto value = new MetadataPosition();
+                    auto value = new MetadataRotation();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;
                 case 9:
-                    auto value = new MetadataOptionalPosition();
+                    auto value = new MetadataPosition();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;
                 case 10:
-                    auto value = new MetadataDirection();
+                    auto value = new MetadataOptionalPosition();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;
                 case 11:
-                    auto value = new MetadataUuid();
+                    auto value = new MetadataDirection();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;
                 case 12:
-                    auto value = new MetadataBlock();
+                    auto value = new MetadataOptionalUuid();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;
                 case 13:
+                    auto value = new MetadataBlock();
+                    value.decodeBody(buffer);
+                    this.values[id] = value;
+                    break;
+                case 14:
                     auto value = new MetadataNbt();
+                    value.decodeBody(buffer);
+                    this.values[id] = value;
+                    break;
+                case 15:
+                    auto value = new MetadataParticle();
                     value.decodeBody(buffer);
                     this.values[id] = value;
                     break;

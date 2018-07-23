@@ -214,6 +214,23 @@ struct Entry
 
 }
 
+struct OptionalChat
+{
+
+    enum string[] __fields = ["hasChat", "chat"];
+
+    bool hasChat;
+    @Condition("hasChat==true") string chat;
+
+    mixin Make!(Endian.bigEndian, varuint);
+
+    string toString()
+    {
+        return "OptionalChat(hasChat: " ~ std.conv.to!string(this.hasChat) ~ ", chat: " ~ std.conv.to!string(this.chat) ~ ")";
+    }
+
+}
+
 struct OptionalPosition
 {
 
@@ -237,7 +254,7 @@ struct OptionalUuid
     enum string[] __fields = ["hasUuid", "uuid"];
 
     bool hasUuid;
-    UUID uuid;
+    @Condition("hasUuid==true") UUID uuid;
 
     mixin Make!(Endian.bigEndian, varuint);
 
@@ -327,7 +344,7 @@ struct Node
     ubyte flags;
     @Var uint[] children;
     @Condition("flags&8") @Var uint redirectNode;
-    @Condition("flags&1!=0||flags&2!=0") string name;
+    @Condition("(flags&1)!=0||(flags&2)!=0") string name;
     @Condition("flags&2") string parser;
     @Condition("flags&2") @Bytes ubyte[] properties;
 
