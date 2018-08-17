@@ -50,6 +50,10 @@ struct Metadata
 
     MetadataValue[uint] values;
 
+    this()
+    {
+    }
+
     void encodeBody(Buffer buffer)
     {
         writeLength!(EndianType.var, uint)(buffer, values.length);

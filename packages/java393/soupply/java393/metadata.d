@@ -350,6 +350,11 @@ struct Metadata
 
     MetadataValue[ubyte] values;
 
+    this()
+    {
+        this.values[0] = new MetadataByte((byte).init);
+    }
+
     void encodeBody(Buffer buffer)
     {
         foreach(id, value; values)
