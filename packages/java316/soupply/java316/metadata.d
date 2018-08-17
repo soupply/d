@@ -11,23 +11,6 @@ import soupply.util;
 
 static import soupply.java316.types;
 
-enum MetadataType : ubyte
-{
-    BYTE = 0,
-    INT = 1,
-    FLOAT = 2,
-    STRING = 3,
-    CHAT = 4,
-    SLOT = 5,
-    BOOL = 6,
-    ROTATION = 7,
-    POSITION = 8,
-    OPTIONAL_POSITION = 9,
-    DIRECTION = 10,
-    UUID = 11,
-    BLOCK = 12,
-}
-
 class MetadataValue : PacketImpl!(Endian.bigEndian, varuint, varuint)
 {
 
@@ -392,6 +375,1566 @@ struct Metadata
                 default: throw new Exception("Unknown metadata type");
             }
         }
+    }
+
+    @property byte entityFlags()
+    {
+        auto ptr = 0 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) return (cast(MetadataByte)*ptr).value;
+        return (byte).init;
+    }
+
+    @property byte entityFlags(byte value)
+    {
+        auto ptr = 0 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) (cast(MetadataByte)*ptr).value = value;
+        else this.values[0] = new MetadataByte(value);
+        return value;
+    }
+
+    @property uint air()
+    {
+        auto ptr = 1 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return uint(300);
+    }
+
+    @property uint air(uint value)
+    {
+        auto ptr = 1 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[1] = new MetadataInt(value);
+        return value;
+    }
+
+    @property string nametag()
+    {
+        auto ptr = 2 in this.values;
+        if(ptr && cast(MetadataString)*ptr) return (cast(MetadataString)*ptr).value;
+        return (string).init;
+    }
+
+    @property string nametag(string value)
+    {
+        auto ptr = 2 in this.values;
+        if(ptr && cast(MetadataString)*ptr) (cast(MetadataString)*ptr).value = value;
+        else this.values[2] = new MetadataString(value);
+        return value;
+    }
+
+    @property bool showNametag()
+    {
+        auto ptr = 3 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) return (cast(MetadataBool)*ptr).value;
+        return (bool).init;
+    }
+
+    @property bool showNametag(bool value)
+    {
+        auto ptr = 3 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) (cast(MetadataBool)*ptr).value = value;
+        else this.values[3] = new MetadataBool(value);
+        return value;
+    }
+
+    @property bool silent()
+    {
+        auto ptr = 4 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) return (cast(MetadataBool)*ptr).value;
+        return (bool).init;
+    }
+
+    @property bool silent(bool value)
+    {
+        auto ptr = 4 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) (cast(MetadataBool)*ptr).value = value;
+        else this.values[4] = new MetadataBool(value);
+        return value;
+    }
+
+    @property bool noGravity()
+    {
+        auto ptr = 5 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) return (cast(MetadataBool)*ptr).value;
+        return (bool).init;
+    }
+
+    @property bool noGravity(bool value)
+    {
+        auto ptr = 5 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) (cast(MetadataBool)*ptr).value = value;
+        else this.values[5] = new MetadataBool(value);
+        return value;
+    }
+
+    @property soupply.java316.types.Slot potion()
+    {
+        auto ptr = 6 in this.values;
+        if(ptr && cast(MetadataSlot)*ptr) return (cast(MetadataSlot)*ptr).value;
+        return (soupply.java316.types.Slot).init;
+    }
+
+    @property soupply.java316.types.Slot potion(soupply.java316.types.Slot value)
+    {
+        auto ptr = 6 in this.values;
+        if(ptr && cast(MetadataSlot)*ptr) (cast(MetadataSlot)*ptr).value = value;
+        else this.values[6] = new MetadataSlot(value);
+        return value;
+    }
+
+    @property ulong spawnPosition()
+    {
+        auto ptr = 6 in this.values;
+        if(ptr && cast(MetadataPosition)*ptr) return (cast(MetadataPosition)*ptr).value;
+        return (ulong).init;
+    }
+
+    @property ulong spawnPosition(ulong value)
+    {
+        auto ptr = 6 in this.values;
+        if(ptr && cast(MetadataPosition)*ptr) (cast(MetadataPosition)*ptr).value = value;
+        else this.values[6] = new MetadataPosition(value);
+        return value;
+    }
+
+    @property float radius()
+    {
+        auto ptr = 6 in this.values;
+        if(ptr && cast(MetadataFloat)*ptr) return (cast(MetadataFloat)*ptr).value;
+        return float(0.5);
+    }
+
+    @property float radius(float value)
+    {
+        auto ptr = 6 in this.values;
+        if(ptr && cast(MetadataFloat)*ptr) (cast(MetadataFloat)*ptr).value = value;
+        else this.values[6] = new MetadataFloat(value);
+        return value;
+    }
+
+    @property uint color()
+    {
+        auto ptr = 7 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return uint(-1);
+    }
+
+    @property uint color(uint value)
+    {
+        auto ptr = 7 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[7] = new MetadataInt(value);
+        return value;
+    }
+
+    @property bool isSinglePoint()
+    {
+        auto ptr = 8 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) return (cast(MetadataBool)*ptr).value;
+        return (bool).init;
+    }
+
+    @property bool isSinglePoint(bool value)
+    {
+        auto ptr = 8 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) (cast(MetadataBool)*ptr).value = value;
+        else this.values[8] = new MetadataBool(value);
+        return value;
+    }
+
+    @property uint particleId()
+    {
+        auto ptr = 9 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint particleId(uint value)
+    {
+        auto ptr = 9 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[9] = new MetadataInt(value);
+        return value;
+    }
+
+    @property uint particleParameter1()
+    {
+        auto ptr = 10 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint particleParameter1(uint value)
+    {
+        auto ptr = 10 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[10] = new MetadataInt(value);
+        return value;
+    }
+
+    @property uint particleParameter2()
+    {
+        auto ptr = 11 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint particleParameter2(uint value)
+    {
+        auto ptr = 11 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[11] = new MetadataInt(value);
+        return value;
+    }
+
+    @property uint hookedEntity()
+    {
+        auto ptr = 6 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint hookedEntity(uint value)
+    {
+        auto ptr = 6 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[6] = new MetadataInt(value);
+        return value;
+    }
+
+    @property byte arrowFlags()
+    {
+        auto ptr = 6 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) return (cast(MetadataByte)*ptr).value;
+        return (byte).init;
+    }
+
+    @property byte arrowFlags(byte value)
+    {
+        auto ptr = 6 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) (cast(MetadataByte)*ptr).value = value;
+        else this.values[6] = new MetadataByte(value);
+        return value;
+    }
+
+    @property uint timeSinceLastHit()
+    {
+        auto ptr = 6 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint timeSinceLastHit(uint value)
+    {
+        auto ptr = 6 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[6] = new MetadataInt(value);
+        return value;
+    }
+
+    @property uint forwardDirection()
+    {
+        auto ptr = 7 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return uint(1);
+    }
+
+    @property uint forwardDirection(uint value)
+    {
+        auto ptr = 7 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[7] = new MetadataInt(value);
+        return value;
+    }
+
+    @property float damageTaken()
+    {
+        auto ptr = 8 in this.values;
+        if(ptr && cast(MetadataFloat)*ptr) return (cast(MetadataFloat)*ptr).value;
+        return float(0);
+    }
+
+    @property float damageTaken(float value)
+    {
+        auto ptr = 8 in this.values;
+        if(ptr && cast(MetadataFloat)*ptr) (cast(MetadataFloat)*ptr).value = value;
+        else this.values[8] = new MetadataFloat(value);
+        return value;
+    }
+
+    @property uint boatVariant()
+    {
+        auto ptr = 9 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint boatVariant(uint value)
+    {
+        auto ptr = 9 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[9] = new MetadataInt(value);
+        return value;
+    }
+
+    @property bool rightPaddleTurning()
+    {
+        auto ptr = 10 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) return (cast(MetadataBool)*ptr).value;
+        return (bool).init;
+    }
+
+    @property bool rightPaddleTurning(bool value)
+    {
+        auto ptr = 10 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) (cast(MetadataBool)*ptr).value = value;
+        else this.values[10] = new MetadataBool(value);
+        return value;
+    }
+
+    @property bool leftPaddleTurning()
+    {
+        auto ptr = 11 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) return (cast(MetadataBool)*ptr).value;
+        return (bool).init;
+    }
+
+    @property bool leftPaddleTurning(bool value)
+    {
+        auto ptr = 11 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) (cast(MetadataBool)*ptr).value = value;
+        else this.values[11] = new MetadataBool(value);
+        return value;
+    }
+
+    @property soupply.java316.types.OptionalPosition beamTarget()
+    {
+        auto ptr = 6 in this.values;
+        if(ptr && cast(MetadataOptionalPosition)*ptr) return (cast(MetadataOptionalPosition)*ptr).value;
+        return (soupply.java316.types.OptionalPosition).init;
+    }
+
+    @property soupply.java316.types.OptionalPosition beamTarget(soupply.java316.types.OptionalPosition value)
+    {
+        auto ptr = 6 in this.values;
+        if(ptr && cast(MetadataOptionalPosition)*ptr) (cast(MetadataOptionalPosition)*ptr).value = value;
+        else this.values[6] = new MetadataOptionalPosition(value);
+        return value;
+    }
+
+    @property bool showBottom()
+    {
+        auto ptr = 7 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) return (cast(MetadataBool)*ptr).value;
+        return (bool).init;
+    }
+
+    @property bool showBottom(bool value)
+    {
+        auto ptr = 7 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) (cast(MetadataBool)*ptr).value = value;
+        else this.values[7] = new MetadataBool(value);
+        return value;
+    }
+
+    @property soupply.java316.types.Slot firework()
+    {
+        auto ptr = 6 in this.values;
+        if(ptr && cast(MetadataSlot)*ptr) return (cast(MetadataSlot)*ptr).value;
+        return (soupply.java316.types.Slot).init;
+    }
+
+    @property soupply.java316.types.Slot firework(soupply.java316.types.Slot value)
+    {
+        auto ptr = 6 in this.values;
+        if(ptr && cast(MetadataSlot)*ptr) (cast(MetadataSlot)*ptr).value = value;
+        else this.values[6] = new MetadataSlot(value);
+        return value;
+    }
+
+    @property uint fireworkThrower()
+    {
+        auto ptr = 7 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint fireworkThrower(uint value)
+    {
+        auto ptr = 7 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[7] = new MetadataInt(value);
+        return value;
+    }
+
+    @property soupply.java316.types.Slot item()
+    {
+        auto ptr = 6 in this.values;
+        if(ptr && cast(MetadataSlot)*ptr) return (cast(MetadataSlot)*ptr).value;
+        return (soupply.java316.types.Slot).init;
+    }
+
+    @property soupply.java316.types.Slot item(soupply.java316.types.Slot value)
+    {
+        auto ptr = 6 in this.values;
+        if(ptr && cast(MetadataSlot)*ptr) (cast(MetadataSlot)*ptr).value = value;
+        else this.values[6] = new MetadataSlot(value);
+        return value;
+    }
+
+    @property uint rotation()
+    {
+        auto ptr = 7 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint rotation(uint value)
+    {
+        auto ptr = 7 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[7] = new MetadataInt(value);
+        return value;
+    }
+
+    @property byte livingFlags()
+    {
+        auto ptr = 6 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) return (cast(MetadataByte)*ptr).value;
+        return (byte).init;
+    }
+
+    @property byte livingFlags(byte value)
+    {
+        auto ptr = 6 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) (cast(MetadataByte)*ptr).value = value;
+        else this.values[6] = new MetadataByte(value);
+        return value;
+    }
+
+    @property float health()
+    {
+        auto ptr = 7 in this.values;
+        if(ptr && cast(MetadataFloat)*ptr) return (cast(MetadataFloat)*ptr).value;
+        return float(1);
+    }
+
+    @property float health(float value)
+    {
+        auto ptr = 7 in this.values;
+        if(ptr && cast(MetadataFloat)*ptr) (cast(MetadataFloat)*ptr).value = value;
+        else this.values[7] = new MetadataFloat(value);
+        return value;
+    }
+
+    @property uint potionColor()
+    {
+        auto ptr = 8 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint potionColor(uint value)
+    {
+        auto ptr = 8 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[8] = new MetadataInt(value);
+        return value;
+    }
+
+    @property bool potionAmbient()
+    {
+        auto ptr = 9 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) return (cast(MetadataBool)*ptr).value;
+        return (bool).init;
+    }
+
+    @property bool potionAmbient(bool value)
+    {
+        auto ptr = 9 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) (cast(MetadataBool)*ptr).value = value;
+        else this.values[9] = new MetadataBool(value);
+        return value;
+    }
+
+    @property uint arrows()
+    {
+        auto ptr = 10 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint arrows(uint value)
+    {
+        auto ptr = 10 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[10] = new MetadataInt(value);
+        return value;
+    }
+
+    @property float additionalHearts()
+    {
+        auto ptr = 11 in this.values;
+        if(ptr && cast(MetadataFloat)*ptr) return (cast(MetadataFloat)*ptr).value;
+        return float(0);
+    }
+
+    @property float additionalHearts(float value)
+    {
+        auto ptr = 11 in this.values;
+        if(ptr && cast(MetadataFloat)*ptr) (cast(MetadataFloat)*ptr).value = value;
+        else this.values[11] = new MetadataFloat(value);
+        return value;
+    }
+
+    @property uint score()
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint score(uint value)
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[12] = new MetadataInt(value);
+        return value;
+    }
+
+    @property byte skinParts()
+    {
+        auto ptr = 13 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) return (cast(MetadataByte)*ptr).value;
+        return byte(0);
+    }
+
+    @property byte skinParts(byte value)
+    {
+        auto ptr = 13 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) (cast(MetadataByte)*ptr).value = value;
+        else this.values[13] = new MetadataByte(value);
+        return value;
+    }
+
+    @property byte mainHand()
+    {
+        auto ptr = 14 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) return (cast(MetadataByte)*ptr).value;
+        return byte(1);
+    }
+
+    @property byte mainHand(byte value)
+    {
+        auto ptr = 14 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) (cast(MetadataByte)*ptr).value = value;
+        else this.values[14] = new MetadataByte(value);
+        return value;
+    }
+
+    @property byte armorStandFlags()
+    {
+        auto ptr = 11 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) return (cast(MetadataByte)*ptr).value;
+        return (byte).init;
+    }
+
+    @property byte armorStandFlags(byte value)
+    {
+        auto ptr = 11 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) (cast(MetadataByte)*ptr).value = value;
+        else this.values[11] = new MetadataByte(value);
+        return value;
+    }
+
+    @property Vector!(float, "xyz") headRotation()
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataRotation)*ptr) return (cast(MetadataRotation)*ptr).value;
+        return (Vector!(float, "xyz")).init;
+    }
+
+    @property Vector!(float, "xyz") headRotation(Vector!(float, "xyz") value)
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataRotation)*ptr) (cast(MetadataRotation)*ptr).value = value;
+        else this.values[12] = new MetadataRotation(value);
+        return value;
+    }
+
+    @property Vector!(float, "xyz") bodyRotation()
+    {
+        auto ptr = 13 in this.values;
+        if(ptr && cast(MetadataRotation)*ptr) return (cast(MetadataRotation)*ptr).value;
+        return (Vector!(float, "xyz")).init;
+    }
+
+    @property Vector!(float, "xyz") bodyRotation(Vector!(float, "xyz") value)
+    {
+        auto ptr = 13 in this.values;
+        if(ptr && cast(MetadataRotation)*ptr) (cast(MetadataRotation)*ptr).value = value;
+        else this.values[13] = new MetadataRotation(value);
+        return value;
+    }
+
+    @property Vector!(float, "xyz") leftArmRotation()
+    {
+        auto ptr = 14 in this.values;
+        if(ptr && cast(MetadataRotation)*ptr) return (cast(MetadataRotation)*ptr).value;
+        return (Vector!(float, "xyz")).init;
+    }
+
+    @property Vector!(float, "xyz") leftArmRotation(Vector!(float, "xyz") value)
+    {
+        auto ptr = 14 in this.values;
+        if(ptr && cast(MetadataRotation)*ptr) (cast(MetadataRotation)*ptr).value = value;
+        else this.values[14] = new MetadataRotation(value);
+        return value;
+    }
+
+    @property Vector!(float, "xyz") rightArmRotation()
+    {
+        auto ptr = 15 in this.values;
+        if(ptr && cast(MetadataRotation)*ptr) return (cast(MetadataRotation)*ptr).value;
+        return (Vector!(float, "xyz")).init;
+    }
+
+    @property Vector!(float, "xyz") rightArmRotation(Vector!(float, "xyz") value)
+    {
+        auto ptr = 15 in this.values;
+        if(ptr && cast(MetadataRotation)*ptr) (cast(MetadataRotation)*ptr).value = value;
+        else this.values[15] = new MetadataRotation(value);
+        return value;
+    }
+
+    @property Vector!(float, "xyz") leftLegRotation()
+    {
+        auto ptr = 16 in this.values;
+        if(ptr && cast(MetadataRotation)*ptr) return (cast(MetadataRotation)*ptr).value;
+        return (Vector!(float, "xyz")).init;
+    }
+
+    @property Vector!(float, "xyz") leftLegRotation(Vector!(float, "xyz") value)
+    {
+        auto ptr = 16 in this.values;
+        if(ptr && cast(MetadataRotation)*ptr) (cast(MetadataRotation)*ptr).value = value;
+        else this.values[16] = new MetadataRotation(value);
+        return value;
+    }
+
+    @property Vector!(float, "xyz") rightLegRotation()
+    {
+        auto ptr = 17 in this.values;
+        if(ptr && cast(MetadataRotation)*ptr) return (cast(MetadataRotation)*ptr).value;
+        return (Vector!(float, "xyz")).init;
+    }
+
+    @property Vector!(float, "xyz") rightLegRotation(Vector!(float, "xyz") value)
+    {
+        auto ptr = 17 in this.values;
+        if(ptr && cast(MetadataRotation)*ptr) (cast(MetadataRotation)*ptr).value = value;
+        else this.values[17] = new MetadataRotation(value);
+        return value;
+    }
+
+    @property byte instentientFlags()
+    {
+        auto ptr = 11 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) return (cast(MetadataByte)*ptr).value;
+        return (byte).init;
+    }
+
+    @property byte instentientFlags(byte value)
+    {
+        auto ptr = 11 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) (cast(MetadataByte)*ptr).value = value;
+        else this.values[11] = new MetadataByte(value);
+        return value;
+    }
+
+    @property byte hanging()
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) return (cast(MetadataByte)*ptr).value;
+        return (byte).init;
+    }
+
+    @property byte hanging(byte value)
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) (cast(MetadataByte)*ptr).value = value;
+        else this.values[12] = new MetadataByte(value);
+        return value;
+    }
+
+    @property bool baby()
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) return (cast(MetadataBool)*ptr).value;
+        return (bool).init;
+    }
+
+    @property bool baby(bool value)
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) (cast(MetadataBool)*ptr).value = value;
+        else this.values[12] = new MetadataBool(value);
+        return value;
+    }
+
+    @property byte horseFlags()
+    {
+        auto ptr = 13 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) return (cast(MetadataByte)*ptr).value;
+        return (byte).init;
+    }
+
+    @property byte horseFlags(byte value)
+    {
+        auto ptr = 13 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) (cast(MetadataByte)*ptr).value = value;
+        else this.values[13] = new MetadataByte(value);
+        return value;
+    }
+
+    @property soupply.java316.types.OptionalUuid ownerUuid()
+    {
+        auto ptr = 14 in this.values;
+        if(ptr && cast(MetadataUuid)*ptr) return (cast(MetadataUuid)*ptr).value;
+        return (soupply.java316.types.OptionalUuid).init;
+    }
+
+    @property soupply.java316.types.OptionalUuid ownerUuid(soupply.java316.types.OptionalUuid value)
+    {
+        auto ptr = 14 in this.values;
+        if(ptr && cast(MetadataUuid)*ptr) (cast(MetadataUuid)*ptr).value = value;
+        else this.values[14] = new MetadataUuid(value);
+        return value;
+    }
+
+    @property uint horseVariant()
+    {
+        auto ptr = 15 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint horseVariant(uint value)
+    {
+        auto ptr = 15 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[15] = new MetadataInt(value);
+        return value;
+    }
+
+    @property uint horseArmor()
+    {
+        auto ptr = 16 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint horseArmor(uint value)
+    {
+        auto ptr = 16 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[16] = new MetadataInt(value);
+        return value;
+    }
+
+    @property bool chested()
+    {
+        auto ptr = 15 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) return (cast(MetadataBool)*ptr).value;
+        return (bool).init;
+    }
+
+    @property bool chested(bool value)
+    {
+        auto ptr = 15 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) (cast(MetadataBool)*ptr).value = value;
+        else this.values[15] = new MetadataBool(value);
+        return value;
+    }
+
+    @property uint llamaStrength()
+    {
+        auto ptr = 16 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint llamaStrength(uint value)
+    {
+        auto ptr = 16 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[16] = new MetadataInt(value);
+        return value;
+    }
+
+    @property uint carpetColor()
+    {
+        auto ptr = 17 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return uint(-1);
+    }
+
+    @property uint carpetColor(uint value)
+    {
+        auto ptr = 17 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[17] = new MetadataInt(value);
+        return value;
+    }
+
+    @property uint llamaVariant()
+    {
+        auto ptr = 18 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint llamaVariant(uint value)
+    {
+        auto ptr = 18 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[18] = new MetadataInt(value);
+        return value;
+    }
+
+    @property bool pigSaddled()
+    {
+        auto ptr = 13 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) return (cast(MetadataBool)*ptr).value;
+        return (bool).init;
+    }
+
+    @property bool pigSaddled(bool value)
+    {
+        auto ptr = 13 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) (cast(MetadataBool)*ptr).value = value;
+        else this.values[13] = new MetadataBool(value);
+        return value;
+    }
+
+    @property uint carrotBoost()
+    {
+        auto ptr = 14 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint carrotBoost(uint value)
+    {
+        auto ptr = 14 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[14] = new MetadataInt(value);
+        return value;
+    }
+
+    @property uint rabbitVariant()
+    {
+        auto ptr = 13 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint rabbitVariant(uint value)
+    {
+        auto ptr = 13 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[13] = new MetadataInt(value);
+        return value;
+    }
+
+    @property bool standingUp()
+    {
+        auto ptr = 13 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) return (cast(MetadataBool)*ptr).value;
+        return (bool).init;
+    }
+
+    @property bool standingUp(bool value)
+    {
+        auto ptr = 13 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) (cast(MetadataBool)*ptr).value = value;
+        else this.values[13] = new MetadataBool(value);
+        return value;
+    }
+
+    @property byte sheepFlagsAndColor()
+    {
+        auto ptr = 13 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) return (cast(MetadataByte)*ptr).value;
+        return (byte).init;
+    }
+
+    @property byte sheepFlagsAndColor(byte value)
+    {
+        auto ptr = 13 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) (cast(MetadataByte)*ptr).value = value;
+        else this.values[13] = new MetadataByte(value);
+        return value;
+    }
+
+    @property byte tameableFlags()
+    {
+        auto ptr = 13 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) return (cast(MetadataByte)*ptr).value;
+        return (byte).init;
+    }
+
+    @property byte tameableFlags(byte value)
+    {
+        auto ptr = 13 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) (cast(MetadataByte)*ptr).value = value;
+        else this.values[13] = new MetadataByte(value);
+        return value;
+    }
+
+    @property uint ocelotVariant()
+    {
+        auto ptr = 15 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint ocelotVariant(uint value)
+    {
+        auto ptr = 15 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[15] = new MetadataInt(value);
+        return value;
+    }
+
+    @property float wolfHealth()
+    {
+        auto ptr = 15 in this.values;
+        if(ptr && cast(MetadataFloat)*ptr) return (cast(MetadataFloat)*ptr).value;
+        return (float).init;
+    }
+
+    @property float wolfHealth(float value)
+    {
+        auto ptr = 15 in this.values;
+        if(ptr && cast(MetadataFloat)*ptr) (cast(MetadataFloat)*ptr).value = value;
+        else this.values[15] = new MetadataFloat(value);
+        return value;
+    }
+
+    @property bool begging()
+    {
+        auto ptr = 16 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) return (cast(MetadataBool)*ptr).value;
+        return (bool).init;
+    }
+
+    @property bool begging(bool value)
+    {
+        auto ptr = 16 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) (cast(MetadataBool)*ptr).value = value;
+        else this.values[16] = new MetadataBool(value);
+        return value;
+    }
+
+    @property uint collarColor()
+    {
+        auto ptr = 17 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return uint(14);
+    }
+
+    @property uint collarColor(uint value)
+    {
+        auto ptr = 17 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[17] = new MetadataInt(value);
+        return value;
+    }
+
+    @property uint profession()
+    {
+        auto ptr = 13 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint profession(uint value)
+    {
+        auto ptr = 13 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[13] = new MetadataInt(value);
+        return value;
+    }
+
+    @property byte createdByPlayer()
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) return (cast(MetadataByte)*ptr).value;
+        return (byte).init;
+    }
+
+    @property byte createdByPlayer(byte value)
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) (cast(MetadataByte)*ptr).value = value;
+        else this.values[12] = new MetadataByte(value);
+        return value;
+    }
+
+    @property byte snowmanFlags()
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) return (cast(MetadataByte)*ptr).value;
+        return (byte).init;
+    }
+
+    @property byte snowmanFlags(byte value)
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) (cast(MetadataByte)*ptr).value = value;
+        else this.values[12] = new MetadataByte(value);
+        return value;
+    }
+
+    @property uint shulkerDirection()
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataDirection)*ptr) return (cast(MetadataDirection)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint shulkerDirection(uint value)
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataDirection)*ptr) (cast(MetadataDirection)*ptr).value = value;
+        else this.values[12] = new MetadataDirection(value);
+        return value;
+    }
+
+    @property soupply.java316.types.OptionalPosition shulkerAttachment()
+    {
+        auto ptr = 13 in this.values;
+        if(ptr && cast(MetadataOptionalPosition)*ptr) return (cast(MetadataOptionalPosition)*ptr).value;
+        return (soupply.java316.types.OptionalPosition).init;
+    }
+
+    @property soupply.java316.types.OptionalPosition shulkerAttachment(soupply.java316.types.OptionalPosition value)
+    {
+        auto ptr = 13 in this.values;
+        if(ptr && cast(MetadataOptionalPosition)*ptr) (cast(MetadataOptionalPosition)*ptr).value = value;
+        else this.values[13] = new MetadataOptionalPosition(value);
+        return value;
+    }
+
+    @property byte shulkerShieldHeight()
+    {
+        auto ptr = 14 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) return (cast(MetadataByte)*ptr).value;
+        return (byte).init;
+    }
+
+    @property byte shulkerShieldHeight(byte value)
+    {
+        auto ptr = 14 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) (cast(MetadataByte)*ptr).value = value;
+        else this.values[14] = new MetadataByte(value);
+        return value;
+    }
+
+    @property byte shulkerColor()
+    {
+        auto ptr = 15 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) return (cast(MetadataByte)*ptr).value;
+        return (byte).init;
+    }
+
+    @property byte shulkerColor(byte value)
+    {
+        auto ptr = 15 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) (cast(MetadataByte)*ptr).value = value;
+        else this.values[15] = new MetadataByte(value);
+        return value;
+    }
+
+    @property byte blazeOnFire()
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) return (cast(MetadataByte)*ptr).value;
+        return (byte).init;
+    }
+
+    @property byte blazeOnFire(byte value)
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) (cast(MetadataByte)*ptr).value = value;
+        else this.values[12] = new MetadataByte(value);
+        return value;
+    }
+
+    @property uint creeperState()
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return uint(-1);
+    }
+
+    @property uint creeperState(uint value)
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[12] = new MetadataInt(value);
+        return value;
+    }
+
+    @property bool charged()
+    {
+        auto ptr = 13 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) return (cast(MetadataBool)*ptr).value;
+        return (bool).init;
+    }
+
+    @property bool charged(bool value)
+    {
+        auto ptr = 13 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) (cast(MetadataBool)*ptr).value = value;
+        else this.values[13] = new MetadataBool(value);
+        return value;
+    }
+
+    @property bool ignited()
+    {
+        auto ptr = 14 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) return (cast(MetadataBool)*ptr).value;
+        return (bool).init;
+    }
+
+    @property bool ignited(bool value)
+    {
+        auto ptr = 14 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) (cast(MetadataBool)*ptr).value = value;
+        else this.values[14] = new MetadataBool(value);
+        return value;
+    }
+
+    @property bool rectractingSpikes()
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) return (cast(MetadataBool)*ptr).value;
+        return (bool).init;
+    }
+
+    @property bool rectractingSpikes(bool value)
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) (cast(MetadataBool)*ptr).value = value;
+        else this.values[12] = new MetadataBool(value);
+        return value;
+    }
+
+    @property uint guardianTarget()
+    {
+        auto ptr = 13 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint guardianTarget(uint value)
+    {
+        auto ptr = 13 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[13] = new MetadataInt(value);
+        return value;
+    }
+
+    @property byte spell()
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) return (cast(MetadataByte)*ptr).value;
+        return (byte).init;
+    }
+
+    @property byte spell(byte value)
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) (cast(MetadataByte)*ptr).value = value;
+        else this.values[12] = new MetadataByte(value);
+        return value;
+    }
+
+    @property byte attackMode()
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) return (cast(MetadataByte)*ptr).value;
+        return (byte).init;
+    }
+
+    @property byte attackMode(byte value)
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) (cast(MetadataByte)*ptr).value = value;
+        else this.values[12] = new MetadataByte(value);
+        return value;
+    }
+
+    @property bool swingingArms()
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) return (cast(MetadataBool)*ptr).value;
+        return (bool).init;
+    }
+
+    @property bool swingingArms(bool value)
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) (cast(MetadataBool)*ptr).value = value;
+        else this.values[12] = new MetadataBool(value);
+        return value;
+    }
+
+    @property byte climbing()
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) return (cast(MetadataByte)*ptr).value;
+        return (byte).init;
+    }
+
+    @property byte climbing(byte value)
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataByte)*ptr) (cast(MetadataByte)*ptr).value = value;
+        else this.values[12] = new MetadataByte(value);
+        return value;
+    }
+
+    @property uint centerHeadTarget()
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint centerHeadTarget(uint value)
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[12] = new MetadataInt(value);
+        return value;
+    }
+
+    @property uint leftHeadTarget()
+    {
+        auto ptr = 13 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint leftHeadTarget(uint value)
+    {
+        auto ptr = 13 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[13] = new MetadataInt(value);
+        return value;
+    }
+
+    @property uint rightHeadTarget()
+    {
+        auto ptr = 14 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint rightHeadTarget(uint value)
+    {
+        auto ptr = 14 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[14] = new MetadataInt(value);
+        return value;
+    }
+
+    @property uint invulnerableTime()
+    {
+        auto ptr = 15 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint invulnerableTime(uint value)
+    {
+        auto ptr = 15 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[15] = new MetadataInt(value);
+        return value;
+    }
+
+    @property bool handsHeldUp()
+    {
+        auto ptr = 14 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) return (cast(MetadataBool)*ptr).value;
+        return (bool).init;
+    }
+
+    @property bool handsHeldUp(bool value)
+    {
+        auto ptr = 14 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) (cast(MetadataBool)*ptr).value = value;
+        else this.values[14] = new MetadataBool(value);
+        return value;
+    }
+
+    @property bool converting()
+    {
+        auto ptr = 15 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) return (cast(MetadataBool)*ptr).value;
+        return (bool).init;
+    }
+
+    @property bool converting(bool value)
+    {
+        auto ptr = 15 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) (cast(MetadataBool)*ptr).value = value;
+        else this.values[15] = new MetadataBool(value);
+        return value;
+    }
+
+    @property uint zombieVillagerProfession()
+    {
+        auto ptr = 16 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint zombieVillagerProfession(uint value)
+    {
+        auto ptr = 16 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[16] = new MetadataInt(value);
+        return value;
+    }
+
+    @property uint carriedBlock()
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataBlock)*ptr) return (cast(MetadataBlock)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint carriedBlock(uint value)
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataBlock)*ptr) (cast(MetadataBlock)*ptr).value = value;
+        else this.values[12] = new MetadataBlock(value);
+        return value;
+    }
+
+    @property bool screaming()
+    {
+        auto ptr = 13 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) return (cast(MetadataBool)*ptr).value;
+        return (bool).init;
+    }
+
+    @property bool screaming(bool value)
+    {
+        auto ptr = 13 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) (cast(MetadataBool)*ptr).value = value;
+        else this.values[13] = new MetadataBool(value);
+        return value;
+    }
+
+    @property uint dragonPhase()
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint dragonPhase(uint value)
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[12] = new MetadataInt(value);
+        return value;
+    }
+
+    @property bool ghastAttacking()
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) return (cast(MetadataBool)*ptr).value;
+        return (bool).init;
+    }
+
+    @property bool ghastAttacking(bool value)
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) (cast(MetadataBool)*ptr).value = value;
+        else this.values[12] = new MetadataBool(value);
+        return value;
+    }
+
+    @property uint slimeSize()
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return uint(1);
+    }
+
+    @property uint slimeSize(uint value)
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[12] = new MetadataInt(value);
+        return value;
+    }
+
+    @property uint shakingPower()
+    {
+        auto ptr = 6 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint shakingPower(uint value)
+    {
+        auto ptr = 6 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[6] = new MetadataInt(value);
+        return value;
+    }
+
+    @property uint shakingDirection()
+    {
+        auto ptr = 7 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint shakingDirection(uint value)
+    {
+        auto ptr = 7 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[7] = new MetadataInt(value);
+        return value;
+    }
+
+    @property float shakingMultiplier()
+    {
+        auto ptr = 8 in this.values;
+        if(ptr && cast(MetadataFloat)*ptr) return (cast(MetadataFloat)*ptr).value;
+        return float(0);
+    }
+
+    @property float shakingMultiplier(float value)
+    {
+        auto ptr = 8 in this.values;
+        if(ptr && cast(MetadataFloat)*ptr) (cast(MetadataFloat)*ptr).value = value;
+        else this.values[8] = new MetadataFloat(value);
+        return value;
+    }
+
+    @property uint minecartBlock()
+    {
+        auto ptr = 9 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint minecartBlock(uint value)
+    {
+        auto ptr = 9 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[9] = new MetadataInt(value);
+        return value;
+    }
+
+    @property uint minecartBlockPosition()
+    {
+        auto ptr = 10 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return uint(6);
+    }
+
+    @property uint minecartBlockPosition(uint value)
+    {
+        auto ptr = 10 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[10] = new MetadataInt(value);
+        return value;
+    }
+
+    @property bool minecartCustomBlock()
+    {
+        auto ptr = 11 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) return (cast(MetadataBool)*ptr).value;
+        return (bool).init;
+    }
+
+    @property bool minecartCustomBlock(bool value)
+    {
+        auto ptr = 11 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) (cast(MetadataBool)*ptr).value = value;
+        else this.values[11] = new MetadataBool(value);
+        return value;
+    }
+
+    @property bool furnacePowered()
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) return (cast(MetadataBool)*ptr).value;
+        return (bool).init;
+    }
+
+    @property bool furnacePowered(bool value)
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataBool)*ptr) (cast(MetadataBool)*ptr).value = value;
+        else this.values[12] = new MetadataBool(value);
+        return value;
+    }
+
+    @property string command()
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataString)*ptr) return (cast(MetadataString)*ptr).value;
+        return (string).init;
+    }
+
+    @property string command(string value)
+    {
+        auto ptr = 12 in this.values;
+        if(ptr && cast(MetadataString)*ptr) (cast(MetadataString)*ptr).value = value;
+        else this.values[12] = new MetadataString(value);
+        return value;
+    }
+
+    @property string lastOutput()
+    {
+        auto ptr = 13 in this.values;
+        if(ptr && cast(MetadataChat)*ptr) return (cast(MetadataChat)*ptr).value;
+        return (string).init;
+    }
+
+    @property string lastOutput(string value)
+    {
+        auto ptr = 13 in this.values;
+        if(ptr && cast(MetadataChat)*ptr) (cast(MetadataChat)*ptr).value = value;
+        else this.values[13] = new MetadataChat(value);
+        return value;
+    }
+
+    @property uint fuseTime()
+    {
+        auto ptr = 6 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) return (cast(MetadataInt)*ptr).value;
+        return (uint).init;
+    }
+
+    @property uint fuseTime(uint value)
+    {
+        auto ptr = 6 in this.values;
+        if(ptr && cast(MetadataInt)*ptr) (cast(MetadataInt)*ptr).value = value;
+        else this.values[6] = new MetadataInt(value);
+        return value;
     }
 
 }

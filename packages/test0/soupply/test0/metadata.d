@@ -11,11 +11,6 @@ import soupply.util;
 
 static import soupply.test0.types;
 
-enum MetadataType : uint
-{
-    BYTE = 0,
-}
-
 class MetadataValue : PacketImpl!(Endian.bigEndian, ubyte, varuint)
 {
 
