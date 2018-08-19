@@ -305,7 +305,7 @@ class MetadataNbt : MetadataValue
 
 }
 
-struct Metadata
+class Metadata
 {
 
     MetadataValue[ubyte] values;

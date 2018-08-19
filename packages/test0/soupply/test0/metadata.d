@@ -45,7 +45,7 @@ class MetadataByte : MetadataValue
 
 }
 
-struct Metadata
+class Metadata
 {
 
     MetadataValue[uint] values;

@@ -345,7 +345,7 @@ class MetadataParticle : MetadataValue
 
 }
 
-struct Metadata
+class Metadata
 {
 
     MetadataValue[ubyte] values;

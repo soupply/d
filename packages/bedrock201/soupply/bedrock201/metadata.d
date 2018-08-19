@@ -205,16 +205,16 @@ class MetadataEntityPosition : MetadataValue
 
 }
 
-struct Metadata
+class Metadata
 {
 
     MetadataValue[uint] values;
 
     this()
     {
-        this.values[0] = new MetadataLong((long)(0));
-        this.values[7] = new MetadataShort((short)(0));
-        this.values[38] = new MetadataLong((long)(-1));
+        this.values[0] = new MetadataLong(long(0));
+        this.values[7] = new MetadataShort(short(0));
+        this.values[38] = new MetadataLong(long(-1));
     }
 
     void encodeBody(Buffer buffer)

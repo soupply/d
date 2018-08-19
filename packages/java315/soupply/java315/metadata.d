@@ -285,7 +285,7 @@ class MetadataBlock : MetadataValue
 
 }
 
-struct Metadata
+class Metadata
 {
 
     MetadataValue[ubyte] values;
