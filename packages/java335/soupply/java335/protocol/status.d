@@ -6,7 +6,7 @@ module soupply.java335.protocol.status;
 
 static import std.conv;
 import std.typetuple : TypeTuple;
-import packetmaker;
+import xpacket;
 
 import soupply.util;
 import soupply.java335.metadata : Metadata;
@@ -50,7 +50,7 @@ class Handshake : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Handshake ret = new Handshake();
-        ret.autoDecode(buffer);
+        ret.decode(buffer);
         return ret;
     }
 
@@ -76,7 +76,7 @@ class Request : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Request ret = new Request();
-        ret.autoDecode(buffer);
+        ret.decode(buffer);
         return ret;
     }
 
@@ -111,7 +111,7 @@ class Response : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Response ret = new Response();
-        ret.autoDecode(buffer);
+        ret.decode(buffer);
         return ret;
     }
 
@@ -146,7 +146,7 @@ class Latency : Java335Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Latency ret = new Latency();
-        ret.autoDecode(buffer);
+        ret.decode(buffer);
         return ret;
     }
 

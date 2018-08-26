@@ -3,6 +3,6 @@
  */
 module soupply.java316.packet;
 
-import packetmaker;
+import xpacket;
 
 alias Java316Packet = PacketImpl!(Endian.bigEndian, varuint, varuint);

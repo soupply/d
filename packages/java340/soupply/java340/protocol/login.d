@@ -6,7 +6,7 @@ module soupply.java340.protocol.login;
 
 static import std.conv;
 import std.typetuple : TypeTuple;
-import packetmaker;
+import xpacket;
 
 import soupply.util;
 import soupply.java340.metadata : Metadata;
@@ -40,7 +40,7 @@ class Disconnect : Java340Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Disconnect ret = new Disconnect();
-        ret.autoDecode(buffer);
+        ret.decode(buffer);
         return ret;
     }
 
@@ -75,7 +75,7 @@ class LoginStart : Java340Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         LoginStart ret = new LoginStart();
-        ret.autoDecode(buffer);
+        ret.decode(buffer);
         return ret;
     }
 
@@ -114,7 +114,7 @@ class EncryptionRequest : Java340Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         EncryptionRequest ret = new EncryptionRequest();
-        ret.autoDecode(buffer);
+        ret.decode(buffer);
         return ret;
     }
 
@@ -151,7 +151,7 @@ class EncryptionResponse : Java340Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         EncryptionResponse ret = new EncryptionResponse();
-        ret.autoDecode(buffer);
+        ret.decode(buffer);
         return ret;
     }
 
@@ -188,7 +188,7 @@ class LoginSuccess : Java340Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         LoginSuccess ret = new LoginSuccess();
-        ret.autoDecode(buffer);
+        ret.decode(buffer);
         return ret;
     }
 
@@ -223,7 +223,7 @@ class SetCompression : Java340Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SetCompression ret = new SetCompression();
-        ret.autoDecode(buffer);
+        ret.decode(buffer);
         return ret;
     }
 

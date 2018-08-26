@@ -6,7 +6,7 @@ module soupply.java393.protocol.login_clientbound;
 
 static import std.conv;
 import std.typetuple : TypeTuple;
-import packetmaker;
+import xpacket;
 
 import soupply.util;
 import soupply.java393.metadata : Metadata;
@@ -40,7 +40,7 @@ class Disconnect : Java393Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         Disconnect ret = new Disconnect();
-        ret.autoDecode(buffer);
+        ret.decode(buffer);
         return ret;
     }
 
@@ -79,7 +79,7 @@ class EncryptionRequest : Java393Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         EncryptionRequest ret = new EncryptionRequest();
-        ret.autoDecode(buffer);
+        ret.decode(buffer);
         return ret;
     }
 
@@ -116,7 +116,7 @@ class LoginSuccess : Java393Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         LoginSuccess ret = new LoginSuccess();
-        ret.autoDecode(buffer);
+        ret.decode(buffer);
         return ret;
     }
 
@@ -151,7 +151,7 @@ class SetCompression : Java393Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         SetCompression ret = new SetCompression();
-        ret.autoDecode(buffer);
+        ret.decode(buffer);
         return ret;
     }
 
@@ -174,7 +174,7 @@ class PluginRequest : Java393Packet
 
     @Var uint messageId;
     string channel;
-    @Bytes ubyte[] data;
+    @NoLength ubyte[] data;
 
     this() pure nothrow @safe @nogc {}
 
@@ -190,7 +190,7 @@ class PluginRequest : Java393Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         PluginRequest ret = new PluginRequest();
-        ret.autoDecode(buffer);
+        ret.decode(buffer);
         return ret;
     }
 

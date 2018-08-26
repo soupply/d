@@ -6,7 +6,7 @@ module soupply.test0.protocol.test;
 
 static import std.conv;
 import std.typetuple : TypeTuple;
-import packetmaker;
+import xpacket;
 
 import soupply.util;
 import soupply.test0.metadata : Metadata;
@@ -48,7 +48,7 @@ class TestInt : Test0Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         TestInt ret = new TestInt();
-        ret.autoDecode(buffer);
+        ret.decode(buffer);
         return ret;
     }
 
@@ -69,10 +69,10 @@ class TestInt : Test0Packet
         packet.b = 300;
         packet.c = 1;
         packet.a = -10;
-        auto result = packet.autoEncode();
+        auto result = packet.encode();
         assert(result == [0, 246, 1, 44, 1, 0, 0, 0, 0, 0, 0, 0, 20, 244, 3], `test0.test.test-int expected [0, 246, 1, 44, 1, 0, 0, 0, 0, 0, 0, 0, 20, 244, 3] but got ` ~ result.to!string);
 
-        packet.autoDecode([0, 246, 1, 44, 1, 0, 0, 0, 0, 0, 0, 0, 20, 244, 3]);
+        packet.decode([0, 246, 1, 44, 1, 0, 0, 0, 0, 0, 0, 0, 20, 244, 3]);
         assert(packet.d == 10, `test0.test.test-int.d expected 10 but got ` ~ packet.d.to!string);
         assert(packet.e == 500, `test0.test.test-int.e expected 500 but got ` ~ packet.e.to!string);
         assert(packet.b == 300, `test0.test.test-int.b expected 300 but got ` ~ packet.b.to!string);
@@ -111,7 +111,7 @@ class TestFloat : Test0Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         TestFloat ret = new TestFloat();
-        ret.autoDecode(buffer);
+        ret.decode(buffer);
         return ret;
     }
 
@@ -130,10 +130,10 @@ class TestFloat : Test0Packet
         packet.b = 312;
         packet.c = -44;
         packet.a = 1;
-        auto result = packet.autoEncode();
+        auto result = packet.encode();
         assert(result == [1, 63, 128, 0, 0, 64, 115, 128, 0, 0, 0, 0, 0, 0, 0, 48, 194], `test0.test.test-float expected [1, 63, 128, 0, 0, 64, 115, 128, 0, 0, 0, 0, 0, 0, 0, 48, 194] but got ` ~ result.to!string);
 
-        packet.autoDecode([1, 63, 128, 0, 0, 64, 115, 128, 0, 0, 0, 0, 0, 0, 0, 48, 194]);
+        packet.decode([1, 63, 128, 0, 0, 64, 115, 128, 0, 0, 0, 0, 0, 0, 0, 48, 194]);
         assert(packet.b == 312, `test0.test.test-float.b expected 312 but got ` ~ packet.b.to!string);
         assert(packet.c == -44, `test0.test.test-float.c expected -44 but got ` ~ packet.c.to!string);
         assert(packet.a == 1, `test0.test.test-float.a expected 1 but got ` ~ packet.a.to!string);
@@ -172,7 +172,7 @@ class TestArray : Test0Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         TestArray ret = new TestArray();
-        ret.autoDecode(buffer);
+        ret.decode(buffer);
         return ret;
     }
 
@@ -192,10 +192,10 @@ class TestArray : Test0Packet
         packet.b = "test";
         packet.c = [-1, 0, 1];
         packet.a = [3, 2];
-        auto result = packet.autoEncode();
+        auto result = packet.encode();
         assert(result == [2, 2, 3, 2, 4, 116, 101, 115, 116, 0, 3, 255, 255, 0, 0, 0, 1, 2, 0, 144, 3], `test0.test.test-array expected [2, 2, 3, 2, 4, 116, 101, 115, 116, 0, 3, 255, 255, 0, 0, 0, 1, 2, 0, 144, 3] but got ` ~ result.to!string);
 
-        packet.autoDecode([2, 2, 3, 2, 4, 116, 101, 115, 116, 0, 3, 255, 255, 0, 0, 0, 1, 2, 0, 144, 3]);
+        packet.decode([2, 2, 3, 2, 4, 116, 101, 115, 116, 0, 3, 255, 255, 0, 0, 0, 1, 2, 0, 144, 3]);
         assert(packet.d == [0, 400], `test0.test.test-array.d expected [0,400] but got ` ~ packet.d.to!string);
         assert(packet.b == "test", `test0.test.test-array.b expected "test" but got ` ~ packet.b.to!string);
         assert(packet.c == [-1, 0, 1], `test0.test.test-array.c expected [-1,0,1] but got ` ~ packet.c.to!string);

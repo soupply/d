@@ -6,7 +6,7 @@ module soupply.java393.protocol.login_serverbound;
 
 static import std.conv;
 import std.typetuple : TypeTuple;
-import packetmaker;
+import xpacket;
 
 import soupply.util;
 import soupply.java393.metadata : Metadata;
@@ -40,7 +40,7 @@ class LoginStart : Java393Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         LoginStart ret = new LoginStart();
-        ret.autoDecode(buffer);
+        ret.decode(buffer);
         return ret;
     }
 
@@ -77,7 +77,7 @@ class EncryptionResponse : Java393Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         EncryptionResponse ret = new EncryptionResponse();
-        ret.autoDecode(buffer);
+        ret.decode(buffer);
         return ret;
     }
 
@@ -100,7 +100,7 @@ class PluginResponse : Java393Packet
 
     @Var uint messageId;
     bool successful;
-    @Condition("successful==true") @Bytes ubyte[] data;
+    @Condition("successful==true") @NoLength ubyte[] data;
 
     this() pure nothrow @safe @nogc {}
 
@@ -116,7 +116,7 @@ class PluginResponse : Java393Packet
     public static typeof(this) fromBuffer(ubyte[] buffer)
     {
         PluginResponse ret = new PluginResponse();
-        ret.autoDecode(buffer);
+        ret.decode(buffer);
         return ret;
     }
 

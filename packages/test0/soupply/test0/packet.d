@@ -3,6 +3,6 @@
  */
 module soupply.test0.packet;
 
-import packetmaker;
+import xpacket;
 
 alias Test0Packet = PacketImpl!(Endian.bigEndian, ubyte, varuint);

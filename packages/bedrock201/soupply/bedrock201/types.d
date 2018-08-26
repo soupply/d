@@ -5,8 +5,9 @@
 module soupply.bedrock201.types;
 
 static import std.conv;
-import packetmaker;
-import packetmaker.maker : EndianType, writeLength, readLength;
+import xpacket;
+
+import xserial.serial : EndianType, serializeLength, deserializeLength;
 
 import xbuffer.memory : xalloc, xfree;
 
@@ -34,18 +35,18 @@ struct LoginBody
 
     alias _container this;
 
-    void encodeBody(Buffer buffer)
+    void serialize(Buffer buffer)
     {
         Buffer _buffer = xalloc!Buffer(Container.sizeof + 4);
         _container.encodeBody(_buffer);
-        writeLength!(EndianType.var, uint)(buffer, _buffer.data!ubyte.length);
+        serializeLength!(EndianType.var, uint)(buffer, _buffer.data!ubyte.length);
         buffer.writeData(_buffer.data!ubyte);
         xfree(_buffer);
     }
 
-    void decodeBody(Buffer buffer)
+    void deserialize(Buffer buffer)
     {
-        Buffer _buffer = xalloc!Buffer(cast(ubyte[])buffer.readData(readLength!(EndianType.var, uint)(buffer)));
+        Buffer _buffer = xalloc!Buffer(cast(ubyte[])buffer.readData(deserializeLength!(EndianType.var, uint)(buffer)));
         _container.decodeBody(_buffer);
         xfree(_buffer);
     }
@@ -247,7 +248,7 @@ struct Recipe
     enum string[] __fields = ["type", "data"];
 
     @Var int type;
-    @Bytes ubyte[] data;
+    @NoLength ubyte[] data;
 
     mixin Make!(Endian.littleEndian, varuint);
 
@@ -297,7 +298,7 @@ struct ChunkData
         ubyte[256] biomes;
         ubyte[] borders;
         soupply.bedrock201.types.ExtraData[] extraData;
-        @Bytes ubyte[] blockEntities;
+        @NoLength ubyte[] blockEntities;
 
         mixin Make!(Endian.littleEndian, varuint);
 
@@ -309,18 +310,18 @@ struct ChunkData
 
     alias _container this;
 
-    void encodeBody(Buffer buffer)
+    void serialize(Buffer buffer)
     {
         Buffer _buffer = xalloc!Buffer(Container.sizeof + 4);
         _container.encodeBody(_buffer);
-        writeLength!(EndianType.var, uint)(buffer, _buffer.data!ubyte.length);
+        serializeLength!(EndianType.var, uint)(buffer, _buffer.data!ubyte.length);
         buffer.writeData(_buffer.data!ubyte);
         xfree(_buffer);
     }
 
-    void decodeBody(Buffer buffer)
+    void deserialize(Buffer buffer)
     {
-        Buffer _buffer = xalloc!Buffer(cast(ubyte[])buffer.readData(readLength!(EndianType.var, uint)(buffer)));
+        Buffer _buffer = xalloc!Buffer(cast(ubyte[])buffer.readData(deserializeLength!(EndianType.var, uint)(buffer)));
         _container.decodeBody(_buffer);
         xfree(_buffer);
     }

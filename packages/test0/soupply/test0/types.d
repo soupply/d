@@ -5,8 +5,9 @@
 module soupply.test0.types;
 
 static import std.conv;
-import packetmaker;
-import packetmaker.maker : EndianType, writeLength, readLength;
+import xpacket;
+
+import xserial.serial : EndianType, serializeLength, deserializeLength;
 
 import xbuffer.memory : xalloc, xfree;
 

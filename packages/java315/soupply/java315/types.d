@@ -5,8 +5,9 @@
 module soupply.java315.types;
 
 static import std.conv;
-import packetmaker;
-import packetmaker.maker : EndianType, writeLength, readLength;
+import xpacket;
+
+import xserial.serial : EndianType, serializeLength, deserializeLength;
 
 import xbuffer.memory : xalloc, xfree;
 
@@ -56,7 +57,7 @@ struct Slot
     short id;
     @Condition("id>0") ubyte count;
     @Condition("id>0") ushort damage;
-    @Condition("id>0") @Bytes ubyte[] nbt;
+    @Condition("id>0") @NoLength ubyte[] nbt;
 
     mixin Make!(Endian.bigEndian, varuint);
 

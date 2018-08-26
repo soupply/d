@@ -3,6 +3,6 @@
  */
 module soupply.java338.packet;
 
-import packetmaker;
+import xpacket;
 
 alias Java338Packet = PacketImpl!(Endian.bigEndian, varuint, varuint);

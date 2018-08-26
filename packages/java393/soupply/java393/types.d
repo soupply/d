@@ -5,8 +5,9 @@
 module soupply.java393.types;
 
 static import std.conv;
-import packetmaker;
-import packetmaker.maker : EndianType, writeLength, readLength;
+import xpacket;
+
+import xserial.serial : EndianType, serializeLength, deserializeLength;
 
 import xbuffer.memory : xalloc, xfree;
 
@@ -20,7 +21,7 @@ struct Slot
 
     short id;
     @Condition("id>0") ubyte count;
-    @Condition("id>0") @Bytes ubyte[] nbt;
+    @Condition("id>0") @NoLength ubyte[] nbt;
 
     mixin Make!(Endian.bigEndian, varuint);
 
@@ -346,7 +347,7 @@ struct Node
     @Condition("(flags&8)!=0") @Var uint redirectNode;
     @Condition("(flags&1)!=0||(flags&2)!=0") string name;
     @Condition("(flags&2)!=0") string parser;
-    @Condition("(flags&2)!=0") @Bytes ubyte[] properties;
+    @Condition("(flags&2)!=0") @NoLength ubyte[] properties;
 
     mixin Make!(Endian.bigEndian, varuint);
 

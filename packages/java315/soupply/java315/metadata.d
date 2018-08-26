@@ -4,8 +4,9 @@
  */
 module soupply.java315.metadata;
 
-import packetmaker;
-import packetmaker.maker : EndianType, writeLength, writeImpl, readLength, readImpl;
+import xpacket;
+
+import xserial.serial : EndianType, serializeLength, serializeNumber, deserializeLength, deserializeNumber;
 
 import soupply.util;
 
@@ -295,22 +296,22 @@ class Metadata
         this.values[0] = new MetadataByte((byte).init);
     }
 
-    void encodeBody(Buffer buffer)
+    void serialize(Buffer buffer)
     {
         foreach(id, value; values)
         {
-            writeImpl!(EndianType.bigEndian, ubyte)(buffer, id);
+            serializeNumber!(EndianType.bigEndian, ubyte)(buffer, id);
             value.encodeBody(buffer);
         }
         buffer.write(ubyte(255));
     }
 
-    void decodeBody(Buffer buffer)
+    void deserialize(Buffer buffer)
     {
         ubyte id;
         while((id = buffer.read!ubyte()) != 255)
         {
-            switch(readImpl!(EndianType.bigEndian, ubyte)(buffer))
+            switch(deserializeNumber!(EndianType.bigEndian, ubyte)(buffer))
             {
                 case 0:
                     auto value = new MetadataByte();

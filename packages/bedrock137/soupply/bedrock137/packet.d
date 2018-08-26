@@ -3,7 +3,7 @@
  */
 module soupply.bedrock137.packet;
 
-import packetmaker;
+import xpacket;
 
 import soupply.util : Pad;
 
