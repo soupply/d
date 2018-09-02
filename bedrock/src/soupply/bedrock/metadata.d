@@ -3,4 +3,4 @@
  */
 module soupply.bedrock.metadata;
 
-public import soupply.bedrock274.metadata;
+public import soupply.bedrock282.metadata;

@@ -3,4 +3,4 @@
  */
 module soupply.bedrock.types;
 
-public import soupply.bedrock274.types;
+public import soupply.bedrock282.types;

@@ -11,6 +11,7 @@ public import soupply.bedrock160;
 public import soupply.bedrock201;
 public import soupply.bedrock261;
 public import soupply.bedrock274;
+public import soupply.bedrock282;
 public import soupply.java;
 public import soupply.java210;
 public import soupply.java315;

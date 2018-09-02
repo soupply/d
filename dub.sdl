@@ -11,6 +11,7 @@ dependency "soupply:bedrock160" version="*"
 dependency "soupply:bedrock201" version="*"
 dependency "soupply:bedrock261" version="*"
 dependency "soupply:bedrock274" version="*"
+dependency "soupply:bedrock282" version="*"
 dependency "soupply:java" version="*"
 dependency "soupply:java210" version="*"
 dependency "soupply:java315" version="*"
@@ -85,6 +86,15 @@ subPackage {
 	targetType "library"
 	sourcePaths "packages/bedrock274"
 	importPaths "packages/bedrock274"
+	dependency "soupply:util" version="*"
+}
+
+subPackage {
+	name "bedrock282"
+	description "Libraries for Minecraft (Bedrock Engine) protocol 282"
+	targetType "library"
+	sourcePaths "packages/bedrock282"
+	importPaths "packages/bedrock282"
 	dependency "soupply:util" version="*"
 }
 
